@@ -10,6 +10,11 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "bootstrap-sass": "^3.4.1",
+    "gulp": "^4.0.2",
+    "gulp-haml": "^1.0.1",
+    "gulp-livereload": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
