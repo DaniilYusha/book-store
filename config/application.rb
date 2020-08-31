@@ -17,6 +17,7 @@ module BookStore
     # the framework and any gems in your application.
     config.generators do |g|
       g.test_framework :rspec
+      g.helper false
     end
   end
 end
