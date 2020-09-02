@@ -19,6 +19,7 @@ module BookStore
       g.test_framework :rspec
       g.helper false
       g.assets false
+      g.view_specs false
     end
   end
 end
