@@ -5,7 +5,7 @@
     %meta{name: "viewport", content: "width=device-width"}
     %title Bookstore
     %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
-    %link{href: "../css/style.css", rel: "stylesheet"}
+    = stylesheet_link_tag 'sass/style'
   %body
     %header.navbar.navbar-default
       .container
@@ -197,5 +197,5 @@
                 %a.nav-link{href: "#"}
                   %i.fa.fa-instagram{'aria-hidden': "true"}
     %script{src: "https://use.fontawesome.com/67602d7308.js"}
-    %script{src: "../../javascripts/jquery.js"}
-    %script{src: "../../javascripts/bootstrap.js"}
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'bootstrap'
