@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'HomeIndex', type: :feature do
-  describe 'page content' do
+  describe 'home/index' do
     before { visit '/' }
 
     context 'when user see header' do
