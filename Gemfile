@@ -30,7 +30,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'bootstrap-sass'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'haml', '~> 5.1'
+  gem 'haml-rails', '~> 2.0'
 end
 
 group :development do
@@ -40,8 +43,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'haml', '~> 5.1'
-  gem 'bootstrap-sass', '3.3.7'
 end
 
 group :test do
@@ -49,10 +50,11 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec', '~> 3.9'
   gem 'rspec-rails', '~> 4.0'
   gem 'simplecov', '~> 0.19.0'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
