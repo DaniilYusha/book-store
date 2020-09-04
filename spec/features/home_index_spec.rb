@@ -43,6 +43,10 @@ RSpec.feature 'HomeIndex', type: :feature do
         expect(page).to have_css '#slider'
       end
 
+      it 'has `Buy now` button' do
+        expect(page).to have_button I18n.t('buttons.buy_now')
+      end
+
       it 'has greeting text' do
         expect(page).to have_content I18n.t('home_page.greeting')
       end
@@ -53,14 +57,6 @@ RSpec.feature 'HomeIndex', type: :feature do
 
       it 'has `Get started` button' do
         expect(page).to have_button I18n.t('buttons.get_started')
-      end
-
-      it 'has `Best sellers` content' do
-        expect(page).to have_content I18n.t('home_page.best_sellers')
-      end
-
-      it 'has `Buy now` button' do
-        expect(page).to have_button I18n.t('buttons.buy_now')
       end
     end
 
