@@ -1,10 +1,12 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
   minimum_coverage 95
-  add_filter '/app/channels'
-  add_filter '/app/jobs'
-  add_filter '/app/mailers'
-  add_filter '/app/models/application_record.rb'
+  add_filter [
+    '/app/channels',
+    '/app/jobs',
+    '/app/mailers',
+    '/app/models/application_record.rb'
+  ]
 end
 
 require 'capybara/rspec'
