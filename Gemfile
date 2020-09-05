@@ -19,6 +19,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'haml', '~> 5.1'
   gem 'haml-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 4.0'
 end
 
 group :development do
@@ -31,8 +32,6 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'rails-controller-testing', '~> 1.0'
-  gem 'rspec', '~> 3.9'
-  gem 'rspec-rails', '~> 4.0'
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.19.0'
   gem 'webdrivers'
