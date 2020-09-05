@@ -12,7 +12,5 @@ module BookStore
       g.helper false
       g.assets false
     end
-
-    config.assets.initialize_on_precompile = false
   end
 end
