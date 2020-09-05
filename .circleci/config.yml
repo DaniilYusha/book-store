@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default:
     working_directory: ~/repo
-    description: CodebreakerWeb
+    description: Book-store
     docker:
       - image: circleci/ruby:2.7.1
 
@@ -15,6 +15,7 @@ commands:
   setup_environment:
     steps:
       - checkout
+      - run: sudo apt-get update
       - restore_cache:
           keys:
             - *bundle_cache_full
@@ -38,7 +39,12 @@ commands:
     steps:
       - run:
           name: run specs
-          command: bundle exec rspec spec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format progress \
+                                  --out /tmp/test-results/rspec.xml \
+                                  $TEST_FILES
       - store_artifacts:
           path: ~/repo/coverage
           destination: coverage
