@@ -6,49 +6,38 @@ executors:
     description: Book-store
     docker:
       - image: circleci/ruby:2.7.1
-
 caches:
-  - &bundle_cache_full v1-refactoring_example-{{ checksum "Gemfile.lock" }}
-  - &bundle_cache v1-refactoring_example
-
+  - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
 commands:
-  setup_environment:
-    steps:
-      - checkout
-      - run: sudo apt-get update
-      - restore_cache:
-          keys:
-            - *bundle_cache_full
-            - *bundle_cache
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          paths:
-            - vendor/bundle
-          key: *bundle_cache_full
   run_linters:
     description: command to start linters
     steps:
       - run:
           name: rubocop
           command: bundle exec rubocop
-      - run:
-          name: fasterer
-          command: bundle exec fasterer
   run_specs:
-    description: command to run specs
     steps:
       - run:
           name: run specs
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb")"
             bundle exec rspec --format progress \
-                                  --out /tmp/test-results/rspec.xml \
-                                  $TEST_FILES
+                              --out /tmp/test-results/rspec.xml \
+                              $TEST_FILES
       - store_artifacts:
           path: ~/repo/coverage
           destination: coverage
-
+  setup_environment:
+    steps:
+      - checkout
+      - restore_cache:
+          key: *bundle_cache
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: *bundle_cache
+          paths:
+            - vendor/bundle
 jobs:
   lintering:
     executor: default
