@@ -1,6 +1,4 @@
 require 'simplecov'
-require 'capybara/rspec'
-
 SimpleCov.start 'rails' do
   minimum_coverage 95
   add_filter '/app/channels'
@@ -8,6 +6,8 @@ SimpleCov.start 'rails' do
   add_filter '/app/mailers'
   add_filter '/app/models/application_record.rb'
 end
+
+require 'capybara/rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
