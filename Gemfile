@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.4.2'
 gem 'bootstrap-sass'
 gem 'fasterer', '~> 0.8.3'
 gem 'haml', '~> 5.1'
@@ -33,7 +33,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'selenium-webdriver'
-  gem 'simplecov', '~> 0.19.0', require: false
+  gem 'simplecov', '~> 0.19.0'
   gem 'webdrivers'
 end
 

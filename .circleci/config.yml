@@ -19,7 +19,7 @@ commands:
           keys:
             - *bundle_cache_full
             - *bundle_cache
-      - run: bundle config set path 'vendor/bundle' && bundle install
+      - run: bundle install --path vendor/bundle
       - save_cache:
           paths:
             - vendor/bundle
@@ -36,13 +36,15 @@ commands:
   run_specs:
     description: command to run specs
     steps:
+      # - run: DISABLE_SPRING=true
       - run:
           name: run specs
           command: |
             mkdir /tmp/test-results
-            DISABLE_SPRING=true
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
             bundle exec rspec --format progress \
                                   --out /tmp/test-results/rspec.xml \
+                                  $TEST_FILES
       - store_artifacts:
           path: ~/repo/coverage
           destination: coverage
