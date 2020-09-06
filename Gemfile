@@ -33,7 +33,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'selenium-webdriver'
-  gem 'simplecov', '~> 0.19.0'
+  gem 'simplecov', '~> 0.19.0', require: false
   gem 'webdrivers'
 end
 
