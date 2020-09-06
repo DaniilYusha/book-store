@@ -40,6 +40,7 @@ commands:
           name: run specs
           command: |
             mkdir /tmp/test-results
+            DISABLE_SPRING=true
             bundle exec rspec --format progress \
                                   --out /tmp/test-results/rspec.xml \
       - store_artifacts:
