@@ -2,11 +2,18 @@ version: 2.1
 
 executors:
   default:
-    working_directory: ~/repo
+    working_directory: ~/book-store
     description: BookStore
     docker:
       - image: circleci/ruby:2.7.1
+        environment:
+            DATABASE_URL: "postgres://localhost/book_store_test"
+            PGHOST: 127.0.0.1
       - image: circleci/postgres:9.6.9
+        environment:
+          POSTGRES_USER: yusha
+          POSTGRES_DB: book_store_test
+          POSTGRES_PASSWORD: "daniil200013"
 
 caches:
   - &bundle_cache_full v1-refactoring_example-{{ checksum "Gemfile.lock" }}
@@ -21,11 +28,17 @@ commands:
             - *bundle_cache_full
             - *bundle_cache
       - run: bundle install --path vendor/bundle
+      - run: yarn install
       - save_cache:
           paths:
             - vendor/bundle
           key: *bundle_cache_full
-      - run: rake db:migrate
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
   run_linters:
     description: command to start linters
     steps:
