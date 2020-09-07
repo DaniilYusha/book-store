@@ -28,6 +28,7 @@ commands:
             - *bundle_cache_full
             - *bundle_cache
       - run: bundle install --path vendor/bundle
+      - run: yarn install
       - save_cache:
           paths:
             - vendor/bundle
