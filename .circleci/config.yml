@@ -29,6 +29,7 @@ commands:
           paths:
             - vendor/bundle
           key: *bundle_cache_full
+      - run: yarn install --check-files
       - run: bundle exec rails db:schema:load --trace
   run_linters:
     description: command to start linters
