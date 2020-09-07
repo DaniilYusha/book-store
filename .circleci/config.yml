@@ -5,7 +5,7 @@ executors:
     working_directory: ~/book-store
     description: BookStore
     docker:
-      - image: circleci/ruby:2.7.1
+      - image: circleci/ruby:2.7.1-node
         environment:
             DATABASE_URL: "postgres://localhost/book_store_test"
             PGHOST: 127.0.0.1
@@ -16,8 +16,8 @@ executors:
           POSTGRES_PASSWORD: "daniil200013"
 
 caches:
-  - &bundle_cache_full v1-refactoring_example-{{ checksum "Gemfile.lock" }}
-  - &bundle_cache v1-refactoring_example
+  - &bundle_cache_full v1-book_store-{{ checksum "Gemfile.lock" }}
+  - &bundle_cache v1-book_store
 
 commands:
   setup_environment:
