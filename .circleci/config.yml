@@ -18,11 +18,6 @@ caches:
 
 commands:
   setup_environment:
-    environment:
-      PGHOST: 127.0.0.1
-      PGUSER: yusha
-      PGPASSWORD: "daniil200013"
-      RAILS_ENV: test
     steps:
       - checkout
       - restore_cache:
