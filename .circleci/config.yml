@@ -6,6 +6,11 @@ executors:
     description: BookStore
     docker:
       - image: circleci/ruby:2.7.1
+      - image: circleci/postgres:9.6.9
+        environment:
+            POSTGRES_USER: yusha
+            POSTGRES_DB: book_store_test
+            POSTGRES_PASSWORD: "daniil200013"
 
 caches:
   - &bundle_cache_full v1-refactoring_example-{{ checksum "Gemfile.lock" }}
@@ -13,6 +18,11 @@ caches:
 
 commands:
   setup_environment:
+    environment:
+      PGHOST: 127.0.0.1
+      PGUSER: yusha
+      PGPASSWORD: "daniil200013"
+      RAILS_ENV: test
     steps:
       - checkout
       - restore_cache:
@@ -24,6 +34,7 @@ commands:
           paths:
             - vendor/bundle
           key: *bundle_cache_full
+      - run: bundle exec rails db:schema:load --trace
   run_linters:
     description: command to start linters
     steps:
@@ -38,7 +49,7 @@ commands:
     steps:
       - run:
           name: run specs
-          command: bundle exec rspec 
+          command: bundle exec rspec
 
 jobs:
   lintering:
