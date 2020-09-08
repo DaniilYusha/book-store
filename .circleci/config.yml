@@ -18,7 +18,6 @@ executors:
 caches:
   - &bundle_cache_full v1-book_store-{{ checksum "Gemfile.lock" }}
   - &bundle_cache v1-book_store
-  - &yarn_cache-{{ checksum "yarn.lock" }}
 
 commands:
   setup_environment:
@@ -28,7 +27,8 @@ commands:
           keys:
             - *bundle_cache_full
             - *bundle_cache
-            - *yarn_cache
+            - yarn_cache-{{ checksum "yarn.lock" }}
+
       - run:
           name: Installing bundler dependencies
           command: bundle install --path vendor/bundle
@@ -42,7 +42,7 @@ commands:
       - save_cache:
           paths:
             - node_modules
-          key: *yarn_cache
+          key: yarn_cache-{{ checksum "yarn.lock" }}
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
