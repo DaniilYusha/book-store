@@ -54,6 +54,9 @@ commands:
       - run:
           name: run specs
           command: bundle exec rspec
+      - store_artifacts:
+          path: ~/book-store/coverage
+          destination: coverage
 
 jobs:
   lintering:
