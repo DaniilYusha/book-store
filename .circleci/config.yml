@@ -37,7 +37,7 @@ commands:
           command: bundle install --path vendor/bundle
       - run:
           name: Installing npm packages
-          command: yarn install
+          command: yarn install --path node_modules
       - save_cache:
           paths:
             - vendor/bundle
