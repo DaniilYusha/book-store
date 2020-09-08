@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'bootsnap', '>= 1.4.2'
-gem 'bootstrap-sass'
 gem 'fasterer', '~> 0.8.3'
 gem 'haml', '~> 5.1'
 gem 'haml-rails', '~> 2.0'
