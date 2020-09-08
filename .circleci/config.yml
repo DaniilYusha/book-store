@@ -29,9 +29,10 @@ commands:
           keys:
             - *bundle_cache_full
             - *bundle_cache
+      - restore_cache:
+          keys:
             - *yarn_cache_full
             - *yarn_cache
-
       - run:
           name: Installing bundler dependencies
           command: bundle install --path vendor/bundle
