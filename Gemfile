@@ -16,9 +16,9 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'fasterer', '~> 0.8.3'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.90.0'
-  gem 'fasterer', '~> 0.8.3'
 end
 
 group :development do
