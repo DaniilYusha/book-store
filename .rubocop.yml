@@ -4,11 +4,6 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/channels/application_cable/connection_test.rb'
-    - 'test/test_helper.rb'
-
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
