@@ -20,6 +20,7 @@ group :development, :test do
   gem 'fasterer', '~> 0.8.3'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.90.0'
+  gem 'rubocop-rspec', '~> 1.43'
 end
 
 group :development do
