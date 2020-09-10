@@ -1,4 +1,4 @@
-RSpec.feature 'HomeIndex', type: :feature do
+RSpec.describe 'HomeIndex', type: :feature do
   describe 'home/index' do
     before { visit '/' }
 
