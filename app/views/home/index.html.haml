@@ -1,0 +1,31 @@
+%main.container
+  #slider.carousel.slide{'data-ride': "carousel"}
+    %ol.carousel-indicators
+      - @latest_books.length.times do |index|
+        %li{class: ('active' if index.zero?), 'data-target': "#slider", 'data-slide-to': index}
+    .carousel-inner{role: "listbox"}
+      - @latest_books.each_with_index do |book, index|
+        .item{class: ('active' if index.zero?)}
+          .row
+            .col-sm-5
+              .general-img-wrap
+                %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+            .col-sm-7
+              .mb-60
+                %h1 #{book.title}
+                %p.lead #{book.description}
+                %p.lead.small #{book.authors}
+                .general-align
+                  %button.btn.btn-primary #{I18n.t 'buttons.buy_now'}
+    %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+      %span.icon-prev{'aria-hidden': "true"}
+      %span.sr-only #{I18n.t 'home_page.slider.prev'}
+    %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+      %span.icon-next{'aria-hidden': "true"}
+      %span.sr-only #{I18n.t 'home_page.slider.next'}
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1 #{I18n.t 'home_page.greeting'}
+    .mb-res-50
+      %p #{I18n.t 'home_page.introduction'}
+    %a.btn.btn-default{href: catalog_path} #{I18n.t 'buttons.get_started'}
