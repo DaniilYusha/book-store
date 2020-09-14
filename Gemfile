@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'bootsnap', '~> 1.4'
 gem 'draper', '~> 4.0'
+gem 'faker', '~> 2.13'
 gem 'haml', '~> 5.1'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 1.2'
