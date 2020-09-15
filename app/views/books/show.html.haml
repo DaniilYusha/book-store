@@ -37,7 +37,7 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Year of publication
-          %p.lead.small.pull-right 2016
+          %p.lead.small.pull-right #{@book.published_at}
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Dimensions
@@ -45,7 +45,7 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Materials
-          %p.lead.small.pull-right Hardcove, glossy paper
+          %p.lead.small.pull-right #{@book.materials}
   .mb-80
     %h3 Write a Review
     %p.general-info-text Score
