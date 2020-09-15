@@ -12,7 +12,8 @@ end
 CREATED_BOOKS_COUNT.times do
   Book.create(
     title: Faker::Book.unique.title,
-    description: Faker::Lorem.sentence(random_words_to_add: 10)
+    description: Faker::Books::Dune.quote,
+    price: Faker::Number.decimal(l_digits: 2, r_digits: 2)
   )
 end
 
