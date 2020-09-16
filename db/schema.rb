@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_144606) do
+ActiveRecord::Schema.define(version: 2020_09_15_165318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_144606) do
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", default: ""
-    t.decimal "price", precision: 8, scale: 2
+    t.decimal "price", precision: 8, scale: 2, null: false
     t.date "published_at", null: false
     t.bigint "category_id"
     t.datetime "created_at", precision: 6, null: false
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 2020_09_15_144606) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "dimensions", force: :cascade do |t|
+    t.decimal "height", precision: 6, scale: 2, null: false
+    t.decimal "width", precision: 6, scale: 2, null: false
+    t.decimal "depth", precision: 6, scale: 2, null: false
+    t.bigint "book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_dimensions_on_book_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -69,4 +79,5 @@ ActiveRecord::Schema.define(version: 2020_09_15_144606) do
   add_foreign_key "book_materials", "books"
   add_foreign_key "book_materials", "materials"
   add_foreign_key "books", "categories"
+  add_foreign_key "dimensions", "books"
 end
