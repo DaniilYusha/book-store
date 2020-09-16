@@ -1,5 +1,12 @@
 require: rubocop-rspec
 
+AllCops:
+  NewCops: enable
+  DisplayStyleGuide: true
+
+Layout/LineLength:
+  Max: 120
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
