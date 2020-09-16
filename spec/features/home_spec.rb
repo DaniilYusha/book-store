@@ -1,5 +1,5 @@
-RSpec.describe 'HomeIndex', type: :feature do
-  describe 'home/index' do
+RSpec.describe 'HomePage', type: :feature do
+  describe 'home' do
     before { visit root_path }
 
     it 'has slider' do
