@@ -2,6 +2,10 @@ RSpec.describe 'Footer', type: :feature do
   describe 'footer layout' do
     before { visit root_path }
 
+    it 'has current path' do
+      expect(page).to have_current_path root_path
+    end
+
     it 'has `Orders` link' do
       expect(page).to have_link I18n.t('links.orders')
     end

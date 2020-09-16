@@ -2,6 +2,10 @@ RSpec.describe 'Header', type: :feature do
   describe 'header layout' do
     before { visit root_path }
 
+    it 'has current path' do
+      expect(page).to have_current_path root_path
+    end
+
     it 'has brand name' do
       expect(page).to have_content I18n.t(:brand)
     end
