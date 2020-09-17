@@ -1,18 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= Rails.application.credentials.username %>
+  username: <%= ENV['DB_USERNAME'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: book_store_development
-  password: <%= Rails.application.credentials.password %>
+  password: <%= ENV['DB_PASSWORD'] %>
 
 test:
   <<: *default
   database: book_store_test
-  password: <%= Rails.application.credentials.password %>
+  password: <%= ENV['DB_PASSWORD'] %>
 
 # You can use this database configuration with:
 #

@@ -8,13 +8,13 @@ executors:
       - image: circleci/ruby:2.7.1-node
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: yusha
+          PGUSER: $DB_USERNAME
           RAILS_ENV: test
       - image: circleci/postgres:9.6.9
         environment:
-          POSTGRES_USER: yusha
+          POSTGRES_USER: $DB_USERNAME
           POSTGRES_DB: book_store_test
-          POSTGRES_PASSWORD: daniil200013
+          POSTGRES_PASSWORD: $DB_PASSWORD
 
 caches:
   - &bundle_cache_full v1-book_store-{{ checksum "Gemfile.lock" }}
