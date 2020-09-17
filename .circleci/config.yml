@@ -9,7 +9,6 @@ executors:
         environment:
           PGHOST: 127.0.0.1
           PGUSER: $DB_USERNAME
-          RAILS_ENV: test
       - image: circleci/postgres:9.6.9
         environment:
           POSTGRES_USER: $DB_USERNAME
@@ -50,7 +49,7 @@ commands:
           key: *yarn_cache_full
       - run:
           name: Database setup
-          command: bundle exec rails db:create db:schema:load
+          command: bundle exec rails db:schema:load --trace
   run_linters:
     description: command to start linters
     steps:
