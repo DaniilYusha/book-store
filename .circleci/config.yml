@@ -7,9 +7,9 @@ executors:
     docker:
       - image: circleci/ruby:2.7.1-node
         environment:
-          RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: yusha
+          RAILS_ENV: test
       - image: circleci/postgres:9.6.9
         environment:
           POSTGRES_USER: yusha
@@ -49,8 +49,11 @@ commands:
             - node_modules
           key: *yarn_cache_full
       - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: bundle exec rails db:setup
   run_linters:
     description: command to start linters
     steps:
