@@ -1,22 +1,22 @@
 en:
-  brand: 'Bookstore'
+  brand: Bookstore
   links:
-    home: 'Home'
-    shop: 'Shop'
-    my_account: 'My account'
-    mobile_development: 'Mobile development'
-    photo: 'Photo'
-    web_design: 'Web design'
-    log_out: 'Log out'
-    orders: 'Orders'
-    settings: 'Settings'
+    home: Home
+    shop: Shop
+    my_account: My account
+    mobile_development: Mobile development
+    photo: Photo
+    web_design: Web design
+    log_out: Log out
+    orders: Orders
+    settings: Settings
   buttons:
-    get_started: 'Get Started'
-    buy_now: 'Buy Now'
+    get_started: Get Started
+    buy_now: Buy Now
   home_page:
-    greeting: 'Welcome to our amazing Bookstore!'
-    introduction: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
-    best_sellers: 'Best Sellers'
+    greeting: Welcome to our amazing Bookstore!
+    introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
+    best_sellers: Best Sellers
     slider:
-      prev: 'Previous'
-      next: 'Next'
+      prev: Previous
+      next: Next
