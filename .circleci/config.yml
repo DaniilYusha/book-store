@@ -14,7 +14,7 @@ executors:
         environment:
           POSTGRES_USER: yusha
           POSTGRES_DB: book_store_test
-          POSTGRES_PASSWORD: "daniil200013"
+          POSTGRES_PASSWORD: daniil200013
 
 caches:
   - &bundle_cache_full v1-book_store-{{ checksum "Gemfile.lock" }}
@@ -50,7 +50,7 @@ commands:
           key: *yarn_cache_full
       - run:
           name: Database setup
-          command: bundle exec rails db:create db:schema:load --trace
+          command: bundle exec rails db:schema:load --trace
   run_linters:
     description: command to start linters
     steps:
