@@ -7,7 +7,8 @@ executors:
     docker:
       - image: circleci/ruby:2.7.1-node
         environment:
-          DATABASE_URL: postgres://127.0.0.1/book_store_test
+          DATABASE_URL: postgres://localhost/book_store_test
+          PGHOST: 127.0.0.1
       - image: circleci/postgres:9.6.9
         environment:
           POSTGRES_USER: $DB_USERNAME
