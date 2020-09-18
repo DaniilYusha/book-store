@@ -6,13 +6,11 @@ default: &default
 
 development:
   <<: *default
-  host: ''
   database: book_store_development
   password: <%= ENV['DB_PASSWORD'] %>
 
 test:
   <<: *default
-  host: ''
   database: book_store_test
   password: <%= ENV['DB_PASSWORD'] %>
 
