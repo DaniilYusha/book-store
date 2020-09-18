@@ -59,7 +59,6 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
-    bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -232,11 +231,6 @@ GEM
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
-    web-console (4.0.4)
-      actionview (>= 6.0.0)
-      activemodel (>= 6.0.0)
-      bindex (>= 0.4.0)
-      railties (>= 6.0.0)
     webdrivers (4.4.1)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -256,28 +250,27 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootsnap (>= 1.4.2)
-  capybara (>= 2.15)
+  bootsnap (~> 1.4)
+  capybara (~> 3.33)
   fasterer (~> 0.8.3)
   haml (~> 5.1)
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  pg (>= 0.18, < 2.0)
+  pg (~> 1.2)
   puma (~> 4.1)
-  rails (~> 6.0.3, >= 6.0.3.2)
+  rails (~> 6.0.3)
   rails-controller-testing (~> 1.0)
   rspec-rails (~> 4.0)
   rubocop (~> 0.90.0)
   rubocop-rspec (~> 1.43)
-  sass-rails (>= 6)
-  selenium-webdriver
+  sass-rails (~> 6.0)
+  selenium-webdriver (~> 3.142)
   simplecov (~> 0.19.0)
-  spring
+  spring (~> 2.1)
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
-  web-console (>= 3.3.0)
-  webdrivers
+  webdrivers (~> 4.4)
   webpacker (~> 4.0)
 
 RUBY VERSION
