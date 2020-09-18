@@ -11,7 +11,7 @@ RSpec.describe PagesController, type: :controller do
     end
 
     it 'render home/index template' do
-      expect(response).to render_template :home
+      expect(response).to render_template :index
     end
   end
 end
