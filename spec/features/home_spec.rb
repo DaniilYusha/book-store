@@ -1,5 +1,5 @@
 RSpec.describe 'HomePage', type: :feature do
-  let(:home_page) { Home.new }
+  let(:home_page) { Pages::Home.new }
 
   before { home_page.load }
 
