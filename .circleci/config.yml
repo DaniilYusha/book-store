@@ -52,13 +52,7 @@ commands:
           command: bundle exec rails db:schema:load --trace
   run_linters:
     description: command to start linters
-    steps:
-      - run:
-          name: rubocop
-          command: bundle exec rubocop
-      - run:
-          name: fasterer
-          command: bundle exec fasterer
+    run: lefthook run lintering
   run_specs:
     description: command to run specs
     steps:
