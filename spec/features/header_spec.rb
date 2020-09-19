@@ -39,7 +39,7 @@ RSpec.describe 'Header', type: :feature do
     expect(home_page.header).to have_log_out_link
   end
 
-  scenario "click `#{I18n.t 'links.home'}` link" do
+  it "click `#{I18n.t 'links.home'}` link" do
     home_page.header.home_link.click
     expect(home_page).to be_displayed
   end

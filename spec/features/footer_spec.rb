@@ -35,7 +35,7 @@ RSpec.describe 'Footer', type: :feature do
     expect(home_page.footer).to have_facebook_link
   end
 
-  scenario "click `#{I18n.t 'links.home'}` link" do
+  it "click `#{I18n.t 'links.home'}` link" do
     home_page.footer.home_link.click
     expect(home_page).to be_displayed
   end
