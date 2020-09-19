@@ -27,9 +27,10 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.33'
+  gem 'capybara', '~> 3.29'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'selenium-webdriver', '~> 3.142'
   gem 'simplecov', '~> 0.19.0'
+  gem 'site_prism', '~> 3.6'
   gem 'webdrivers', '~> 4.4'
 end
