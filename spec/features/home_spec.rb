@@ -1,25 +1,33 @@
 RSpec.describe 'HomePage', type: :feature do
-  describe 'home' do
-    before { visit root_path }
+  let(:home_page) { Home.new }
 
-    it 'has slider' do
-      expect(page).to have_css '#slider'
-    end
+  before { home_page.load }
 
-    it 'has `Buy now` button' do
-      expect(page).to have_button I18n.t('buttons.buy_now')
-    end
+  it 'has current path' do
+    expect(home_page).to have_current_path root_path
+  end
 
-    it 'has greeting text' do
-      expect(page).to have_content I18n.t('home_page.greeting')
-    end
+  it "has #{I18n.t :brand} title" do
+    expect(home_page.title).to eq I18n.t(:brand)
+  end
 
-    it 'has introduction text' do
-      expect(page).to have_content I18n.t('home_page.introduction')
-    end
+  it 'has slider' do
+    expect(home_page).to have_slider
+  end
 
-    it 'has `Get started` button' do
-      expect(page).to have_button I18n.t('buttons.get_started')
-    end
+  it "has `#{I18n.t 'buttons.buy_now'}` button" do
+    expect(home_page.slider).to have_buy_now_button
+  end
+
+  it "has `#{I18n.t 'buttons.get_started'}` button" do
+    expect(home_page.get_started).to have_get_started_button
+  end
+
+  it 'has greeting text' do
+    expect(home_page.get_started.greeting.text).to eq I18n.t('home_page.greeting')
+  end
+
+  it 'has introduction text' do
+    expect(home_page.get_started.introduction.text).to eq I18n.t('home_page.introduction')
   end
 end
