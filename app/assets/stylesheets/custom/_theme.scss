@@ -212,9 +212,10 @@
   }
 }
 .thumb-icon {
+  position: relative;
+  margin-top: 25%;
   font-size: 16px;
   color: white;
-  line-height: 36px;
 }
 .title {
   font-size: $font-size-large;
