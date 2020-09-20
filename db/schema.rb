@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2020_09_15_165318) do
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_id", "book_id"], name: "index_author_books_on_author_id_and_book_id"
     t.index ["author_id"], name: "index_author_books_on_author_id"
     t.index ["book_id"], name: "index_author_books_on_book_id"
   end
@@ -36,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_09_15_165318) do
     t.bigint "material_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id", "material_id"], name: "index_book_materials_on_book_id_and_material_id"
     t.index ["book_id"], name: "index_book_materials_on_book_id"
     t.index ["material_id"], name: "index_book_materials_on_material_id"
   end

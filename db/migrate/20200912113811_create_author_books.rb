@@ -6,6 +6,5 @@ class CreateAuthorBooks < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :author_books, %i[author_id book_id]
   end
 end

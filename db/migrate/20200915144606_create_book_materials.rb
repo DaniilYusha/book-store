@@ -6,6 +6,5 @@ class CreateBookMaterials < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :book_materials, %i[book_id material_id]
   end
 end
