@@ -1,4 +1,6 @@
 class BookDecorator < ApplicationDecorator
+  SHORT_DESCRIPTION_LENGTH = 50
+
   delegate_all
 
   def authors
@@ -19,5 +21,9 @@ class BookDecorator < ApplicationDecorator
       object.dimension.width.to_s.insert(0, 'W:'),
       object.dimension.depth.to_s.insert(0, 'D:')
     ].join '" x '
+  end
+
+  def short_description
+    object.description.truncate SHORT_DESCRIPTION_LENGTH
   end
 end
