@@ -6,8 +6,6 @@ class Book < ApplicationRecord
   has_many :book_material
   has_many :materials, through: :book_material
 
-  has_one :dimension
-
   belongs_to :category
 
   validates :title, presence: true, uniqueness: true, length: { maximum: TITLE_MAX_LENGTH }
