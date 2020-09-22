@@ -4,7 +4,7 @@ class BookDecorator < ApplicationDecorator
   delegate_all
 
   def authors
-    object.authors.map(&:name).join ', '
+    object.authors.map{ |author| author.first_name.concat(" ", author.last_name)}.join ', '
   end
 
   def published_at
@@ -15,11 +15,11 @@ class BookDecorator < ApplicationDecorator
     object.materials.map(&:name).join(', ').capitalize
   end
 
-  def dimension
+  def dimensions
     [
-      object.dimension.height.to_s.insert(0, 'H:'),
-      object.dimension.width.to_s.insert(0, 'W:'),
-      object.dimension.depth.to_s.insert(0, 'D:')
+      object.height.to_s.insert(0, 'H:'),
+      object.width.to_s.insert(0, 'W:'),
+      object.depth.to_s.insert(0, 'D:')
     ].join '" x '
   end
 
