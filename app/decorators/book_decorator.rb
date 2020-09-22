@@ -1,5 +1,5 @@
 class BookDecorator < ApplicationDecorator
-  SHORT_DESCRIPTION_LENGTH = 50
+  SHORT_DESCRIPTION_LENGTH = 250
 
   delegate_all
 
