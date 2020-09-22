@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".read-more").on("click", function(event){
+  $(document).on("click", ".read-more", function(event){
     event.preventDefault();
 
     $(".short-description").toggle();
@@ -8,7 +8,7 @@ $(document).ready(function(){
     $(".read-less").toggle();
   });
 
-  $(".read-less").on("click", function(event){
+  $(document).on("click", ".read-less", function(event){
     event.preventDefault();
 
     $(".more-description").toggle(600);
