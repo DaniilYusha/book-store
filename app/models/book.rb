@@ -9,6 +9,8 @@ class Book < ApplicationRecord
   belongs_to :category
 
   validates :title, presence: true, uniqueness: true, length: { maximum: TITLE_MAX_LENGTH }
-  validates :price, presence: true, format: { with: /\A\d+(?:\.\d{2})?\z/ }, numericality: { greater_than: 0, less_than: 1000000 }
+  validates :price, presence: true,
+                    format: { with: /\A\d+(?:\.\d{2})?\z/ },
+                    numericality: { greater_than: 0, less_than: 1000000 }
   validates :published_at, presence: true
 end
