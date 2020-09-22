@@ -32,8 +32,10 @@
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2
-          #{@book.description}
-          %a.in-gold-500.ml-10{href: "#"} Read More
+          %span.short-description #{@book.short_description}
+          - if @book.description.length > @book.short_description.length
+            %span.more-description #{@book.description}
+            %a.read-more.in-gold-500{href: "#"} Read More
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Year of publication
