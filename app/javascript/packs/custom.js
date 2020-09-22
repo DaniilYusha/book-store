@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     $(".short-description").toggle();
     $(this).toggle();
-    $(".more-description").toggle(600);
+    $(".more-description").toggle();
     $(".read-less").toggle();
   });
 
