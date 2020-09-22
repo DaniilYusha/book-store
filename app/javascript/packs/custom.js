@@ -3,8 +3,17 @@ $(document).ready(function(){
     event.preventDefault();
 
     $(".short-description").toggle();
-    $(".more-description").toggle(600, function(){
-      $(this).is(":visible") ? $(".read-more").text("Hide") : $(".read-more").text("Read more")
-    });
-  })
+    $(this).toggle();
+    $(".more-description").toggle(600);
+    $(".read-less").toggle();
+  });
+
+  $(".read-less").on("click", function(event){
+    event.preventDefault();
+
+    $(".more-description").toggle(600);
+    $(this).toggle();
+    $(".short-description").toggle();
+    $(".read-more").toggle();
+  });
 });
