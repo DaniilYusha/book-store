@@ -11,7 +11,8 @@ CREATED_CATEGORIES = {
 
 CREATED_AUTHORS_COUNT.times do
   Author.create(
-    name: Faker::Book.unique.author
+    first_name: Faker::Book.author.split.first,
+    last_name: Faker::Book.author.split.last
   )
 end
 
@@ -24,6 +25,9 @@ CREATED_BOOKS_COUNT.times do
     title: Faker::Book.title,
     description: Faker::Books::Dune.quote,
     price: Faker::Commerce.price(range: 0..1000.0),
+    height: Faker::Number.decimal(l_digits: 2),
+    width: Faker::Number.decimal(l_digits: 2),
+    depth: Faker::Number.decimal(l_digits: 2),
     published_at: Faker::Date.between(from: '1990-01-01', to: '2020-09-15'),
     category_id: Faker::Number.between(from: 1, to: CREATED_CATEGORIES.size)
   )
@@ -43,11 +47,6 @@ end
   (1..(CREATED_MATERIALS_COUNT - rand(CREATED_MATERIALS_COUNT - 1))).each do |material_id|
     BookMaterial.create(book_id: book_id, material_id: material_id)
   end
-
-  Dimension.create(
-    height: Faker::Number.decimal(l_digits: 2),
-    width: Faker::Number.decimal(l_digits: 2),
-    depth: Faker::Number.decimal(l_digits: 2),
-    book_id: book_id
-  )
 end
+# first_name, last_name = Faker::Book.author.split
+# puts first_name + " " + last_name
