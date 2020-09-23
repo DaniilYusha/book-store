@@ -1,7 +1,7 @@
 require 'faker'
 
-CREATED_AUTHORS_COUNT = 20
-CREATED_BOOKS_COUNT = 20
+CREATED_AUTHORS_COUNT = 50
+CREATED_BOOKS_COUNT = 50
 CREATED_MATERIALS_COUNT = 7
 CREATED_CATEGORIES = {
   mobile_development: 'Mobile Development',
@@ -48,5 +48,3 @@ end
     BookMaterial.create(book_id: book_id, material_id: material_id)
   end
 end
-# first_name, last_name = Faker::Book.author.split
-# puts first_name + " " + last_name
