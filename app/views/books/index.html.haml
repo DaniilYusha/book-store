@@ -19,7 +19,7 @@
       %li.mr-35
         %a.filter-link{href: "#"}
           All
-          %span.badge.general-badge #{@books.count}
+          %span.badge.general-badge #{@pagy.count}
       - @categories.each do |category|
         %li.mr-35
           %a.filter-link{href: "#"}
@@ -54,7 +54,7 @@
           %a{href: "#"} Price: Low to hight
         %li
           %a{href: "#"} Price: Hight to low
-  .mb-120
+  .mb-120.books-list
     - @books.each_slice(4).each do |books_group|
       .row
         - books_group.each do |book|
@@ -73,5 +73,6 @@
               %p.font-16.in-gold-500 #{number_to_currency(book.price, unit: '€')}
               %span.divider-sm
               %p.lead.small #{book.authors}
-    .text-center
-      %button.btn.btn-primary View More
+    - if @pagy.next
+      .text-center
+        = render partial: 'pagination', locals: { pagy: @pagy }
