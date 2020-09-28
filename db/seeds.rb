@@ -1,12 +1,13 @@
 require 'faker'
 
-CREATED_AUTHORS_COUNT = 50
-CREATED_BOOKS_COUNT = 50
+CREATED_AUTHORS_COUNT = 80
+CREATED_BOOKS_COUNT = 80
 CREATED_MATERIALS_COUNT = 7
 CREATED_CATEGORIES = {
   mobile_development: 'Mobile Development',
   photo: 'Photo',
-  web_design: 'Web Design'
+  web_design: 'Web Design',
+  web_development: 'Web Development'
 }
 
 CREATED_AUTHORS_COUNT.times do
