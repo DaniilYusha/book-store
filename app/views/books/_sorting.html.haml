@@ -1,0 +1,57 @@
+.hidden-xs.clearfix
+  .dropdowns.pull-right
+    .dropdown.width-240
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        #{t 'catalog_page.sorting.sort_by'}
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: books_path(category_id: current_category, sort: 'created_at', direction: 'asc')} #{t 'catalog_page.sorting.newest'}
+        %li
+          %a{href: "#"} #{t 'catalog_page.sorting.popular'}
+        %li
+          %a{href: books_path(category_id: current_category, sort: 'price', direction: 'asc')} #{t 'catalog_page.sorting.price_low_to_high'}
+        %li
+          %a{href: books_path(category_id: current_category, sort: 'price', direction: 'desc')} #{t 'catalog_page.sorting.price_high_to_low'}
+        %li
+          %a{href: books_path(category_id: current_category, sort: 'title', direction: 'asc')} #{t 'catalog_page.sorting.title_asc'}
+        %li
+          %a{href: books_path(category_id: current_category, sort: 'title', direction: 'desc')} #{t 'catalog_page.sorting.title_desc'}
+  %ul.list-inline.pt-10.mb-25.mr-240
+    %li.mr-35
+      %a.filter-link{href: books_path}
+        #{t 'catalog_page.sorting.all'}
+        %span.badge.general-badge #{books_count}
+    - categories.each do |category|
+      %li.mr-35
+        %a.filter-link{href: books_path(category_id: category.id)}
+          #{category.name}
+          %span.badge.general-badge #{category.books.count}
+.dropdowns.mb-25.visible-xs
+  %p.lead.small.mb-10 #{t 'catalog_page.sorting.filter_by_category'}
+  .dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      #{t 'catalog_page.sorting.categories'}
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      - categories.each do |category|
+        %li
+          %a{href: books_path(category_id: category.id)} #{category.name}
+  %p.lead.small.mb-10 #{t 'catalog_page.sorting.filters'}
+  .dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      #{t 'catalog_page.sorting.sort_by'}
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      %li
+        %a{href: books_path(category_id: current_category, sort: 'created_at', direction: 'asc')} #{t 'catalog_page.sorting.newest'}
+      %li
+        %a{href: "#"} #{t 'catalog_page.sorting.popular'}
+      %li
+        %a{href: books_path(category_id: current_category, sort: 'price', direction: 'asc')} #{t 'catalog_page.sorting.price_low_to_high'}
+      %li
+        %a{href: books_path(category_id: current_category, sort: 'price', direction: 'desc')} #{t 'catalog_page.sorting.price_high_to_low'}
+      %li
+        %a{href: books_path(category_id: current_category, sort: 'title', direction: 'asc')} #{t 'catalog_page.sorting.title_asc'}
+      %li
+        %a{href: books_path(category_id: current_category, sort: 'title', direction: 'desc')} #{t 'catalog_page.sorting.title_desc'}
