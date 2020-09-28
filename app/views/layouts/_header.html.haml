@@ -23,7 +23,7 @@
           %li
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} #{t 'links.shop'}
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              - @categories.each do |category|
+              - categories.each do |category|
                 %li
                   %a.collapse-link{href: books_path(category_id: category.id)} #{category.name}
           %li
@@ -35,7 +35,7 @@
           %li.dropdown
             %a.shop_link.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} #{t 'links.shop'}
             %ul.dropdown-menu
-              - @categories.each do |category|
+              - categories.each do |category|
                 %li
                   %a.mobile_development_link{href: books_path(category_id: category.id)} #{category.name}
               %li.divider{role: "separator"}
