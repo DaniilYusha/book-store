@@ -1,4 +1,4 @@
 - link = pagy_link_proc(pagy)
 %nav.pagy_nav.pagination{"aria-label" => "pager", :role => "navigation"}
   - if pagy.next
-    %button.btn.btn-primary.view-more!= link.call(pagy.next, 'View More', 'aria-label="next"')
+    %button.btn.btn-primary.view-more!= link.call(pagy.next, t('buttons.view_more'), 'aria-label="next"')
