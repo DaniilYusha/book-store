@@ -19,4 +19,4 @@
             %p.lead.small #{book.authors}
   - if pagy.next
     .text-center
-      = render partial: 'pagination', locals: { pagy: pagy }
+      = render partial: 'books/partials/pagination', locals: { pagy: pagy }
