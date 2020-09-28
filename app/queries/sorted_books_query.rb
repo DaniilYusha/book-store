@@ -1,5 +1,5 @@
 class SortedBooksQuery
-  SORT_OPTIONS = %w(title price created_at)
+  SORT_OPTIONS = %w[title price created_at].freeze
 
   def initialize(categories, params, relation = Book.with_authors)
     @params = params
@@ -8,7 +8,7 @@ class SortedBooksQuery
   end
 
   def all
-    @relation.where(category_id: category_parameter).order(sort_by + " " + direction)
+    @relation.where(category_id: category_parameter).order("#{sort_by} #{direction}")
   end
 
   private
