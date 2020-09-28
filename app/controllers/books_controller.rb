@@ -1,10 +1,10 @@
 class BooksController < ApplicationController
-  BOOKS_PER_PAGE_NUMBER = 12
+  BOOKS_NUMBER_PER_PAGE = 12
 
   def index
-    @pagy, books = pagy(Book.includes(:authors).all.order(title: :asc), items: BOOKS_PER_PAGE_NUMBER)
-    @books = BookDecorator.decorate_collection books
-    @categories = Category.includes(:books).all
+    @pagy, @books = pagy_array(SortedBooksQuery.new(@categories, params).all.decorate)
+    @books_count = Book.count
+    @current_category = params[:category_id]
   end
 
   def show
