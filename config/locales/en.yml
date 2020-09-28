@@ -13,6 +13,7 @@ en:
   buttons:
     get_started: Get Started
     buy_now: Buy Now
+    view_more: View more
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -20,3 +21,17 @@ en:
     slider:
       prev: Previous
       next: Next
+  catalog_page:
+    page_name: Сatalog
+    sorting:
+      sort_by: Sort by
+      newest: Newest first
+      popular: Popular first
+      price_low_to_high: 'Price: Low to hight'
+      price_high_to_low: 'Price: Hight to low'
+      title_asc: 'Title: A - Z'
+      title_desc: 'Title: Z - A'
+      all: All
+      filter_by_category: Filter by category
+      categories: Categories
+      filters: Filters
