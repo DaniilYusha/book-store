@@ -4,7 +4,7 @@ class BookDecorator < ApplicationDecorator
   delegate_all
 
   def authors
-    object.authors.map{ |author| author.first_name.concat(" ", author.last_name)}.join ', '
+    object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join ', '
   end
 
   def published_at

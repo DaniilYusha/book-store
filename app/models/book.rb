@@ -10,7 +10,7 @@ class Book < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true, length: { maximum: TITLE_MAX_LENGTH }
   validates :price, presence: true,
-                    numericality: { greater_than: 0, less_than: 1000000 }
+                    numericality: { greater_than: 0, less_than: 1_000_000 }
   validates :published_at, presence: true
 
   scope :with_authors, -> { includes [:authors] }

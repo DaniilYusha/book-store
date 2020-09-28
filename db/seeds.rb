@@ -8,7 +8,7 @@ CREATED_CATEGORIES = {
   photo: 'Photo',
   web_design: 'Web Design',
   web_development: 'Web Development'
-}
+}.freeze
 
 CREATED_AUTHORS_COUNT.times do
   Author.create(
