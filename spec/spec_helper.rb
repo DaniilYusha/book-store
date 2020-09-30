@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'capybara/rspec'
+require 'site_prism'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
