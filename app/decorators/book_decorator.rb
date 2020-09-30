@@ -3,7 +3,7 @@ class BookDecorator < ApplicationDecorator
 
   delegate_all
 
-  def authors
+  def authors_list
     object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join ', '
   end
 
@@ -11,7 +11,7 @@ class BookDecorator < ApplicationDecorator
     object.published_at.year
   end
 
-  def materials
+  def materials_list
     object.materials.map(&:name).join(', ').capitalize
   end
 
