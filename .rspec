@@ -1,7 +1,2 @@
 --require spec_helper
 --require rails_helper
---require support/sections/footer
---require support/sections/get_started
---require support/sections/header
---require support/sections/slider
---require support/pages/home
