@@ -17,6 +17,7 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
+  gem 'factory_bot_rails', '~> 6.1'
   gem 'fasterer', '~> 0.8.3'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.90.0'
@@ -32,9 +33,11 @@ end
 
 group :test do
   gem 'capybara', '~> 3.29'
+  gem 'database_cleaner-active_record', '~> 1.8'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'selenium-webdriver', '~> 3.142'
   gem 'simplecov', '~> 0.19.0'
   gem 'site_prism', '~> 3.6'
+  gem 'shoulda-matchers', '~> 4.4'
   gem 'webdrivers', '~> 4.4'
 end
