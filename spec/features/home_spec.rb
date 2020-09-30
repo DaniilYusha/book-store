@@ -15,12 +15,12 @@ RSpec.describe 'HomePage', type: :feature do
     expect(home_page).to have_slider
   end
 
-  it "has `#{I18n.t 'buttons.buy_now'}` button" do
-    expect(home_page.slider).to have_buy_now_button
+  it "has `#{I18n.t 'buttons.buy_now'}` buttons" do
+    expect(home_page.slider).to have_buy_now_buttons(count: 3)
   end
 
-  it "has `#{I18n.t 'buttons.get_started'}` button" do
-    expect(home_page.get_started).to have_get_started_button
+  it "has `#{I18n.t 'buttons.get_started'}` link" do
+    expect(home_page.get_started).to have_get_started_link
   end
 
   it 'has greeting text' do
