@@ -14,5 +14,9 @@ module Pages
     def click_footer_home_link
       header.home_link.click
     end
+
+    def click_get_started_link
+      get_started.get_started_link.click
+    end
   end
 end
