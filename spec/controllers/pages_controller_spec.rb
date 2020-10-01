@@ -1,6 +1,16 @@
 RSpec.describe PagesController, type: :controller do
   describe 'GET /' do
-    before { visit root_path }
+    before do
+      create_list(:book, PagesController::LAST_ADDED_BOOKS_COUNT)
+      get :home
+    end
+
+    it 'assings @latest_books' do
+      expect(assigns(:latest_books)).to match_array(
+        BookDecorator.decorate_collection(Book.includes(:authors).
+        last(PagesController::LAST_ADDED_BOOKS_COUNT))
+      )
+    end
 
     it 'has current path' do
       expect(page).to have_current_path root_path
