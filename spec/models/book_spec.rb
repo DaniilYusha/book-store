@@ -3,9 +3,9 @@ RSpec.describe Book, type: :model do
 
   describe 'associations' do
     it { should have_many(:author_book).dependent(:destroy) }
-    it { should have_many(:authors).dependent(:destroy) }
+    it { should have_many(:authors).through(:author_book).dependent(:destroy) }
     it { should have_many(:book_material) }
-    it { should have_many(:materials) }
+    it { should have_many(:materials).through(:book_material) }
     it { should belong_to(:category) }
   end
 

@@ -3,7 +3,7 @@ RSpec.describe Author, type: :model do
 
   describe 'associations' do
     it { should have_many(:author_book).dependent(:destroy) }
-    it { should have_many(:books).dependent(:destroy) }
+    it { should have_many(:books).through(:author_book).dependent(:destroy) }
   end
 
   describe 'validations' do
