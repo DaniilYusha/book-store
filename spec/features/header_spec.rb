@@ -1,7 +1,8 @@
 RSpec.describe 'Header', type: :feature do
   let(:home_page) { Pages::Home.new }
 
-  before { home_page.load }
+  before(:all) { create_list(:category, PagesController::LAST_ADDED_BOOKS_COUNT) }
+  before(:each) { visit root_path }
 
   it 'has current path' do
     expect(home_page).to have_current_path root_path
@@ -23,16 +24,10 @@ RSpec.describe 'Header', type: :feature do
     expect(home_page.header).to have_shop_link
   end
 
-  it "has `#{I18n.t 'links.mobile_development'}` link" do
-    expect(home_page.header).to have_mobile_development_link
-  end
-
-  it "has `#{I18n.t 'links.photo'}` link" do
-    expect(home_page.header).to have_photo_link
-  end
-
-  it "has `#{I18n.t 'links.web_design'}` link" do
-    expect(home_page.header).to have_web_design_link
+  it 'has categories links' do
+    expect(home_page.header).to have_categories_links(
+      count: PagesController::LAST_ADDED_BOOKS_COUNT
+    )
   end
 
   it "has `#{I18n.t('links.log_out')}` link" do
