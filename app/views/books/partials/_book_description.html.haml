@@ -36,12 +36,12 @@
     .general-info-wrap.divider-lg
       .clearfix
         %p.pull-left #{t 'book_page.publication_year'}
-        %p.lead.small.pull-right #{book.published_at}
+        %p.lead.small.pull-right.publication_year #{book.published_at}
     .general-info-wrap.divider-lg
       .clearfix
         %p.pull-left #{t 'book_page.dimensions'}
-        %p.lead.small.pull-right #{book.dimensions}
+        %p.lead.small.pull-right.dimensions #{book.dimensions}
     .general-info-wrap.divider-lg
       .clearfix
         %p.pull-left #{t 'book_page.materials'}
-        %p.lead.small.pull-right #{book.materials_list}
+        %p.lead.small.pull-right.materials #{book.materials_list}
