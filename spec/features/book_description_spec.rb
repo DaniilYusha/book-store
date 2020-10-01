@@ -9,34 +9,34 @@ RSpec.describe 'BookDescription', type: :feature do
   end
 
   it 'has book title' do
-    expect(book_page.book_descriptin).to have_book_title
+    expect(book_page.book_description).to have_book_title
   end
 
   it 'has book authors' do
-    expect(book_page.book_descriptin).to have_book_authors
+    expect(book_page.book_description).to have_book_authors
   end
 
   it 'has book price' do
-    expect(book_page.book_descriptin).to have_book_price
+    expect(book_page.book_description).to have_book_price
   end
 
   it 'has add to cart button' do
-    expect(book_page.book_descriptin).to have_add_to_cart_button
+    expect(book_page.book_description).to have_add_to_cart_button
   end
 
   it 'has book description' do
-    expect(book_page.book_descriptin).to have_book_description
+    expect(book_page.book_description).to have_book_description
   end
 
-  it 'has book description' do
-    expect(book_page.book_descriptin).to have_publication_year
+  it 'has book publication year' do
+    expect(book_page.book_description).to have_publication_year
   end
 
   it 'has book dimensions' do
-    expect(book_page.book_descriptin).to have_dimensions
+    expect(book_page.book_description).to have_dimensions
   end
 
   it 'has book materials' do
-    expect(book_page.book_descriptin).to have_materials
+    expect(book_page.book_description).to have_materials
   end
 end
