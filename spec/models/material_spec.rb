@@ -1,6 +1,7 @@
 RSpec.describe Material, type: :model do
   describe 'associations' do
-    it { should have_many(:books) }
+    it { should have_many(:book_material) }
+    it { should have_many(:books).through(:book_material) }
   end
 
   describe 'validations' do
