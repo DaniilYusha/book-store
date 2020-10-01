@@ -1,8 +1,12 @@
 RSpec.describe 'Header', type: :feature do
   let(:home_page) { Pages::Home.new }
 
-  before(:all) { create_list(:category, PagesController::LAST_ADDED_BOOKS_COUNT) }
-  before(:each) { visit root_path }
+  # before(:all) {  }
+
+  before do
+    create_list(:category, PagesController::LAST_ADDED_BOOKS_COUNT)
+    visit root_path
+  end
 
   it 'has current path' do
     expect(home_page).to have_current_path root_path

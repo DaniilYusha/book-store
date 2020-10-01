@@ -1,5 +1,7 @@
 RSpec.describe SortedBooksQuery do
-  CATEGORIES_COUNT = 3
+  before do
+    stub_const('CATEGORIES_COUNT', 3)
+  end
 
   let(:categories) { create_list(:category_with_books, CATEGORIES_COUNT) }
   let(:category) { categories.first }
@@ -26,37 +28,23 @@ RSpec.describe SortedBooksQuery do
     }
   end
 
-  let(:parameters_sorted_by_price_desc) do
-    {
-      category_id: category.id,
-      sort: 'price',
-      direction: 'desc'
-    }
-  end
-
   describe 'sorting books' do
     it 'returns all books' do
-      expect(SortedBooksQuery.new(
+      expect(described_class.new(
         categories, parameters_list_without_category_id
       ).all.count).to eq 9
     end
 
     it 'returns books from category' do
-      expect(SortedBooksQuery.new(
+      expect(described_class.new(
         categories, full_parameters_list
       ).all.count).to eq 3
     end
 
     it 'returns books sorted by price in asc direction' do
-      expect(SortedBooksQuery.new(
+      expect(described_class.new(
         categories, parameters_sorted_by_price_asc
-      ).all).to eq(category.books.sort_by { |book| book.price })
-    end
-
-    it 'returns books sorted by price in desc direction' do
-      expect(SortedBooksQuery.new(
-        categories, parameters_sorted_by_price_desc
-      ).all).to eq(category.books.sort_by { |book| book.price }.reverse)
+      ).all).to eq(category.books.sort_by(&:price))
     end
   end
 end

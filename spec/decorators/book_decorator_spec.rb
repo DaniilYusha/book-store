@@ -3,7 +3,7 @@ RSpec.describe BookDecorator do
 
   it 'returns authors list' do
     expect(book.authors_list).to eq(
-      book.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join ', '
+      book.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join(', ')
     )
   end
 
@@ -20,7 +20,7 @@ RSpec.describe BookDecorator do
       book.height.to_s.insert(0, 'H:'),
       book.width.to_s.insert(0, 'W:'),
       book.depth.to_s.insert(0, 'D:')
-    ].join '" x ')
+    ].join('" x '))
   end
 
   it 'returns short description' do

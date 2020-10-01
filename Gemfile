@@ -36,8 +36,8 @@ group :test do
   gem 'database_cleaner-active_record', '~> 1.8'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'selenium-webdriver', '~> 3.142'
+  gem 'shoulda-matchers', '~> 4.4'
   gem 'simplecov', '~> 0.19.0'
   gem 'site_prism', '~> 3.6'
-  gem 'shoulda-matchers', '~> 4.4'
   gem 'webdrivers', '~> 4.4'
 end
