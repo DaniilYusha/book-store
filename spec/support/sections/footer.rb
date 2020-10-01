@@ -12,5 +12,9 @@ module Sections
     element :twitter_link, 'a.twitter-link'
     element :google_link, 'a.google-link'
     element :instagram_link, 'a.instagram-link'
+
+    def click_home_link
+      home_link.click
+    end
   end
 end

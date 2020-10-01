@@ -8,7 +8,7 @@ RSpec.describe 'HomePage', type: :feature do
 
   context "when click #{I18n.t 'buttons.get_started'} link" do
     it "redirects to catalog page" do
-      home_page.click_get_started_link
+      home_page.get_started.click_get_started_link
       expect(home_page).to have_current_path books_path
     end
   end

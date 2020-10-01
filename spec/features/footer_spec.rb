@@ -41,7 +41,7 @@ RSpec.describe 'Footer', type: :feature do
   end
 
   it "click `#{I18n.t 'links.home'}` link" do
-    home_page.click_footer_home_link
+    home_page.footer.click_home_link
     expect(home_page).to be_displayed
   end
 end
