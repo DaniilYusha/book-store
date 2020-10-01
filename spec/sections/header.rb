@@ -6,5 +6,9 @@ module Sections
     element :shop_link, 'li.dropdown>a.shop_link'
     elements :categories_links, "ul.dropdown-menu li:nth-child(-n+#{PagesController::LAST_ADDED_BOOKS_COUNT})"
     element :log_out_link, '.dropdown-menu>li>a.log_out_link'
+
+    def click_home_link
+      home_link.click
+    end
   end
 end

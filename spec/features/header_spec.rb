@@ -35,7 +35,7 @@ RSpec.describe 'Header', type: :feature do
   end
 
   it "click `#{I18n.t 'links.home'}` link" do
-    home_page.click_header_home_link
+    home_page.header.click_home_link
     expect(home_page).to be_displayed
   end
 end
