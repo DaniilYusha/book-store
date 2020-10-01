@@ -35,6 +35,11 @@ RSpec.describe 'Footer', type: :feature do
     expect(home_page.footer).to have_facebook_link
   end
 
+  it "click #{I18n.t 'links.shop'} link" do
+    home_page.footer.shop_link.click
+    expect(home_page).to have_current_path books_path
+  end
+
   it "click `#{I18n.t 'links.home'}` link" do
     home_page.click_footer_home_link
     expect(home_page).to be_displayed
