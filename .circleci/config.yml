@@ -49,7 +49,7 @@ commands:
           key: *yarn_cache_full
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: bundle exec lefthook run database_setup
   run_linters:
     description: command to start linters
     steps:
