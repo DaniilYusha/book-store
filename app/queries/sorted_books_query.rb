@@ -1,7 +1,7 @@
 class SortedBooksQuery
   SORT_OPTIONS = %w[title price created_at].freeze
 
-  def initialize(categories, params, relation = Book.with_authors)
+  def initialize(categories, params = {}, relation = Book.with_authors)
     @params = params
     @relation = relation
     @categories = categories
