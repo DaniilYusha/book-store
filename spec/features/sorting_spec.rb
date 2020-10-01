@@ -7,9 +7,7 @@ RSpec.describe 'Sorting', type: :feature do
   end
 
   it 'has categories links' do
-    expect(catalog_page.sorting).to have_categories_links(
-      count: PagesController::LAST_ADDED_BOOKS_COUNT
-    )
+    expect(catalog_page.sorting).to have_categories_links
   end
 
   it 'has sorting links' do

@@ -1,6 +1,6 @@
 RSpec.describe AuthorBook, type: :model do
   describe 'associations' do
-    it { should belong_to(:author) }
-    it { should belong_to(:book) }
+    it { is_expected.to belong_to(:author) }
+    it { is_expected.to belong_to(:book) }
   end
 end

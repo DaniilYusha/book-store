@@ -21,3 +21,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
+
+# Lint/NonDeterministicRequireOrder:
+#   Exclude:
+#     - spec/rails_helper.rb

@@ -7,8 +7,8 @@ RSpec.describe PagesController, type: :controller do
 
     it 'assings @latest_books' do
       expect(assigns(:latest_books)).to match_array(
-        BookDecorator.decorate_collection(Book.includes(:authors).
-        last(PagesController::LAST_ADDED_BOOKS_COUNT))
+        BookDecorator.decorate_collection(Book.includes(:authors)
+        .last(PagesController::LAST_ADDED_BOOKS_COUNT))
       )
     end
 
