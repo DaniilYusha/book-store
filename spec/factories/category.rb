@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
-    name { Faker::Book.genre }
+    name { Faker::Lorem.unique.word }
 
     factory :category_with_books do
       transient do

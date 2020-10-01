@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :book do
-    title { Faker::Book.unique.title }
+    title { Faker::Lorem.sentence(word_count: 2) }
     description { Faker::Books::Dune.quote }
     price { Faker::Commerce.price(range: 0..1000.0) }
     height { Faker::Number.decimal(l_digits: 2) }
@@ -12,7 +12,7 @@ FactoryBot.define do
     factory :book_with_associations do
       transient do
         authors_count { 3 }
-        materials_count { 2 }
+        materials_count { 1 }
       end
 
       after(:create) do |book, evaluator|
