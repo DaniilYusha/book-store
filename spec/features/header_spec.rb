@@ -1,8 +1,6 @@
 RSpec.describe 'Header', type: :feature do
   let(:home_page) { Pages::Home.new }
 
-  # before(:all) {  }
-
   before do
     create_list(:category, PagesController::LAST_ADDED_BOOKS_COUNT)
     visit root_path
