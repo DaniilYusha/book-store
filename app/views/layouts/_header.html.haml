@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand #{t :brand}
+      %a.navbar-brand= t :brand
       %a.shop-link.pull-right.visible-xs{href: "#"}
         %span.shop-icon
           %span.shop-quantity 3
@@ -19,27 +19,51 @@
           %span{'aria-hidden': "true"} &times;
         %ul.nav.navbar-nav
           %li
-            %a{href: root_path} #{t 'links.home'}
+            %a{href: root_path}= t 'links.home'
           %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} #{t 'links.shop'}
+            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t 'links.shop'
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               - categories.each do |category|
                 %li
-                  %a.collapse-link{href: books_path(category_id: category.id)} #{category.name}
-          %li
-            %a{href: "#"} #{t 'links.my_account'}
+                  %a.collapse-link{href: books_path(category_id: category.id)}= category.name
+          - if user_signed_in?
+            %li
+              %a{type: "button", 'data-toggle': "collapse", href: "#menu_account", 'aria-expanded': "false", 'aria-controls': "menu"}= t 'links.my_account'
+              %ul#menu_account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+                %li
+                  %a.collapse-link{href: '#'}= t 'links.orders'
+                %li
+                  %a.collapse-link{href: '#'}= t 'links.settings'
+            %li
+              = link_to t('links.log_out'), destroy_user_session_path, method: :delete
+          - else
+            %li
+              %a{href: new_user_session_path}= t 'links.log_in'
+            %li
+              %a{href: new_user_registration_path}= t 'links.sign_up'
       .hidden-xs
         %ul.nav.navbar-nav
           %li
-            %a.home_link{href: root_path} #{t 'links.home'}
+            %a.home_link{href: root_path}= t 'links.home'
           %li.dropdown
-            %a.shop_link.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} #{t 'links.shop'}
+            %a.shop_link.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t 'links.shop'
             %ul.dropdown-menu
               - categories.each do |category|
                 %li
-                  %a{href: books_path(category_id: category.id)} #{category.name}
-              %li.divider{role: "separator"}
-              %li
-                %a.log_out_link{href: "#"} #{t 'links.log_out'}
-          %li
-            %a.my_account_link{href: "#"} #{t 'links.my_account'}
+                  %a{href: books_path(category_id: category.id)}= category.name
+          - if user_signed_in?
+            %li
+              %a.my_account_link.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t 'links.my_account'
+              %ul.dropdown-menu
+                %li
+                  %a{href: '#'}= t 'links.orders'
+                %li
+                  %a{href: '#'}= t 'links.settings'
+                %li.divider{role: "separator"}
+                %li
+                  = link_to t('links.log_out'), destroy_user_session_path, method: :delete, class: 'log_out_link'
+          - else
+            %li
+              %a{href: new_user_session_path}= t 'links.log_in'
+            %li
+              %a{href: new_user_registration_path}= t 'links.sign_up'

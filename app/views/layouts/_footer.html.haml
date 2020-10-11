@@ -4,16 +4,17 @@
       .col-sm-9
         %ul.list-inline.general-align.mb-25
           %li
-            %a.nav-link.home_link{href: root_path} #{t 'links.home'}
+            %a.nav-link.home_link{href: root_path}= t 'links.home'
           %li
-            %a.nav-link.shop_link{href: books_path} #{t 'links.shop'}
-          %li
-            %a.nav-link.orders_link{href: "#"} #{t 'links.orders'}
-          %li
-            %a.nav-link.settings_link{href: "#"} #{t 'links.settings'}
+            %a.nav-link.shop_link{href: books_path}= t 'links.shop'
+          - if user_signed_in?
+            %li
+              %a.nav-link.orders_link{href: "#"}= t 'links.orders'
+            %li
+              %a.nav-link.settings_link{href: "#"}= t 'links.settings'
       .col-sm-3
-        %p.general-nav-mail support@bookstore.com
-        %p.general-nav-number (555)-555-5555
+        %p.general-nav-mail= t :email
+        %p.general-nav-number= t :phone_number
         %ul.list-inline.general-align
           %li
             %a.facebook-link.nav-link{href: "#"}
