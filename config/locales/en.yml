@@ -2,7 +2,10 @@ en:
   brand: Bookstore
   email: support@bookstore.com
   phone_number: (555)-555-5555
+<<<<<<< HEAD
   provider: Facebook
+=======
+>>>>>>> 63e08a2... Add text from devise views to i18n
   links:
     home: Home
     shop: Shop
