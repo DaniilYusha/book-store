@@ -1,0 +1,5 @@
+%p= t 'devise.mailers.greeting', email: @resource.email
+- if @resource.try(:unconfirmed_email?)
+  %p= t 'devise.mailers.email_change.first_main_text', unconfirmed_email: @resource.unconfirmed_email
+- else
+  %p= t 'devise.mailers.email_change.second_main_text', unconfirmed_email: @resource.email
