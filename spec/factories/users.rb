@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    email { Faker::Internet.email }
+    email { Faker::Internet.email(name: Faker::Internet.username, domain: 'gmail') }
     password { 'Password2020' }
     provider { 'facebook' }
     uid { Faker::Omniauth.facebook[:uid] }
