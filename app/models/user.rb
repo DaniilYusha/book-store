@@ -4,7 +4,7 @@ class User < ApplicationRecord
     (?=.*\d)
     (?=.*[a-z])
     (?=.*[A-Z])
-  /x
+  /x.freeze
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -18,7 +18,7 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.provider = auth.provider
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
     end
   end
 end
