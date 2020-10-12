@@ -64,6 +64,6 @@
                   = link_to t('links.log_out'), destroy_user_session_path, method: :delete, class: 'log_out_link'
           - else
             %li
-              %a{href: new_user_session_path}= t 'links.log_in'
+              %a.log_in_link{href: new_user_session_path}= t 'links.log_in'
             %li
-              %a{href: new_user_registration_path}= t 'links.sign_up'
+              %a.sign_up_link{href: new_user_registration_path}= t 'links.sign_up'
