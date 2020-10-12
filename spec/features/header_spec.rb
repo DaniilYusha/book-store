@@ -18,10 +18,6 @@ RSpec.describe 'Header', type: :feature do
     expect(home_page.header).to have_home_link
   end
 
-  it "has `#{I18n.t 'links.my_account'}` link" do
-    expect(home_page.header).to have_my_account_link
-  end
-
   it "has `#{I18n.t 'links.shop'}` link" do
     expect(home_page.header).to have_shop_link
   end
@@ -32,12 +28,34 @@ RSpec.describe 'Header', type: :feature do
     )
   end
 
-  it "has `#{I18n.t('links.log_out')}` link" do
-    expect(home_page.header).to have_log_out_link
+  it "has `#{I18n.t 'links.log_in'}` link" do
+    expect(home_page.header).to have_log_in_link
+  end
+
+  it "has `#{I18n.t 'links.sign_up'}` link" do
+    expect(home_page.header).to have_sign_up_link
   end
 
   it "click `#{I18n.t 'links.home'}` link" do
     home_page.header.click_home_link
     expect(home_page).to be_displayed
+  end
+
+  context 'when user signed in' do
+    let(:user) { create(:user) }
+    let(:sign_in_page) { Pages::SignIn.new }
+
+    before do
+      visit new_user_session_path
+      sign_in_page.sign_in_form.authenticate_user user.email, user.password
+    end
+
+    it "has `#{I18n.t 'links.my_account'}` link" do
+      expect(home_page.header).to have_my_account_link
+    end
+
+    it "has `#{I18n.t('links.log_out')}` link" do
+      expect(home_page.header).to have_log_out_link
+    end
   end
 end
