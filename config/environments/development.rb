@@ -33,17 +33,10 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.smtp_settings = {
-<<<<<<< HEAD
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'mail.google.com',
     authentication: 'plain',
-=======
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "mail.google.com",
-    authentication: "plain",
->>>>>>> 0ef5c1b... Add mailing configuration for each environment
     enable_starttls_auto: true,
     user_name: ENV['GMAIL_USERNAME'],
     password: ENV['GMAIL_PASSWORD']
