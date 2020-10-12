@@ -2,6 +2,7 @@ en:
   brand: Bookstore
   email: support@bookstore.com
   phone_number: (555)-555-5555
+  provider: Facebook
   links:
     home: Home
     shop: Shop
