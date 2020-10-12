@@ -33,6 +33,12 @@ RSpec.describe 'devise/registrations#new', type: :feature do
       user = User.find_by email: valid_email
       expect(user).not_to be_nil
     end
+
+    it 'show email confirmation message' do
+      expect(sign_up_page).to have_content(
+        I18n.t('devise.registrations.signed_up_but_unconfirmed')
+      )
+    end
   end
 
   context 'when fill registration form with invalid data' do
