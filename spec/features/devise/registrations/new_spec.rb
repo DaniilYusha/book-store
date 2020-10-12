@@ -1,7 +1,6 @@
 RSpec.describe 'devise/registrations#new', type: :feature do
   let(:sign_up_page) { Pages::SignUp.new }
 
-
   before { visit new_user_registration_path }
 
   it { expect(sign_up_page.auth_form_header).to have_page_name }
