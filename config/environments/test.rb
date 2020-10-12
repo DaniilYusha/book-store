@@ -44,11 +44,7 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 0ef5c1b... Add mailing configuration for each environment
   config.action_mailer.raise_delivery_errors = false
 
   # Raises error for missing translations.
