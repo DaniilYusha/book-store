@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_countries
-    @countries = ISO3166::Country.all.sort_by &:name
+    @countries = ISO3166::Country.all.sort_by(&:name)
   end
 end
