@@ -1,0 +1,10 @@
+.row.mb-60
+  .col-sm-5
+    %p.in-gold-500.font-18.mb-25= t 'devise.registrations.edit.email_header'
+    = render 'devise/registrations/partials/forms/email'
+  .col-sm-5.col-sm-offset-1
+    %p.in-gold-500.font-18.mb-25= t 'devise.registrations.edit.password_header'
+    = render 'devise/registrations/partials/forms/password'
+  .col-sm-12
+    %p.in-gold-500.font-18.mb-25= t 'devise.registrations.edit.remove_account_header'
+    = render 'devise/registrations/partials/forms/remove_account'
