@@ -1,0 +1,9 @@
+.row
+  .col-md-5.mb-40
+    .hidden-xs.hidden-sm
+      %h3.general-subtitle.mt-0= t 'devise.registrations.edit.billing_address'
+    = render partial: current_user.billing_address.present? ? 'devise/registrations/partials/forms/update_address' : 'devise/registrations/partials/forms/create_address', locals: { address: current_user.billing_address, type: :billing, form: billing_form, countries: countries }
+  .col-md-5.col-md-offset-1.mb-25
+    .hidden-xs.hidden-sm
+      %h3.general-subtitle.mt-0= t 'devise.registrations.edit.shipping_address'
+    = render partial: current_user.shipping_address.present? ? 'devise/registrations/partials/forms/update_address' : 'devise/registrations/partials/forms/create_address', locals: { address: current_user.shipping_address, type: :shipping, form: shipping_form, countries: countries }
