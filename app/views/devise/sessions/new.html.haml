@@ -1,8 +1,6 @@
 %main.container.general-main-wrap
   .text-center
     %h3.general-login-title= t 'devise.sessions.new.header'
-    - if !!flash[:alert]
-      %p.error-flash-message= flash[:alert]
     %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
       %i.fab.fa-facebook-square
     %p.general-login-text or

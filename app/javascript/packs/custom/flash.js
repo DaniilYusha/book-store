@@ -1,3 +1,3 @@
-$(document).on("click", ".flash-notice > .close-flash", function(){
+$(document).on("click", ".alert > .close-flash", function(){
   $(this).parent().remove();
 });
