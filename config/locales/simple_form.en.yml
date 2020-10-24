@@ -13,6 +13,7 @@ en:
         address: Address
         city: City
         zip_code: Zip
+        email: Enter Email
         country: Select a country
         phone: Example +355 66 123 4567
         current_password: Old password
@@ -25,7 +26,7 @@ en:
         zip_code: Zip
         email: Enter Email
         current_password: Old password
-        password: New Password
+        password: Password
         password_confirmation: Confirm Password
     #   user:
     #     new:
