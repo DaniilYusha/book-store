@@ -1,12 +1,9 @@
 %main.container.general-main-wrap
   .text-center
     %h3.general-login-title= t 'devise.passwords.new.header'
-  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form' }) do |f|
-    .form-group.mb-30
-      = f.label :email, t('devise.passwords.new.labels.email'), class: 'control-label input-label'
-      = render "devise/shared/error_messages", resource: resource, error_field: :email
-      = f.email_field :email, id: 'email', class: 'form-control', autofocus: true, placeholder: t('devise.passwords.new.placeholders.enter_email')
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form' }) do |f|
+    = f.input :email
     .text-center
-      = f.submit t('buttons.send_instructions'), class: 'btn btn-default mb-20'
-      = f.button t('buttons.cancel'), class: 'btn btn-default mb-20 reset-btn', type: 'button'
+      = f.button :submit, t('buttons.send_instructions')
+      = f.button :button, t('buttons.cancel'), class: 'reset-btn'
   = render "devise/shared/links"
