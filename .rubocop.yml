@@ -1,10 +1,18 @@
+require: rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  DisplayStyleGuide: true
+
+Layout/LineLength:
+  Max: 120
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Style/ClassAndModuleChildren:
+Metrics/BlockLength:
   Exclude:
-    - 'test/channels/application_cable/connection_test.rb'
-    - 'test/test_helper.rb'
+    - 'spec/**/*.rb'

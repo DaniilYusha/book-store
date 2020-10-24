@@ -1,0 +1,10 @@
+# Refer for explanation to following link:
+# https://github.com/Arkweid/lefthook/blob/master/docs/full_guide.md
+
+lintering:
+  parallel: true
+  commands:
+    rubocop:
+      run: bundle exec rubocop
+    fasterer:
+      run: bundle exec fasterer

@@ -1,0 +1,88 @@
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/book-store
+    description: BookStore
+    docker:
+      - image: circleci/ruby:2.7.1-node
+        environment:
+          DATABASE_URL: postgres://localhost/book_store_test
+          PGHOST: 127.0.0.1
+      - image: circleci/postgres:9.6.9
+        environment:
+          POSTGRES_USER: $DB_USERNAME
+          POSTGRES_DB: book_store_test
+          POSTGRES_PASSWORD: $DB_PASSWORD
+
+caches:
+  - &bundle_cache_full v1-book_store-{{ checksum "Gemfile.lock" }}
+  - &bundle_cache v1-book_store
+  - &yarn_cache_full v1-book_store-{{ checksum "yarn.lock" }}
+  - &yarn_cache v1-book_store
+
+commands:
+  setup_environment:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - *bundle_cache_full
+            - *bundle_cache
+      - restore_cache:
+          keys:
+            - *yarn_cache_full
+            - *yarn_cache
+      - run:
+          name: Installing bundler dependencies
+          command: bundle install --path vendor/bundle
+      - run:
+          name: Installing npm packages
+          command: yarn install --path node_modules
+      - save_cache:
+          paths:
+            - vendor/bundle
+          key: *bundle_cache_full
+      - save_cache:
+          paths:
+            - node_modules
+          key: *yarn_cache_full
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+  run_linters:
+    description: command to start linters
+    steps:
+      - run:
+          name: Run linters
+          command: bundle exec lefthook run lintering
+  run_specs:
+    description: command to run specs
+    steps:
+      - run:
+          name: Run specs
+          command: bundle exec rspec
+      - store_artifacts:
+          path: ~/book-store/coverage
+          destination: coverage
+
+jobs:
+  lintering:
+    executor: default
+    steps:
+      - setup_environment
+      - run_linters
+  run_specs:
+    executor: default
+    steps:
+      - setup_environment
+      - run_specs
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - lintering
+      - run_specs:
+          requires:
+            - lintering

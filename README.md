@@ -1,24 +1,18 @@
-# README
+## How to install
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Clone project: **'git clone https://github.com/DaniilYusha/book-store.git'** - this command creates the book-store directory, initializes the *.git* subdirectory in it, downloads all the data for this repository and extracts a working copy of the latest version;
 
-Things you may want to cover:
+- Move to the project thanks to **'cd'** command;
 
-* Ruby version
+- Run **'bundler install'** command in your terminal - installation of packages prescribed in *Gemfile*;
+- Run **'yarn install'** command in your terminal - installation of packages prescribed in *package.json*;
 
-* System dependencies
+- Run **'rails db:create'** - create database;
 
-* Configuration
+- Run **'rails db:migrate'** - run the database migrations;
 
-* Database creation
+- Run **'rails db:seed'** - load the seed data for database;
 
-* Database initialization
+- Run **'rails server'** - start the Rails server;
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Go to *localhost:3000*.
