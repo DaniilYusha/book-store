@@ -9,5 +9,5 @@
     = f.input :password
     = f.input :password_confirmation
     .text-center
-      = f.submit t('buttons.sign_up'), class: 'btn btn-default mb-20'
+      = f.button :submit, t('buttons.sign_up')
   = render "devise/shared/links"
