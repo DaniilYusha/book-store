@@ -62,12 +62,12 @@ a.read-less {
   margin-top: 10px;
 }
 
-.flash-notice {
+.flash-notice, .flash-alert {
   margin-top: -60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.flash-notice > .close-flash{
+.alert > .close-flash{
   cursor: pointer;
 }
