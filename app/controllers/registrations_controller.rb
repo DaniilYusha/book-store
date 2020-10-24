@@ -5,6 +5,11 @@ class RegistrationsController < Devise::RegistrationsController
     set_forms
   end
 
+  def update
+    set_forms
+    super
+  end
+
   def update_resource(resource, params)
     without_password? ? resource.update_without_password(params) : super(resource, params)
   end
