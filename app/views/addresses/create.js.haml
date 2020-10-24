@@ -1,0 +1,3 @@
+- billing_form = @form.address_type == AddressForm::BILLING_TYPE ? @form : AddressForm.new(current_user.billing_address)
+- shipping_form = @form.address_type == AddressForm::SHIPPING_TYPE ? @form : AddressForm.new(current_user.shipping_address)
+$('#address').html('#{j(render partial: 'devise/registrations/partials/address', locals: { billing_form: billing_form, shipping_form: shipping_form, countries: @countries })}');
