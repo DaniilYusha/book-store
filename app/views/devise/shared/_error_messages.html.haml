@@ -1,2 +1,2 @@
-- if resource.errors.any?
-  %span.error-message= resource.errors.messages[error_field].first
+- if resource.errors.messages.any?
+  %span.help-block= resource.errors.messages[error_field].first
