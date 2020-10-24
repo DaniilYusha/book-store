@@ -118,6 +118,7 @@ en:
     registrations:
       new:
         header: Sign Up
+        remove_account_confirmation: Are you sure?
         labels:
           email: Enter Email
           confirm_password: Confirm Password
