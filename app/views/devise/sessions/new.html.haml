@@ -6,14 +6,9 @@
     %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
       %i.fab.fa-facebook-square
     %p.general-login-text or
-  = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'general-form' }) do |f|
-    .form-group.mb-30
-      = f.label :email, t('devise.sessions.new.labels.email'), class: 'control-label input-label'
-      = f.email_field :email, id: 'email', class: 'form-control', autofocus: true, placeholder: t('devise.sessions.new.placeholders.enter_email')
-    .form-group.mb-30
-      = f.label :password, class: 'control-label input-label'
-      = f.password_field :password, id: 'password', class: 'form-control', placeholder: t('devise.sessions.new.placeholders.enter_password')
-      = link_to t('links.forgot_password'), new_password_path(resource_name), class: 'help-block in-gold-500'
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'general-form' }) do |f|
+    = f.input :email
+    = f.input :password
     .form-group.checkbox.text-center.mb-30
       = f.label(:remember_me, class: 'checkbox-label') do
         = f.check_box :remember_me, hidden: true, class: 'checkbox-input'
@@ -21,5 +16,5 @@
           %i.fa.fa-check
         %span.checkbox-text= t 'checkboxes.remember_me'
     .text-center
-      = f.submit t('buttons.log_in'), class: 'btn btn-default mb-20'
+      = f.button :submit, t('buttons.log_in')
   = render "devise/shared/links"
