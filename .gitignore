@@ -31,3 +31,5 @@ yarn-debug.log*
 # Ignore useless files
 coverage
 yarn.lock
+
+/config/credentials/development.key
