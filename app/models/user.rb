@@ -1,12 +1,6 @@
 class User < ApplicationRecord
-  PASSWORD_FORMAT = /\A
-    (?!.*\s)
-    (?=.*\d)
-    (?=.*[a-z])
-    (?=.*[A-Z])
-  /x.freeze
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  PASSWORD_FORMAT = /\A(?!.*\s)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/x.freeze
+
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
