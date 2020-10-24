@@ -1,0 +1,9 @@
+= f.hidden_field :address_type, value: type
+= f.input :first_name
+= f.input :last_name
+= f.input :address
+= f.input :city
+= f.input :zip_code
+= f.input :country, collection: @countries,
+          prompt: t('simple_form.placeholders.defaults.country')
+= f.input :phone
