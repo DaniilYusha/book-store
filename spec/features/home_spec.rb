@@ -6,7 +6,7 @@ RSpec.describe 'HomePage', type: :feature do
     visit root_path
   end
 
-  context "when click #{I18n.t 'buttons.get_started'} link" do
+  context 'when click get_started link' do
     it 'redirects to catalog page' do
       home_page.get_started.click_get_started_link
       expect(home_page).to have_current_path books_path
@@ -17,7 +17,7 @@ RSpec.describe 'HomePage', type: :feature do
     expect(home_page).to have_current_path root_path
   end
 
-  it "has #{I18n.t :brand} title" do
+  it 'has page title' do
     expect(home_page.title).to eq I18n.t(:brand)
   end
 
@@ -25,13 +25,13 @@ RSpec.describe 'HomePage', type: :feature do
     expect(home_page).to have_slider
   end
 
-  it "has `#{I18n.t 'buttons.buy_now'}` buttons" do
+  it 'has buy_now buttons' do
     expect(home_page.slider).to have_buy_now_buttons(
       count: PagesController::LAST_BOOKS_COUNT
     )
   end
 
-  it "has `#{I18n.t 'buttons.get_started'}` link" do
+  it 'has get_started link' do
     expect(home_page.get_started).to have_get_started_link
   end
 
