@@ -18,6 +18,7 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
   gem 'fasterer', '~> 0.8.3'
+  gem 'pry', '~> 0.13.1'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.90.0'
   gem 'rubocop-rspec', '~> 1.43'
