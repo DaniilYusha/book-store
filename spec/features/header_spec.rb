@@ -15,10 +15,6 @@ RSpec.describe 'Header', type: :feature do
     expect(home_page.header).to have_home_link
   end
 
-  it 'has my_account link' do
-    expect(home_page.header).to have_my_account_link
-  end
-
   it 'has shop link' do
     expect(home_page.header).to have_shop_link
   end

@@ -15,14 +15,6 @@ RSpec.describe 'Footer', type: :feature do
     expect(home_page.footer).to have_shop_link
   end
 
-  it 'has orders link' do
-    expect(home_page.footer).to have_orders_link
-  end
-
-  it 'has settings link' do
-    expect(home_page.footer).to have_settings_link
-  end
-
   it 'has email' do
     expect(home_page.footer).to have_email
   end
