@@ -12,4 +12,4 @@ database_setup:
     create_database:
       run: rails db:create
     load_schema:
-      run: rails db:migrate
+      run: rails db:schema:load
