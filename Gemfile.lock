@@ -109,8 +109,6 @@ GEM
       tilt
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.10.1)
-      activesupport (>= 5.0.0)
     lefthook (0.7.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -291,7 +289,6 @@ DEPENDENCIES
   faker (~> 2.13)
   fasterer (~> 0.8.3)
   haml (~> 5.1)
-  jbuilder (~> 2.7)
   lefthook (~> 0.7.2)
   listen (~> 3.2)
   pagy (~> 3.8)
