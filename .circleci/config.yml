@@ -14,6 +14,7 @@ executors:
           POSTGRES_USER: $DB_USERNAME
           POSTGRES_DB: book_store_test
           POSTGRES_PASSWORD: $DB_PASSWORD
+          RAILS_ENV: test
 
 caches:
   - &bundle_cache_full v1-book_store-{{ checksum "Gemfile.lock" }}
