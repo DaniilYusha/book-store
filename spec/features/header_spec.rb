@@ -23,11 +23,6 @@ RSpec.describe 'Header', type: :feature do
     expect(home_page.header).to have_shop_link
   end
 
-  it 'has categories links' do
-    create_list(:category, 2)
-    expect(home_page.header).to have_categories_links
-  end
-
   it 'has log_out link' do
     expect(home_page.header).to have_log_out_link
   end
