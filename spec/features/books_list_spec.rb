@@ -1,11 +1,10 @@
 RSpec.describe 'BooksList', type: :feature do
+  let(:catalog_page) { Pages::Catalog.new }
+
   before do
-    stub_const('CREATED_BOOKS_COUNT', 20)
-    create_list(:book, CREATED_BOOKS_COUNT)
+    create_list(:book, 13)
     visit books_path
   end
-
-  let(:catalog_page) { Pages::Catalog.new }
 
   it 'has books' do
     expect(catalog_page.books_list).to have_books

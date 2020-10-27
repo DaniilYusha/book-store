@@ -4,7 +4,7 @@ module Sections
     element :home_link, 'div.hidden-xs>ul>li>a.home_link'
     element :my_account_link, 'div.hidden-xs>ul>li>a.my_account_link'
     element :shop_link, 'li.dropdown>a.shop_link'
-    elements :categories_links, "ul.dropdown-menu li:nth-child(-n+#{PagesController::LAST_ADDED_BOOKS_COUNT})"
+    elements :categories_links, "ul.dropdown-menu li:nth-child(-n+#{PagesController::LAST_BOOKS_COUNT})"
     element :log_out_link, '.dropdown-menu>li>a.log_out_link'
 
     def click_home_link

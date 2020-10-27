@@ -2,7 +2,7 @@ RSpec.describe 'HomePage', type: :feature do
   let(:home_page) { Pages::Home.new }
 
   before do
-    create_list(:book, PagesController::LAST_ADDED_BOOKS_COUNT)
+    create_list(:book, PagesController::LAST_BOOKS_COUNT)
     visit root_path
   end
 
@@ -27,7 +27,7 @@ RSpec.describe 'HomePage', type: :feature do
 
   it "has `#{I18n.t 'buttons.buy_now'}` buttons" do
     expect(home_page.slider).to have_buy_now_buttons(
-      count: PagesController::LAST_ADDED_BOOKS_COUNT
+      count: PagesController::LAST_BOOKS_COUNT
     )
   end
 
