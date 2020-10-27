@@ -1,5 +1,4 @@
 RSpec.describe 'Header', type: :feature do
-  let(:categories) { create_list(:category, PagesController::LAST_BOOKS_COUNT) }
   let(:home_page) { Pages::Home.new }
 
   before { visit root_path }
@@ -25,6 +24,7 @@ RSpec.describe 'Header', type: :feature do
   end
 
   it 'has categories links' do
+    create_list(:category, 2)
     expect(home_page.header).to have_categories_links
   end
 
