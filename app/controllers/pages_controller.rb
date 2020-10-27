@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  LAST_ADDED_BOOKS_COUNT = 3
+  LAST_BOOKS_COUNT = 3
 
   def home
-    @latest_books = BookDecorator.decorate_collection Book.includes(:authors).last(LAST_ADDED_BOOKS_COUNT)
+    @latest_books = BookDecorator.decorate_collection Book.includes(:authors).last(LAST_BOOKS_COUNT)
   end
 end
