@@ -38,8 +38,8 @@ Rails.application.configure do
     domain: 'mail.google.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD']
+    user_name: Rails.application.credentials.messaging[:gmail][:username],
+    password: Rails.application.credentials.messaging[:gmail][:password]
   }
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
