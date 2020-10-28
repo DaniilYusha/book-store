@@ -19,7 +19,7 @@ module Users
 
     def move_to_registration
       session['devise.facebook_data'] = request.env['omniauth.auth'].except(:extra)
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_path
     end
   end
 end
