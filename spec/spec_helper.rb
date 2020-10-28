@@ -1,4 +1,6 @@
-require 'simplecov'
+require 'config/simplecov'
+require 'config/database_cleaner'
+require 'config/factory_bot'
 require 'capybara/rspec'
 require 'site_prism'
 
