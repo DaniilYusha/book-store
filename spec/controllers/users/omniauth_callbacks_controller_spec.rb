@@ -16,7 +16,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       allow(User).to receive(:from_omniauth).and_return(build(:user))
       get :facebook
     end
-    
+
     it { expect(response).to redirect_to('/users/sign_up') }
   end
 
