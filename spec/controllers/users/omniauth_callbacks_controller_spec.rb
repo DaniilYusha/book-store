@@ -17,7 +17,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       get :facebook
     end
 
-    it { expect(response).to redirect_to('/users/sign_up') }
+    it { expect(response).to redirect_to(new_user_registration_path) }
   end
 
   context 'when user exist' do
@@ -26,6 +26,6 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       get :facebook
     end
 
-    it { expect(response).to redirect_to('/') }
+    it { expect(response).to redirect_to(root_path) }
   end
 end
