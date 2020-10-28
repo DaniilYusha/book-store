@@ -11,6 +11,15 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     expect(response).to have_http_status :redirect
   end
 
+  context 'when user is new' do
+    before do
+      allow(User).to receive(:from_omniauth).and_return(build(:user))
+      get :facebook
+    end
+    
+    it { expect(response).to redirect_to('/users/sign_up') }
+  end
+
   context 'when user exist' do
     before do
       allow(User).to receive(:from_omniauth).and_return(create(:user))
