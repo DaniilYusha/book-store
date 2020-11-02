@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_categories
-    @categories = Category.with_books.all
+    @categories = Category.includes(:books).all
   end
 end
