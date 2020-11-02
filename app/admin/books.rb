@@ -46,19 +46,19 @@ ActiveAdmin.register Book do
     end
   end
 
-  form do |_f|
-    inputs 'Details' do
-      input :category
-      input :authors, collection: Author.all.decorate
-      input :title
-      input :description
-      input :price
-      input :published_at, as: :datepicker
-      input :height
-      input :width
-      input :depth
-      input :materials
-      input :image
+  form do |f|
+    f.inputs 'Details' do
+      f.input :category
+      f.input :authors, collection: Author.all.decorate
+      f.input :title
+      f.input :description
+      f.input :price
+      f.input :published_at, as: :datepicker
+      f.input :height
+      f.input :width
+      f.input :depth
+      f.input :materials
+      f.input :image
     end
     actions
   end
