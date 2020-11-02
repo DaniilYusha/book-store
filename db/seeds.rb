@@ -49,3 +49,7 @@ end
     BookMaterial.create(book_id: book_id, material_id: material_id)
   end
 end
+
+if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+end
