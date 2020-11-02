@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :material do
-    name { Faker::Lorem.unique.word }
+    name { FFaker::Lorem.unique.word }
   end
 end

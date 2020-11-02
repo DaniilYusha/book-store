@@ -1,4 +1,4 @@
-require 'faker'
+require 'ffaker'
 
 CREATED_AUTHORS_COUNT = 80
 CREATED_BOOKS_COUNT = 80
@@ -12,8 +12,8 @@ CREATED_CATEGORIES = {
 
 CREATED_AUTHORS_COUNT.times do
   Author.create(
-    first_name: Faker::Book.author.split.first,
-    last_name: Faker::Book.author.split.last
+    first_name: FFaker::Book.author.split.first,
+    last_name: FFaker::Book.author.split.last
   )
 end
 
@@ -23,20 +23,20 @@ end
 
 CREATED_BOOKS_COUNT.times do
   Book.create(
-    title: Faker::Book.title,
-    description: Faker::Books::Dune.quote,
-    price: Faker::Commerce.price(range: 0..1000.0),
-    height: Faker::Number.decimal(l_digits: 2),
-    width: Faker::Number.decimal(l_digits: 2),
-    depth: Faker::Number.decimal(l_digits: 2),
-    published_at: Faker::Date.between(from: '1990-01-01', to: '2020-09-15'),
-    category_id: Faker::Number.between(from: 1, to: CREATED_CATEGORIES.size)
+    title: FFaker::Book.title,
+    description: FFaker::Books::Dune.quote,
+    price: FFaker::Commerce.price(range: 0..1000.0),
+    height: FFaker::Number.decimal(l_digits: 2),
+    width: FFaker::Number.decimal(l_digits: 2),
+    depth: FFaker::Number.decimal(l_digits: 2),
+    published_at: FFaker::Date.between(from: '1990-01-01', to: '2020-09-15'),
+    category_id: FFaker::Number.between(from: 1, to: CREATED_CATEGORIES.size)
   )
 end
 
 CREATED_MATERIALS_COUNT.times do
   Material.create(
-    name: Faker::Construction.unique.material
+    name: FFaker::Construction.unique.material
   )
 end
 
