@@ -4,7 +4,7 @@ class BookDecorator < ApplicationDecorator
   delegate_all
 
   def authors_list
-    object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join ', '
+    object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join(', ')
   end
 
   def published_at
@@ -20,6 +20,6 @@ class BookDecorator < ApplicationDecorator
   end
 
   def short_description
-    object.description.truncate SHORT_DESCRIPTION_LENGTH
+    object.description.truncate(SHORT_DESCRIPTION_LENGTH)
   end
 end
