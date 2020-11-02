@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.includes(:authors).find(book_params[:id]).decorate
+    @book = FindBookQuery.new(book_params[:id]).call.decorate
   end
 
   private
