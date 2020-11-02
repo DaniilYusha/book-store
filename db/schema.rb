@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_017_072_200) do
+ActiveRecord::Schema.define(version: 20_201_029_121_146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20_201_017_072_200) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[addressable_type addressable_id], name: 'index_addresses_on_addressable_type_and_addressable_id'
+  end
+
+  create_table 'admin_users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['email'], name: 'index_admin_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_admin_users_on_reset_password_token', unique: true
   end
 
   create_table 'author_books', force: :cascade do |t|
@@ -66,6 +78,7 @@ ActiveRecord::Schema.define(version: 20_201_017_072_200) do
     t.bigint 'category_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.string 'image'
     t.index ['category_id'], name: 'index_books_on_category_id'
   end
 
