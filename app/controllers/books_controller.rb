@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-
   def index
     @pagy, @books = pagy_array(SortedBooksQuery.new(@categories, book_params).all.decorate)
     @books_count = Book.count
@@ -7,7 +6,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = FindBookQuery.new(book_params[:id]).call.decorate
+    @book = FindBookQuery.call(book_params[:id]).decorate
   end
 
   private
