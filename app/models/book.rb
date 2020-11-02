@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  BOOKS_NUMBER_PER_PAGE = 12
   TITLE_MAX_LENGTH = 100
   MIN_PRICE = 0
   MAX_PRICE = 1_000_000
