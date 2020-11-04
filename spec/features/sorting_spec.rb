@@ -1,5 +1,5 @@
 RSpec.describe 'Sorting', type: :feature do
-  let(:categories) { create_list(:category, PagesController::LAST_BOOKS_COUNT) }
+  let(:categories) { create_list(:category, PagesController::NEWEST_BOOKS_COUNT) }
   let(:catalog_page) { Pages::Catalog.new }
 
   before { visit books_path }
