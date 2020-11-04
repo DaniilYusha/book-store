@@ -3,9 +3,10 @@ class BookDecorator < ApplicationDecorator
   CURRENCY = '€'
 
   delegate_all
+  decorates_association :authors
 
   def authors_list
-    object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join(', ')
+    object.authors.map { |author| author.decorate.name }.join(', ')
   end
 
   def price_with_currency
