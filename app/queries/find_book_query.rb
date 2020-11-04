@@ -10,6 +10,6 @@ class FindBookQuery
   end
 
   def call
-    Book.includes(:authors).find_by(id: book_id)
+    Book.includes(:authors).find_by(id: book_id).decorate
   end
 end
