@@ -2,8 +2,8 @@ class SortedBooksQuery
   attr_reader :relation, :sort_by, :category_id, :limit
 
   SORT_OPTIONS = {
-    newest_asc: ->(relation) { relation.order('created_at asc') },
-    popular_asc: ->(relation) { relation.order('created_at desc') },
+    newest_desc: ->(relation) { relation.order('created_at desc') },
+    popular_asc: ->(relation) { relation.order('created_at asc') },
     title_asc: ->(relation) { relation.order('title asc') },
     title_desc: ->(relation) { relation.order('title desc') },
     price_asc: ->(relation) { relation.order('price asc') },

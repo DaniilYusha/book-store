@@ -34,7 +34,7 @@ en:
     categories: Categories
     filters: Filters
     sorting:
-      newest_asc: Newest first
+      newest_desc: Newest first
       popular_asc: Popular first
       price_asc: 'Price: Low to hight'
       price_desc: 'Price: Hight to low'
