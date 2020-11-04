@@ -1,6 +1,6 @@
 class FindBookQuery
   attr_reader :book_id
-  
+
   def self.call(book_id)
     new(book_id).call
   end
