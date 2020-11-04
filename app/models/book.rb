@@ -10,11 +10,4 @@ class Book < ApplicationRecord
   has_many :materials, through: :book_material
 
   belongs_to :category
-
-  validates :title, presence: true, uniqueness: true, length: { maximum: TITLE_MAX_LENGTH }
-  validates :price, presence: true,
-                    numericality: { greater_than: MIN_PRICE, less_than: MAX_PRICE }
-  validates :published_at, presence: true
-
-  scope :with_authors, -> { includes [:authors] }
 end
