@@ -12,8 +12,8 @@ CREATED_CATEGORIES = {
 
 CREATED_AUTHORS_COUNT.times do
   Author.create(
-    first_name: FFaker::Book.author.split.first,
-    last_name: FFaker::Book.author.split.last
+    first_name: FFaker::Name.first_name,
+    last_name: FFaker::Name.last_name
   )
 end
 
@@ -24,19 +24,19 @@ end
 CREATED_BOOKS_COUNT.times do
   Book.create(
     title: FFaker::Book.title,
-    description: FFaker::Books::Dune.quote,
-    price: FFaker::Commerce.price(range: 0..1000.0),
-    height: FFaker::Number.decimal(l_digits: 2),
-    width: FFaker::Number.decimal(l_digits: 2),
-    depth: FFaker::Number.decimal(l_digits: 2),
-    published_at: FFaker::Date.between(from: '1990-01-01', to: '2020-09-15'),
-    category_id: FFaker::Number.between(from: 1, to: CREATED_CATEGORIES.size)
+    description: FFaker::Book.description,
+    price: rand(1.0..1000.0).floor(2),
+    height: rand(7.0..40.0).floor(2),
+    width: rand(1.0..20.0).floor(2),
+    depth: rand(1.0..7.0).floor(2),
+    published_at: FFaker::Time.date,
+    category_id: rand(1..CREATED_CATEGORIES.size)
   )
 end
 
 CREATED_MATERIALS_COUNT.times do
   Material.create(
-    name: FFaker::Construction.unique.material
+    name: FFaker::Lorem.unique.word
   )
 end
 
