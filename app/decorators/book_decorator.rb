@@ -14,10 +14,6 @@ class BookDecorator < ApplicationDecorator
     CURRENCY + object.price.to_s
   end
 
-  def published_at
-    object.published_at.year
-  end
-
   def materials_list
     object.materials.sub(' ', ', ').capitalize
   end
