@@ -10,64 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_915_144_606) do
+ActiveRecord::Schema.define(version: 2020_09_12_113811) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'author_books', force: :cascade do |t|
-    t.bigint 'author_id'
-    t.bigint 'book_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['author_id'], name: 'index_author_books_on_author_id'
-    t.index ['book_id'], name: 'index_author_books_on_book_id'
+  create_table "author_books", force: :cascade do |t|
+    t.bigint "author_id"
+    t.bigint "book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_author_books_on_author_id"
+    t.index ["book_id"], name: "index_author_books_on_book_id"
   end
 
-  create_table 'authors', force: :cascade do |t|
-    t.string 'first_name', null: false
-    t.string 'last_name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'book_materials', force: :cascade do |t|
-    t.bigint 'book_id'
-    t.bigint 'material_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['book_id'], name: 'index_book_materials_on_book_id'
-    t.index ['material_id'], name: 'index_book_materials_on_material_id'
+  create_table "books", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", default: ""
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.decimal "height", precision: 6, scale: 2, null: false
+    t.decimal "width", precision: 6, scale: 2, null: false
+    t.decimal "depth", precision: 6, scale: 2, null: false
+    t.date "published_at", null: false
+    t.string "materials", null: false
+    t.bigint "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_books_on_category_id"
   end
 
-  create_table 'books', force: :cascade do |t|
-    t.string 'title', null: false
-    t.text 'description', default: ''
-    t.decimal 'price', precision: 8, scale: 2, null: false
-    t.decimal 'height', precision: 6, scale: 2, null: false
-    t.decimal 'width', precision: 6, scale: 2, null: false
-    t.decimal 'depth', precision: 6, scale: 2, null: false
-    t.date 'published_at', null: false
-    t.bigint 'category_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['category_id'], name: 'index_books_on_category_id'
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'categories', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  create_table 'materials', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  add_foreign_key 'author_books', 'authors'
-  add_foreign_key 'author_books', 'books'
-  add_foreign_key 'book_materials', 'books'
-  add_foreign_key 'book_materials', 'materials'
-  add_foreign_key 'books', 'categories'
+  add_foreign_key "author_books", "authors"
+  add_foreign_key "author_books", "books"
+  add_foreign_key "books", "categories"
 end

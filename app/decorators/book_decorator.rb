@@ -12,7 +12,7 @@ class BookDecorator < ApplicationDecorator
   end
 
   def materials_list
-    object.materials.map(&:name).join(', ').capitalize
+    object.materials.sub(' ', ', ').capitalize
   end
 
   def dimensions

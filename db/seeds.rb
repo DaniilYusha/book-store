@@ -2,7 +2,6 @@ require 'ffaker'
 
 CREATED_AUTHORS_COUNT = 80
 CREATED_BOOKS_COUNT = 80
-CREATED_MATERIALS_COUNT = 7
 CREATED_CATEGORIES = {
   mobile_development: 'Mobile Development',
   photo: 'Photo',
@@ -30,22 +29,11 @@ CREATED_BOOKS_COUNT.times do
     width: rand(1.0..20.0).floor(2),
     depth: rand(1.0..7.0).floor(2),
     published_at: FFaker::Time.date,
+    materials: FFaker::Lorem.word,
     category_id: rand(1..CREATED_CATEGORIES.size)
-  )
-end
-
-CREATED_MATERIALS_COUNT.times do
-  Material.create(
-    name: FFaker::Lorem.unique.word
   )
 end
 
 (1..CREATED_AUTHORS_COUNT).each do |index|
   AuthorBook.create(author_id: index, book_id: index)
-end
-
-(1..CREATED_BOOKS_COUNT).each do |book_id|
-  (1..(CREATED_MATERIALS_COUNT - rand(CREATED_MATERIALS_COUNT - 1))).each do |material_id|
-    BookMaterial.create(book_id: book_id, material_id: material_id)
-  end
 end
