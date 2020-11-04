@@ -1,8 +1,11 @@
 class BooksController < ApplicationController
   def index
-    @pagy, @books = pagy_array(SortedBooksQuery.new(@categories, book_params).all.decorate)
+    @books = SortedBooksQuery.call(
+      category_id: book_params[:category_id],
+      sort_by: book_params[:sort_by], limit: book_params[:limit]
+    ).decorate
     @books_count = Book.count
-    @current_category = params[:category_id]
+    @current_category = book_params[:category_id]
   end
 
   def show
@@ -12,6 +15,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:id, :category_id, :sort, :direction)
+    params.permit(:id, :category_id, :sort_by, :limit)
   end
 end
