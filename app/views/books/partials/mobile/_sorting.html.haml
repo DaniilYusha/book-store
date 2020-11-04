@@ -1,0 +1,19 @@
+.dropdowns.mb-25.visible-xs
+  %p.lead.small.mb-10= t 'catalog_page.filter_by_category'
+  .dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      = t 'catalog_page.categories'
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      - categories.each do |category|
+        %li
+          %a{href: books_path(category_id: category.id)}= category.name
+  %p.lead.small.mb-10= t 'catalog_page.filters'
+  .dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      = t 'catalog_page.sort_by'
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      - t('catalog_page.sorting').map do |key, value|
+        %li
+          %a{href: books_path(category_id: current_category, sort_by: key)}= value
