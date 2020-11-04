@@ -1,10 +1,15 @@
 class BookDecorator < ApplicationDecorator
   SHORT_DESCRIPTION_LENGTH = 250
+  CURRENCY = '€'
 
   delegate_all
 
   def authors_list
     object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join(', ')
+  end
+
+  def price_with_currency
+    CURRENCY + object.price.to_s
   end
 
   def published_at
