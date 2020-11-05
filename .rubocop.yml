@@ -16,6 +16,7 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+    - config/environments/*.rb
     - db/schema.rb
 
 Metrics/MethodLength:
