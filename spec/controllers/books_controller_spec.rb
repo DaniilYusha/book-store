@@ -6,7 +6,7 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe 'GET /books/{id}' do
-    let(:book) { create(:book).decorate }
+    let(:book) { create(:book) }
 
     before { get :show, params: { id: book.id } }
 
