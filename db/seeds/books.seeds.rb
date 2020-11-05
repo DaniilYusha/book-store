@@ -1,6 +1,6 @@
 after :authors do
   authors = Author.all
-  40.times do
+  80.times do
     Book.create(
       title: FFaker::Book.title,
       description: FFaker::Book.description,
