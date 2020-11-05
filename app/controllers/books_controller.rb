@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = FindBookQuery.call(book_params[:id])
+    @book = FindBookQuery.call(book_params[:id]).decorate
   end
 
   private
