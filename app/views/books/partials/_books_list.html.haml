@@ -15,4 +15,4 @@
         %p.font-16.in-gold-500= book.price_with_currency
         %span.divider-sm
         %p.lead.small= book.authors_list
-  = render 'books/partials/pagination'
+  = render partial: 'books/partials/pagination', locals: { books: books, current_category: current_category }

@@ -15,6 +15,6 @@
         %span.badge.general-badge= books_count
     - categories.each do |category|
       %li.mr-35
-        %a.filter-link{href: books_path(category_id: category.id)}
+        %a.filter-link{href: books_path(category_id: category.id), data: { category_id: category.id }}
           = category.name
           %span.badge.general-badge= category.books.count

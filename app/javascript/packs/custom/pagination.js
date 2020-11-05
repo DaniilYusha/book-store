@@ -17,10 +17,18 @@ $(document).ready(() => {
         let new_books_list = $(data).find('.books-list');
         $(current_books_list).replaceWith(new_books_list);
         $('#books_count').val(limit);
-        if(+$('#books_count').val() > $('.book').length){
-          $('.view-more').hide();
-        }
+        hide_view_more()
       }
     });
   });
+
+  function hide_view_more(){
+    let category_id = +$('#books_count').data('category-id');
+    let books_in_category = +$(`[data-category-id=${category_id}]`).children('span').text();
+    let rendered_books = +$('#books_count').val();
+
+    if(rendered_books >= books_in_category){
+      $('.view-more').hide();
+    }
+  }
 });
