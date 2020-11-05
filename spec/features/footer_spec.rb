@@ -3,45 +3,13 @@ RSpec.describe 'Footer', type: :feature do
 
   before { home_page.load }
 
-  it 'has current path' do
-    expect(home_page).to have_current_path root_path
-  end
-
-  it 'has home link' do
-    expect(home_page.footer).to have_home_link
-  end
-
-  it 'has shop link' do
-    expect(home_page.footer).to have_shop_link
-  end
-
-  it 'has orders link' do
-    expect(home_page.footer).to have_orders_link
-  end
-
-  it 'has settings link' do
-    expect(home_page.footer).to have_settings_link
-  end
-
-  it 'has email' do
-    expect(home_page.footer).to have_email
-  end
-
-  it 'has phone number' do
-    expect(home_page.footer).to have_phone
-  end
-
-  it 'has facebook link' do
-    expect(home_page.footer).to have_facebook_link
-  end
-
-  it 'click shop link' do
-    home_page.footer.shop_link.click
-    expect(home_page).to have_current_path books_path
-  end
-
-  it 'click home link' do
-    home_page.footer.click_home_link
-    expect(home_page).to be_displayed
-  end
+  it { expect(home_page).to have_current_path(root_path) }
+  
+  it { expect(home_page.footer).to have_home_link }
+  it { expect(home_page.footer).to have_shop_link }
+  it { expect(home_page.footer).to have_orders_link }
+  it { expect(home_page.footer).to have_settings_link }
+  it { expect(home_page.footer).to have_email }
+  it { expect(home_page.footer).to have_phone }
+  it { expect(home_page.footer).to have_facebook_link }
 end
