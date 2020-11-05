@@ -14,6 +14,11 @@ RSpec.describe SortedBooksQuery do
     context 'with sort_by parameter' do
       let(:books) { [book_from_photo, book_from_web_design] }
 
+      it 'returns books sorted by popular first' do
+        expect(described_class.call(sort_by: :popular_asc)).to eq(
+          books.sort_by(&:created_at))
+      end
+
       it 'returns books sorted by title desc' do
         expect(described_class.call(sort_by: :title_desc)).to eq(
           books.sort_by(&:title).reverse)
