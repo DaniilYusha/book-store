@@ -9,16 +9,5 @@ FactoryBot.define do
     materials { FFaker::Lorem.word }
     published_at { FFaker::Time.date }
     association :category
-
-    factory :book_with_associations do
-      transient do
-        authors_count { 3 }
-      end
-
-      after(:create) do |book, evaluator|
-        create_list(:author, evaluator.authors_count, books: [book])
-        book.reload
-      end
-    end
   end
 end
