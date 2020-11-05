@@ -7,7 +7,7 @@ RSpec.describe 'Sorting', type: :feature do
   end
 
   it { expect(catalog_page).to have_current_path(books_path) }
-  
+
   it { expect(catalog_page.sorting).to have_categories_links }
   it { expect(catalog_page.sorting).to have_sorting_links }
 end

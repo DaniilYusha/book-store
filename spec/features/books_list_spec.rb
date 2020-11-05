@@ -7,6 +7,6 @@ RSpec.describe 'BooksList', type: :feature do
   end
 
   it { expect(catalog_page).to have_current_path(books_path) }
-  
+
   it { expect(catalog_page.books_list).to have_books(count: 2) }
 end

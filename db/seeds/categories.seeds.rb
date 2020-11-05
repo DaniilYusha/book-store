@@ -5,4 +5,4 @@ CATEGORIES = {
   web_development: 'Web Development'
 }.freeze
 
-CATEGORIES.each_value { |category| Category.create(name: category)  }
+CATEGORIES.each_value { |category| Category.create(name: category) }

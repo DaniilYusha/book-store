@@ -1,9 +1,9 @@
 RSpec.describe BookDecorator do
   let(:author) { build(:author, first_name: 'Daniil', last_name: 'Yusha') }
-  let(:book) {
+  let(:book) do
     build(:book, published_at: '2020-09-15', price: 20, materials: 'wood paper',
-          height: 5, width: 5, depth: 5, authors: [author]).decorate
-  }
+                 height: 5, width: 5, depth: 5, authors: [author]).decorate
+  end
 
   it '#authors_list' do
     expect(book.authors_list).to eq('Daniil Yusha')

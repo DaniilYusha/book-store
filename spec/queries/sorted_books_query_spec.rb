@@ -16,22 +16,26 @@ RSpec.describe SortedBooksQuery do
 
       it 'returns books sorted by popular first' do
         expect(described_class.call(sort_by: :popular_asc)).to eq(
-          books.sort_by(&:created_at))
+          books.sort_by(&:created_at)
+        )
       end
 
       it 'returns books sorted by title desc' do
         expect(described_class.call(sort_by: :title_desc)).to eq(
-          books.sort_by(&:title).reverse)
+          books.sort_by(&:title).reverse
+        )
       end
 
       it 'returns books sorted by price asc' do
         expect(described_class.call(sort_by: :price_asc)).to eq(
-          books.sort_by(&:price))
+          books.sort_by(&:price)
+        )
       end
 
       it 'returns books sorted by price desc' do
         expect(described_class.call(sort_by: :price_desc)).to eq(
-          books.sort_by(&:price).reverse)
+          books.sort_by(&:price).reverse
+        )
       end
     end
   end

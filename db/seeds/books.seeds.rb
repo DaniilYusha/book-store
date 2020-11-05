@@ -11,7 +11,7 @@ after :authors do
       published_at: FFaker::Time.date,
       materials: FFaker::Lorem.word,
       category_id: rand(1..Category.count),
-      authors: [authors.shuffle.first, authors.shuffle.last]
+      authors: [authors.sample, authors.sample]
     )
   end
 end

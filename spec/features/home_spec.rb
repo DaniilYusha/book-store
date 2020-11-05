@@ -7,7 +7,7 @@ RSpec.describe 'HomePage', type: :feature do
   end
 
   it { expect(home_page).to have_current_path(root_path) }
-  
+
   it { expect(home_page).to have_header }
   it { expect(home_page).to have_footer }
   it { expect(home_page).to have_slider }

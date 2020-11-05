@@ -4,7 +4,7 @@ RSpec.describe 'CatalogPage', type: :feature do
   before { catalog_page.load }
 
   it { expect(catalog_page).to have_current_path(books_path) }
-  
+
   it { expect(catalog_page).to have_sorting }
   it { expect(catalog_page).to have_books_list }
 
