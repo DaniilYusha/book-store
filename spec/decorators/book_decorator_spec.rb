@@ -1,5 +1,5 @@
 RSpec.describe BookDecorator do
-  let(:author) { create(:author, first_name: 'Daniil', last_name: 'Yusha') }
+  let(:author) { build(:author, first_name: 'Daniil', last_name: 'Yusha') }
   let(:book) {
     build(:book, published_at: '2020-09-15', price: 20, materials: 'wood paper',
           height: 5, width: 5, depth: 5, authors: [author]).decorate
