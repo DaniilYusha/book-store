@@ -30,6 +30,6 @@ class SortedBooksQuery
   def scope
     return relation.includes(:authors).limit(limit) unless category_id
 
-    relation.includes(%i[category authors]).where(category_id: category_id).limit(limit)
+    relation.includes(:authors).where(category_id: category_id).limit(limit)
   end
 end
