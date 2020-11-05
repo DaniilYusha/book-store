@@ -24,6 +24,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet', '~> 6.1'
   gem 'lefthook', '~> 0.7.2'
   gem 'listen', '~> 3.2'
   gem 'spring', '~> 2.1'
