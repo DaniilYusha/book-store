@@ -1,29 +1,27 @@
 RSpec.describe BookDecorator do
-  let(:book) { build(:book, published_at: '2020-09-15').decorate }
+  let(:author) { create(:author, first_name: 'Daniil', last_name: 'Yusha') }
+  let(:book) {
+    build(:book, published_at: '2020-09-15', price: 20, materials: 'wood paper',
+          height: 5, width: 5, depth: 5, authors: [author]).decorate
+  }
 
-  it 'returns authors list' do
-    expect(book.authors_list).to eq(
-      book.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join(', ')
-    )
+  it '#authors_list' do
+    expect(book.authors_list).to eq('Daniil Yusha')
   end
 
-  it 'returns the published at date' do
-    expect(book.published_at).to eq(2020)
+  it '#price_with_currency' do
+    expect(book.price_with_currency).to eq('€20.0')
   end
 
-  it 'returns book materials' do
-    expect(book.materials_list).to eq book.materials.map(&:name).join(', ').capitalize
+  it '#materials_list' do
+    expect(book.materials_list).to eq('Wood, paper')
   end
 
-  it 'returns dimensions' do
-    expect(book.dimensions).to eq([
-      book.height.to_s.insert(0, 'H:'),
-      book.width.to_s.insert(0, 'W:'),
-      book.depth.to_s.insert(0, 'D:')
-    ].join('" x '))
+  it '#dimensions' do
+    expect(book.dimensions).to eq('H:5.0" x W:5.0" x D:5.0')
   end
 
-  it 'returns short description' do
+  it '#short_description' do
     expect(book.short_description).to eq(
       book.description.truncate(described_class::SHORT_DESCRIPTION_LENGTH)
     )
