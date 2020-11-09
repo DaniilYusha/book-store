@@ -51,6 +51,8 @@ en:
     address:
       saved: Your address has been successfully saved
       updated: Your address has been successfully updated
+    review:
+      created: Thanks for Review. It will be published as soon as Admin will approve it.
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -82,6 +84,7 @@ en:
     title: Title
     review: Review
     reviews: Reviews
+    verified_reviewer: Verified Reviewer
   devise:
     confirmations:
       header: Resend confirmation instructions
