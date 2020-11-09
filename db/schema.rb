@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_029_121_146) do
+ActiveRecord::Schema.define(version: 20_201_105_172_811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(version: 20_201_029_121_146) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
+  create_table 'reviews', force: :cascade do |t|
+    t.string 'title', null: false
+    t.text 'text', null: false
+    t.integer 'rating', null: false
+    t.integer 'status', default: 0, null: false
+    t.boolean 'is_verified', default: false
+    t.bigint 'user_id'
+    t.bigint 'book_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['book_id'], name: 'index_reviews_on_book_id'
+    t.index ['user_id'], name: 'index_reviews_on_user_id'
+  end
+
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
@@ -118,4 +132,6 @@ ActiveRecord::Schema.define(version: 20_201_029_121_146) do
   add_foreign_key 'book_materials', 'books'
   add_foreign_key 'book_materials', 'materials'
   add_foreign_key 'books', 'categories'
+  add_foreign_key 'reviews', 'books'
+  add_foreign_key 'reviews', 'users'
 end
