@@ -8,6 +8,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.includes(:authors).find(params[:id]).decorate
+    @book = Book.includes(:authors, :reviews).find(params[:id]).decorate
+    @reviews = ReviewsQuery.call(@book)
+    @review_form = ReviewForm.new
   end
 end
