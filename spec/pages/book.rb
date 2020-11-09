@@ -1,6 +1,6 @@
 module Pages
   class Book < SitePrism::Page
-    set_url '/books{/book_id}'
+    set_url '/books/{id}'
 
     section :book_description, Sections::BookDescription, '.container > div.row.book-description'
     section :write_review, Sections::WriteReview, '.container > div.write-review'
