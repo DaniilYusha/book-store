@@ -1,20 +1,16 @@
-.mb-80.write-review
-  %h3 #{t 'book_page.write_review'}
-  %p.general-info-text #{t 'book_page.score'}
-  .mb-15
-    %i.fa.fa-star.rate-empty
-    %i.fa.fa-star.rate-empty
-    %i.fa.fa-star.rate-empty
-    %i.fa.fa-star.rate-empty
-    %i.fa.fa-star.rate-empty
-  %form.row
+= simple_form_for(form, remote: true, url: reviews_path) do |f|
+  %h3= t 'book_page.write_review'
+  %p.general-info-text.has-error= t 'book_page.score'
+  .mb-15#stars
+    - Review::RATING_RANGE.each do |index|
+      %i.fa.fa-star.rate-star.rate-empty{ data: { value: index } }
+    = f.hidden_field :rating, value: 0
+  .row
     .col-md-8
       .mb-40
-        .form-group
-          %label.control-label.input-label.in-grey-600{for: "title"} #{t 'book_page.title'}
-          %input#title.form-control{name:"title", type: "text"}
-        .form-group
-          %label.control-label.input-label.in-grey-600{for: "review"} #{t 'book_page.review'}
-          %textarea#review.form-control{name:"review", type: "text"}
+        = f.input :title
+        = f.input :text, as: :text
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :book_id, value: book_id
       .text-right
-        %button.btn.disabled.mb-20 #{t 'buttons.post'}
+        = f.button :submit, t('buttons.post')
