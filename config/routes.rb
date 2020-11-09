@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :books, only: %i[index show]
   resources :addresses, only: %i[create update]
+  resources :reviews, only: %i[create]
   root 'pages#home'
 
   match '*path' => redirect('/'), via: [:get]
