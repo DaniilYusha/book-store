@@ -2,6 +2,7 @@ class BookDecorator < ApplicationDecorator
   SHORT_DESCRIPTION_LENGTH = 250
 
   delegate_all
+  decorates_association :reviews
 
   def authors_list
     object.authors.map { |author| author.first_name.concat(' ', author.last_name) }.join ', '
