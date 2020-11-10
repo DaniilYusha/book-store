@@ -17,6 +17,7 @@
 /public/packs
 /public/packs-test
 /node_modules
+/storage
 
 coverage
 yarn.lock
