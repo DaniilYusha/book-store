@@ -1,7 +1,7 @@
 ActiveAdmin.register Book do
   permit_params :title, :description, :price, :height, :width, :depth,
-                :published_at, :category_id, :image,
-                material_ids: [], author_ids: []
+                :published_at, :category_id, :title_image, images: [],
+                                                           material_ids: [], author_ids: []
   includes :category, :materials
 
   decorate_with BookDecorator
@@ -58,7 +58,8 @@ ActiveAdmin.register Book do
       f.input :width
       f.input :depth
       f.input :materials
-      f.input :image
+      f.input :title_image, as: :file
+      f.input :images, as: :file, input_html: { multiple: true }
     end
     actions
   end
