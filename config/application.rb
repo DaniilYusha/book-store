@@ -10,5 +10,7 @@ module BookStore
     config.generators do |generator|
       generator.helper false
     end
+
+    config.active_storage.variant_processor = :mini_magick
   end
 end
