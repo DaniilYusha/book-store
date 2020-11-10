@@ -61,7 +61,8 @@ RSpec.describe 'admin/books', type: :feature do
     it { expect(new_book_page.fields).to have_width_input }
     it { expect(new_book_page.fields).to have_depth_input }
     it { expect(new_book_page.fields).to have_materials_input }
-    it { expect(new_book_page.fields).to have_image_input }
+    it { expect(new_book_page.fields).to have_title_image_input }
+    it { expect(new_book_page.fields).to have_images_input }
     it { expect(new_book_page.fields).to have_create_button }
     it { expect(new_book_page.fields).to have_cancel_button }
   end
