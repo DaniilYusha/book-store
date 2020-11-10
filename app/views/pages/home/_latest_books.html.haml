@@ -8,7 +8,11 @@
         .row
           .col-sm-5
             .general-img-wrap
-              %img.img-shadow.general-thumbnail-img{src: "https://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              - if book.title_image.attached?
+                = image_tag(book.title_image, class: 'img-shadow general-thumbnail-img')
+              - else
+                %div.thumbnail.unknown-latest-book
+                  %p= t(:no_photo)
           .col-sm-7
             .mb-60
               %h1= book.title
