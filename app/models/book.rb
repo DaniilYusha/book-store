@@ -9,6 +9,9 @@ class Book < ApplicationRecord
   has_many :materials, through: :book_material
   has_many :reviews, dependent: :destroy
 
+  has_one_attached :title_image
+  has_many_attached :images
+
   belongs_to :category
 
   validates :title, presence: true, uniqueness: true, length: { maximum: TITLE_MAX_LENGTH }
