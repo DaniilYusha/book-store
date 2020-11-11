@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '.from_omniauth' do
-    let(:auth) { OmniAuth::AuthHash.new(Faker::Omniauth.facebook) }
+    let(:auth) { OmniAuth.config.mock_auth[:facebook] }
 
     it 'returns or create user' do
       user = described_class.from_omniauth auth
