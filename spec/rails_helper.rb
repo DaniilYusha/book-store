@@ -5,8 +5,6 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
-OmniAuth.config.test_mode = true
-
 Dir[Rails.root.join('spec', 'config', '*.rb')].sort.each { |file| require file }
 Dir[Rails.root.join('spec', 'sections', '**', '*.rb')].sort.each { |file| require file }
 Dir[Rails.root.join('spec', 'pages', '**', '*.rb')].sort.each { |file| require file }
