@@ -126,6 +126,7 @@ GEM
     hashie (4.1.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.10.0)
     jwt (2.2.2)
     lefthook (0.7.2)
     listen (3.2.1)
