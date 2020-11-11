@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     email { FFaker::Internet.free_email }
-    password { FFaker::Internet.password }
+    password { 'RG2020RoR' }
     provider { I18n.t(:provider).downcase }
     uid { 9.times.map { rand(1..9) }.join }
     confirmation_token { Devise.token_generator.generate(User, :confirmation_token)[1] }
