@@ -30,15 +30,6 @@ ActiveRecord::Schema.define(version: 20_201_006_092_129) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'book_materials', force: :cascade do |t|
-    t.bigint 'book_id'
-    t.bigint 'material_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['book_id'], name: 'index_book_materials_on_book_id'
-    t.index ['material_id'], name: 'index_book_materials_on_material_id'
-  end
-
   create_table 'books', force: :cascade do |t|
     t.string 'title', null: false
     t.text 'description', default: ''
@@ -47,6 +38,7 @@ ActiveRecord::Schema.define(version: 20_201_006_092_129) do
     t.decimal 'width', precision: 6, scale: 2, null: false
     t.decimal 'depth', precision: 6, scale: 2, null: false
     t.date 'published_at', null: false
+    t.string 'materials', null: false
     t.bigint 'category_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
@@ -54,12 +46,6 @@ ActiveRecord::Schema.define(version: 20_201_006_092_129) do
   end
 
   create_table 'categories', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  create_table 'materials', force: :cascade do |t|
     t.string 'name', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
@@ -86,7 +72,5 @@ ActiveRecord::Schema.define(version: 20_201_006_092_129) do
 
   add_foreign_key 'author_books', 'authors'
   add_foreign_key 'author_books', 'books'
-  add_foreign_key 'book_materials', 'books'
-  add_foreign_key 'book_materials', 'materials'
   add_foreign_key 'books', 'categories'
 end
