@@ -1,27 +1,35 @@
 class SortedBooksQuery
-  SORT_OPTIONS = %w[title price created_at].freeze
+  attr_reader :relation, :sort_by, :category_id, :limit
 
-  def initialize(categories, params = {}, relation = Book.with_authors)
-    @params = params
-    @relation = relation
-    @categories = categories
+  SORT_OPTIONS = {
+    newest_desc: ->(relation) { relation.order('created_at desc') },
+    popular_asc: ->(relation) { relation.order('created_at asc') },
+    title_asc: ->(relation) { relation.order('title asc') },
+    title_desc: ->(relation) { relation.order('title desc') },
+    price_asc: ->(relation) { relation.order('price asc') },
+    price_desc: ->(relation) { relation.order('price desc') }
+  }.freeze
+
+  def self.call(relation: Book.all, sort_by: nil, category_id: nil, limit: nil)
+    new(relation: relation, sort_by: sort_by, category_id: category_id, limit: limit).call
   end
 
-  def all
-    @relation.where(category_id: category_parameter).order("#{sort_by} #{direction}")
+  def initialize(relation: Book.all, sort_by: nil, category_id: nil, limit: nil)
+    @relation = relation
+    @sort_by = sort_by&.to_sym || :title_asc
+    @category_id = category_id
+    @limit = limit || Book::BOOKS_PER_PAGE
+  end
+
+  def call
+    SORT_OPTIONS[sort_by].call(scope)
   end
 
   private
 
-  def category_parameter
-    @params[:category_id] || @categories.map(&:id)
-  end
+  def scope
+    return relation.includes(:authors).limit(limit) unless category_id
 
-  def sort_by
-    @params[:sort].presence_in(SORT_OPTIONS) || 'title'
-  end
-
-  def direction
-    @params[:direction] || 'asc'
+    relation.includes(:authors).where(category_id: category_id).limit(limit)
   end
 end

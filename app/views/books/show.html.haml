@@ -1,8 +1,7 @@
 %main.container
-  = @previous_url
   %a.general-back-link{href: url_for(:back)}
     %i.fas.fa-long-arrow-alt-left.mr-15
-    #{t 'links.back_to_results'}
-  = render partial: 'books/partials/book_description', locals: { book: @book,  }
+    = t 'links.back_to_results'
+  = render partial: 'books/partials/book_description', locals: { book: @book }
   = render 'books/partials/write_review'
   = render 'books/partials/reviews'

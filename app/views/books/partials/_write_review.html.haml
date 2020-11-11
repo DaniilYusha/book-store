@@ -1,6 +1,6 @@
 .mb-80.write-review
-  %h3 #{t 'book_page.write_review'}
-  %p.general-info-text #{t 'book_page.score'}
+  %h3= t 'book_page.write_review'
+  %p.general-info-text= t 'book_page.score'
   .mb-15
     %i.fa.fa-star.rate-empty
     %i.fa.fa-star.rate-empty
@@ -11,10 +11,10 @@
     .col-md-8
       .mb-40
         .form-group
-          %label.control-label.input-label.in-grey-600{for: "title"} #{t 'book_page.title'}
+          %label.control-label.input-label.in-grey-600{for: "title"}= t 'book_page.title'
           %input#title.form-control{name:"title", type: "text"}
         .form-group
-          %label.control-label.input-label.in-grey-600{for: "review"} #{t 'book_page.review'}
+          %label.control-label.input-label.in-grey-600{for: "review"}= t 'book_page.review'
           %textarea#review.form-control{name:"review", type: "text"}
       .text-right
-        %button.btn.disabled.mb-20 #{t 'buttons.post'}
+        %button.btn.disabled.mb-20= t 'buttons.post'

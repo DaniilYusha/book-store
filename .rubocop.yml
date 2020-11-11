@@ -18,6 +18,7 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+    - config/environments/*.rb
     - db/schema.rb
     - config/environments/*.rb
     - config/initializers/simple_form_bootstrap.rb
