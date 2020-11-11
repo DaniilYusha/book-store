@@ -1,12 +1,10 @@
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
-  let(:facebook_hash) { OmniAuth::AuthHash.new(Faker::Omniauth.facebook) }
-
   before do
     request.env['devise.mapping'] = Devise.mappings[:user]
-    request.env['omniauth.auth'] = facebook_hash
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:facebook]
   end
 
-  it 'has regirect status' do
+  it 'has redirect status' do
     get :facebook
     expect(response).to have_http_status :redirect
   end
