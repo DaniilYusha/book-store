@@ -1,22 +1,12 @@
 RSpec.describe 'Reviews', type: :feature do
-  let(:book) { create(:book_with_associations).decorate }
+  let(:book) { create(:book) }
   let(:book_page) { Pages::Book.new }
 
-  before { visit book_path(book) }
+  before { book_page.load(id: book.id) }
 
-  it 'has current path' do
-    expect(book_page).to have_current_path book_path(book)
-  end
+  it { expect(book_page).to have_current_path(book_path(book)) }
 
-  it 'has reviews' do
-    expect(book_page.reviews).to have_reviews
-  end
-
-  it 'has reviewers names' do
-    expect(book_page.reviews).to have_reviewers_names
-  end
-
-  it 'has reviewers messages' do
-    expect(book_page.reviews).to have_reviewers_messages
-  end
+  it { expect(book_page.reviews).to have_reviews }
+  it { expect(book_page.reviews).to have_reviewers_names }
+  it { expect(book_page.reviews).to have_reviewers_messages }
 end

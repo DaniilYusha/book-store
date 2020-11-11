@@ -1,25 +1,13 @@
 FactoryBot.define do
   factory :book do
-    title { Faker::Lorem.sentence(word_count: 2) }
-    description { Faker::Books::Dune.quote }
-    price { Faker::Commerce.price(range: 0..1000.0) }
-    height { Faker::Number.decimal(l_digits: 2) }
-    width { Faker::Number.decimal(l_digits: 2) }
-    depth { Faker::Number.decimal(l_digits: 2) }
-    published_at { Faker::Date.between(from: '1990-01-01', to: '2020-09-15') }
+    title { FFaker::Book.title }
+    description { FFaker::Book.description }
+    price { rand(1.0..1000.0).floor(2) }
+    height { rand(7.0..40.0).floor(2) }
+    width { rand(1.0..20.0).floor(2) }
+    depth { rand(1.0..7.0).floor(2) }
+    materials { FFaker::Lorem.word }
+    published_at { FFaker::Time.date }
     association :category
-
-    factory :book_with_associations do
-      transient do
-        authors_count { 3 }
-        materials_count { 1 }
-      end
-
-      after(:create) do |book, evaluator|
-        create_list(:author, evaluator.authors_count, books: [book])
-        create_list(:material, evaluator.materials_count, books: [book])
-        book.reload
-      end
-    end
   end
 end
