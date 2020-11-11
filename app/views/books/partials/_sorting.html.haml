@@ -12,7 +12,7 @@
     %li.mr-35
       %a.filter-link{href: books_path}
         = t 'catalog_page.all'
-        %span.badge.general-badge= books_count
+        %span#all_books.badge.general-badge= books_count
     - categories.each do |category|
       %li.mr-35
         %a.filter-link{href: books_path(category_id: category.id), data: { category_id: category.id }}
