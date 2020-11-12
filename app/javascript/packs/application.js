@@ -10,6 +10,7 @@ require("typeface-open-sans")
 
 require("packs/custom/users/remove_account_checkbox")
 require("packs/custom/users/password")
+require("packs/custom/cart")
 require("packs/custom/flash")
 require("packs/custom/pagination")
 require("packs/custom/read_more")
