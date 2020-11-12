@@ -3,7 +3,7 @@ en:
   email: support@bookstore.com
   phone_number: (555)-555-5555
   provider: Facebook
-  no_photo: There is no photo yet
+  no_title_image: '?'
   links:
     home: Home
     shop: Shop
