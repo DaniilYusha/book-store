@@ -10,6 +10,4 @@ Rails.application.routes.draw do
   resources :addresses, only: %i[create update]
   resources :reviews, only: %i[create]
   root 'pages#home'
-
-  # match '*path' => redirect('/'), via: [:get]
 end
