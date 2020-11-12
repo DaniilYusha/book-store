@@ -1,12 +1,11 @@
 class Book < ApplicationRecord
+  BOOKS_PER_PAGE = 12
   TITLE_MAX_LENGTH = 100
   MIN_PRICE = 0
   MAX_PRICE = 1_000_000
 
-  has_many :author_book, dependent: :destroy
-  has_many :authors, through: :author_book
-  has_many :book_material, dependent: :destroy
-  has_many :materials, through: :book_material
+  has_many :author_books, dependent: :destroy
+  has_many :authors, through: :author_books, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   has_one_attached :title_image
@@ -19,6 +18,4 @@ class Book < ApplicationRecord
                     numericality: { greater_than_or_equal_to: MIN_PRICE,
                                     less_than_or_equal_to: MAX_PRICE }
   validates :published_at, presence: true
-
-  scope :with_authors, -> { includes [:authors] }
 end

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :review do
-    title { Faker::Lorem.sentence }
-    text { Faker::Lorem.sentence }
+    title { FFaker::Book.title }
+    text { FFaker::Book.description }
     rating { rand(Review::RATING_RANGE) }
     status { :approved }
     is_verified { false }

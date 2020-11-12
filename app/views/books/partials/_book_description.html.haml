@@ -13,11 +13,11 @@
             %a.img-link{href: url_for(image), target: '_blank'}
               = image_tag(image)
   .col-sm-6
-    %h1.mt-res-0 #{book.title}
-    %p.lead.small #{book.authors_list}
+    %h1.mt-res-0= book.title
+    %p.lead.small= book.authors_list
     .row
       .col-xs-12.col-md-4
-        %p.h1.in-gold-500.mt-10 #{number_to_currency(book.price, unit: '€')}
+        %p.h1.in-gold-500.mt-10= book.price_with_currency
       .col-xs-5.col-md-3
         .input-group.general-position
           %a.input-link{href: "#"}
@@ -26,24 +26,24 @@
           %a.input-link{href: "#"}
             %i.fa.fa-plus.line-height-40
       .col-xs-7.col-md-5
-        %button.btn.btn-default.pull-right.general-position #{t :add_to_cart}
+        %button.btn.btn-default.pull-right.general-position= t :add_to_cart
     .general-info-wrap.divider-lg
-      %p #{t 'book_page.description'}
+      %p= t 'book_page.description'
       %p.lead.small.line-height-2
-        %span.short-description #{book.short_description}
+        %span.short-description= book.short_description
         - if book.description.length > book.short_description.length
-          %span.more-description #{book.description}
-          %a.read-more.in-gold-500{href: "#"} #{t 'links.read_more'}
-          %a.read-less.in-gold-500{href: "#"} #{t 'links.hide'}
+          %span.more-description= book.description
+          %a.read-more.in-gold-500{href: "#"}= t 'links.read_more'
+          %a.read-less.in-gold-500{href: "#"}= t 'links.hide'
     .general-info-wrap.divider-lg
       .clearfix
-        %p.pull-left #{t 'book_page.publication_year'}
-        %p.lead.small.pull-right.publication_year #{book.published_at}
+        %p.pull-left= t 'book_page.publication_year'
+        %p.lead.small.pull-right.publication_year= book.published_at.year
     .general-info-wrap.divider-lg
       .clearfix
-        %p.pull-left #{t 'book_page.dimensions'}
-        %p.lead.small.pull-right.dimensions #{book.dimensions}
+        %p.pull-left= t 'book_page.dimensions'
+        %p.lead.small.pull-right.dimensions= book.dimensions
     .general-info-wrap.divider-lg
       .clearfix
-        %p.pull-left #{t 'book_page.materials'}
-        %p.lead.small.pull-right.materials #{book.materials_list}
+        %p.pull-left= t 'book_page.materials'
+        %p.lead.small.pull-right.materials= book.materials_list

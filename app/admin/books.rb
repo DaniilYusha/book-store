@@ -2,7 +2,7 @@ ActiveAdmin.register Book do
   permit_params :title, :description, :price, :height, :width, :depth,
                 :published_at, :category_id, :title_image, images: [],
                                                            material_ids: [], author_ids: []
-  includes :category, :materials
+  includes :category, :authors
 
   decorate_with BookDecorator
 
@@ -22,7 +22,7 @@ ActiveAdmin.register Book do
       book.short_description
     end
     column :authors do |book|
-      book.authors.decorate.each do |author|
+      book.authors.each do |author|
         link_to author.name, admin_author_path(author)
       end
     end
@@ -58,8 +58,11 @@ ActiveAdmin.register Book do
       f.input :width
       f.input :depth
       f.input :materials
+<<<<<<< HEAD
       f.input :title_image, as: :file
       f.input :images, as: :file, input_html: { multiple: true }
+=======
+>>>>>>> feature/sixth_step
     end
     actions
   end

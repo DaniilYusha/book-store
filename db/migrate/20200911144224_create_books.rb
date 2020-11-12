@@ -8,7 +8,8 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.decimal :width, precision: 6, scale: 2, null: false
       t.decimal :depth, precision: 6, scale: 2, null: false
       t.date :published_at, null: false
-      t.belongs_to :category, foreign_key: true, index: true
+      t.string :materials, unique: true, null: false
+      t.references :category, foreign_key: true, index: true
 
       t.timestamps
     end

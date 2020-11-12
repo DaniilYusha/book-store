@@ -1,3 +1,6 @@
+# Ignore bundler config.
+/.bundle
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -9,6 +12,10 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
@@ -18,6 +25,16 @@
 /public/packs-test
 /node_modules
 /storage
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
 
+# Ignore useless files
 coverage
 yarn.lock
+
+/config/credentials/development.key
+
+/config/credentials/production.key
+
+/config/credentials/test.key
