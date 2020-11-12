@@ -6,7 +6,7 @@
           = image_tag(book.title_image, class: 'img-responsive')
         - else
           .thumbnail.unknown-photo
-            %p= t(:no_photo)
+            %span.unknown-book-image= t(:no_title_image)
       .images.clearfix
         - if book.images.attached?
           - book.images.each do |image|

@@ -58,11 +58,8 @@ ActiveAdmin.register Book do
       f.input :width
       f.input :depth
       f.input :materials
-<<<<<<< HEAD
       f.input :title_image, as: :file
       f.input :images, as: :file, input_html: { multiple: true }
-=======
->>>>>>> feature/sixth_step
     end
     actions
   end

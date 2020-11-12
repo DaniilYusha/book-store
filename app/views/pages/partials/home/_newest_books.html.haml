@@ -11,8 +11,8 @@
               - if book.title_image.attached?
                 = image_tag(book.title_image, class: 'img-shadow general-thumbnail-img')
               - else
-                %div.thumbnail.unknown-latest-book
-                  %p= t(:no_photo)
+                %div.thumbnail.unknown-latest-books-image
+                  %span.unknown-book-image= t(:no_title_image)
           .col-sm-7
             .mb-60
               %h1= book.title
