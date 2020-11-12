@@ -1,22 +1,18 @@
 .mb-120.books-list
-  - books.each_slice(4).each do |books_group|
-    .row
-      - books_group.each do |book|
-        .col-xs-6.col-sm-3
-          .general-thumb-wrap
-            .thumbnail.general-thumbnail
-              %img.img-shadow.general-thumbnail-img{src: "https://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-              .thumb-hover
-                .general-thumb-link-wrap
-                  %a.thumb-hover-link{href: book_path(book)}
-                    %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                  %a.thumb-hover-link{href: "#"}
-                    %i.fa.fa-shopping-cart.thumb-icon
-          .general-thumb-info
-            %p.title #{book.title}
-            %p.font-16.in-gold-500 #{number_to_currency(book.price, unit: '€')}
-            %span.divider-sm
-            %p.lead.small #{book.authors_list}
-  - if pagy.next
-    .text-center
-      = render partial: 'books/partials/pagination', locals: { pagy: pagy }
+  - books.each do |book|
+    .col-xs-6.col-sm-3.book
+      .general-thumb-wrap
+        .thumbnail.general-thumbnail
+          %img.img-shadow.general-thumbnail-img{src: "https://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+          .thumb-hover
+            .general-thumb-link-wrap
+              %a.thumb-hover-link{href: book_path(book)}
+                %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+              %a.thumb-hover-link{href: "#"}
+                %i.fa.fa-shopping-cart.thumb-icon
+      .general-thumb-info
+        %p.title= book.title
+        %p.font-16.in-gold-500= book.price_with_currency
+        %span.divider-sm
+        %p.lead.small= book.authors_list
+  = render partial: 'books/partials/pagination', locals: { books: books, current_category: current_category }

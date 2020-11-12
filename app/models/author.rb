@@ -1,9 +1,9 @@
 class Author < ApplicationRecord
-  NAME_MAX_LENGTH = 30
+  NAME_MAX_LENGTH = 50
   NAMES_FORMAT_PATTERN = /\A[a-zA-z.']+\z/.freeze
 
-  has_many :author_book, dependent: :destroy
-  has_many :books, through: :author_book, dependent: :destroy
+  has_many :author_books, dependent: :destroy
+  has_many :books, through: :author_books, dependent: :destroy
 
   validates :first_name, :last_name, presence: true,
                                      length: { maximum: NAME_MAX_LENGTH },
