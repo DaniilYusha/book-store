@@ -10,6 +10,6 @@ class FindBookQuery
   end
 
   def call
-    Book.includes(:authors).find_by(id: book_id)
+    Book.includes(:authors, images_attachments: :blob, title_image_attachment: :blob).find_by(id: book_id)
   end
 end

@@ -28,8 +28,8 @@ class SortedBooksQuery
   private
 
   def scope
-    return relation.includes(:authors, :title_image_attachment).limit(limit) unless category_id
+    return relation.includes(:authors, title_image_attachment: :blob).limit(limit) unless category_id
 
-    relation.includes(:authors, :title_image_attachment).where(category_id: category_id).limit(limit)
+    relation.includes(:authors, title_image_attachment: :blob).where(category_id: category_id).limit(limit)
   end
 end
