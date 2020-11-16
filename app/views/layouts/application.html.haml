@@ -9,7 +9,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = render partial: 'layouts/header', locals: { categories: @categories }
+    = render partial: 'layouts/header', locals: { categories: @categories, cart: @cart }
     = render 'layouts/flash'
     = yield
     = render 'layouts/footer'
