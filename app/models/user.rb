@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :addresses, as: :addressable, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_one :cart
   has_one :billing_address, -> { where(address_type: 0) }, class_name: 'Address',
                                                            as: :addressable,
                                                            dependent: :destroy
