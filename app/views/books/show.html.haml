@@ -2,7 +2,7 @@
   %a.general-back-link{href: url_for(:back)}
     %i.fas.fa-long-arrow-alt-left.mr-15
     = t 'links.back_to_results'
-  = render partial: 'books/partials/book_description', locals: { book: @book }
+  = render partial: 'books/partials/book_description', locals: { book: @book, cart: @cart }
   - if user_signed_in?
     .mb-80.write-review
       = render partial: 'books/partials/write_review', locals: { book_id: @book.id, form: @review_form }
