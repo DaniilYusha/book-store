@@ -1,4 +1,8 @@
 en:
+  number:
+    currency:
+      format:
+        unit: €
   brand: Bookstore
   email: support@bookstore.com
   phone_number: (555)-555-5555
@@ -54,6 +58,16 @@ en:
       updated: Your address has been successfully updated
     review:
       created: Thanks for Review. It will be published as soon as Admin will approve it.
+    book:
+      added_to_cart: Book was successfully added to your cart!
+      deleted: Book was deleted from your cart!
+    coupon:
+      apply: Coupon was successfully applied to your order
+  alert:
+    coupon:
+      not_exist: Coupon with such code is not exist
+      invalid: Coupon is invalid
+      used: Coupon is already used
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -86,6 +100,20 @@ en:
     review: Review
     reviews: Reviews
     verified_reviewer: Verified Reviewer
+  cart:
+    page_name: Cart
+    product: Product
+    price: Price
+    quantity: Quantity
+    sub_total: SubTotal
+    apply_coupon: Apply Coupon
+    order_summary: Order Summary
+    subtotal: 'Subtotal:'
+    coupon: 'Coupon:'
+    order_total: 'Order Total:'
+    checkout: 'Checkout'
+    empty_cart: Your cart is empty yet?
+    go_to_shop: Go to shop!
   devise:
     confirmations:
       header: Resend confirmation instructions
