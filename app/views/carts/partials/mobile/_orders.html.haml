@@ -1,0 +1,31 @@
+- cart.cart_items.each do |item|
+  .general-cart-item.divider-lg-bottom.mb-30
+    %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
+      = link_to cart_item_path(item.id), method: :delete, class: 'close general-cart-close', 'aria-label': "Close" do
+        %span{'aria-hidden': "true"} &times;
+    .general-img-wrap-table
+      - if item.book.title_image.attached?
+        = link_to book_path(item.book) do
+          = image_tag(item.book.title_image, class: 'cart-img-shadow')
+    = link_to item.book.title, book_path(item.book), class: 'title'
+    %table.table
+      %tr
+        %td
+          %span.in-grey-600= t('cart.price')
+        %td
+          %span.font-16.in-gold-500= item.book.price_with_currency
+      %tr
+        %td.vertical-middle
+          %span.in-grey-600= t('cart.quantity')
+        %td
+          .input-group.quantity-controller
+            = link_to cart_items_path(cart_item: { quantity: -1, book_id: item.book.id }), method: :post, id: 'minus', class: 'input-link' do
+              %i.fa.fa-minus.line-heaght-40
+            %input.form-control.quantity-input{type: "text", value: item.quantity}
+            = link_to cart_items_path(cart_item: { quantity: 1, book_id: item.book.id }), method: :post, id: 'plus', class: 'input-link' do
+              %i.fa.fa-plus.line-heaght-40
+      %tr
+        %td
+          %span.in-grey-600= t('cart.sub_total')
+        %td
+          %span.font-16.in-gold-500= number_to_currency(item.subtotal_price)
