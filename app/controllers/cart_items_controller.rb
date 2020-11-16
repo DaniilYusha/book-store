@@ -13,10 +13,5 @@ class CartItemsController < ApplicationController
 
   def cart_item_params
     params.require(:cart_item).permit(:quantity, :book_id).merge(cart_id: @cart.id)
-  end
-
-  def update_item(item)
-    new_quantity = item.quantity + cart_item_params[:quantity].to_i
-    item.update(quantity: new_quantity)
-  end
+  en
 end
