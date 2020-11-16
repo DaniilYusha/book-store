@@ -13,5 +13,5 @@ class CartItemsController < ApplicationController
 
   def cart_item_params
     params.require(:cart_item).permit(:quantity, :book_id).merge(cart_id: @cart.id)
-  en
+  end
 end
