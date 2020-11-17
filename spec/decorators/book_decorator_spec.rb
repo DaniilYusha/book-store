@@ -9,10 +9,6 @@ RSpec.describe BookDecorator do
     expect(book.authors_list).to eq('Daniil Yusha')
   end
 
-  it '#price_with_currency' do
-    expect(book.price_with_currency).to eq('€20.0')
-  end
-
   it '#materials_list' do
     expect(book.materials_list).to eq('Wood, paper')
   end
