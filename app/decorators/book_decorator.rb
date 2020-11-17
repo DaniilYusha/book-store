@@ -11,10 +11,6 @@ class BookDecorator < ApplicationDecorator
     object.authors.map { |author| author.decorate.name }.join(', ')
   end
 
-  def price_with_currency
-    CURRENCY + object.price.to_s
-  end
-
   def materials_list
     object.materials.sub(' ', ', ').capitalize
   end
