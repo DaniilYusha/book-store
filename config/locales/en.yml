@@ -8,6 +8,7 @@ en:
   phone_number: (555)-555-5555
   provider: Facebook
   no_title_image: '?'
+  or: or
   links:
     home: Home
     shop: Shop
@@ -114,6 +115,13 @@ en:
     checkout: 'Checkout'
     empty_cart: Your cart is empty yet?
     go_to_shop: Go to shop!
+  checkout:
+    returning_customer: Returning Customer
+    new_customer: New Customer
+    log_in_with_password: Log In with Password
+    continue_to_checkout: Continue to Checkout
+    quick_register: Quik Register
+    create_password_later: You’ll be able to create password later
   devise:
     confirmations:
       header: Resend confirmation instructions
