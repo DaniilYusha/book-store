@@ -1,4 +1,8 @@
 en:
+  number:
+    currency:
+      format:
+        unit: €
   brand: Bookstore
   links:
     home: Home
