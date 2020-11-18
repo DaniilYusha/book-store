@@ -1,0 +1,11 @@
+.text-center
+  %h3.general-subtitle= t('checkout.new_customer')
+  %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
+    %i.fab.fa-facebook-square
+  %p.general-login-text= t(:or)
+= simple_form_for(:user, url: registration_path(:user), html: { class: 'general-form' }) do |f|
+  .mb-40
+    %p.mb-5= t('checkout.quick_register')
+    %p.general-info-text.font-12.mb-20= t('checkout.create_password_later')
+    = f.input :email
+  = f.button :submit, t('checkout.continue_to_checkout')
