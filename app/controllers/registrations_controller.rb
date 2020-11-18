@@ -1,6 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
 
+  def create
+    without_password? ? create_user_without_password : super
+  end
+
   def edit
     set_forms
   end
@@ -23,5 +27,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def without_password?
     params[resource_name][:password].blank? && params[resource_name].key?(:email)
+  end
+
+  def create_user_without_password
+    user = User.create(email: params[resource_name][:email], confirmed_at: Time.now.utc)
+    user.send_reset_password_instructions
+    redirect_back fallback_location: root_path, notice: I18n.t('devise.passwords.send_instructions')
   end
 end
