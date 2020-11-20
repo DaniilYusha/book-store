@@ -3,7 +3,7 @@
     = flash[:notice]
     %span.close-flash
       %i.fas.fa-times
-- if flash[:alert]
+- elsif flash[:alert]
   .alert.alert-danger.flash-alert{role: "alert"}
     = flash[:alert]
     %span.close-flash
