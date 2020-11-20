@@ -7,3 +7,6 @@ require("jquery")
 require("bootstrap-sass")
 require ("@fortawesome/fontawesome-free/js/all.min")
 require("typeface-open-sans")
+
+require("packs/custom/read_more")
+require("packs/custom/pagination")

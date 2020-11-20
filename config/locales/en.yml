@@ -1,4 +1,8 @@
 en:
+  number:
+    currency:
+      format:
+        unit: €
   brand: Bookstore
   links:
     home: Home
@@ -10,9 +14,15 @@ en:
     log_out: Log out
     orders: Orders
     settings: Settings
+    back_to_results: Back to results
+    read_more: Read More
+    hide: Hide
   buttons:
     get_started: Get Started
     buy_now: Buy Now
+    view_more: View more
+    add_to_cart: Add to Cart
+    post: Post
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -20,3 +30,27 @@ en:
     slider:
       prev: Previous
       next: Next
+  catalog_page:
+    page_name: Сatalog
+    sort_by: Sort by
+    all: All
+    filter_by_category: Filter by category
+    categories: Categories
+    filters: Filters
+    sorting:
+      newest_desc: Newest first
+      popular_asc: Popular first
+      price_asc: 'Price: Low to hight'
+      price_desc: 'Price: Hight to low'
+      title_asc: 'Title: A - Z'
+      title_desc: 'Title: Z - A'
+  book_page:
+    description: Description
+    publication_year: Year of publication
+    dimensions: Dimensions
+    materials: Materials
+    write_review: Write a Review
+    score: Score
+    title: Title
+    review: Review
+    reviews: Reviews
