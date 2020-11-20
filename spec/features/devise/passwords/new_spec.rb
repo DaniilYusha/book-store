@@ -12,11 +12,7 @@ RSpec.describe 'devise/passwords#new', type: :feature do
   it { expect(forgot_password_page.forgot_password_form).to have_cancel_button }
 
   context 'when fill registration form with valid data' do
-    before do
-      forgot_password_page.forgot_password_form.send_forgot_password_instructions(
-        user.email
-      )
-    end
+    before { forgot_password_page.forgot_password_form.fill_in(user.email) }
 
     it 'show password reset message' do
       expect(forgot_password_page).to have_content(
@@ -28,11 +24,7 @@ RSpec.describe 'devise/passwords#new', type: :feature do
   context 'when fill registration form with invalid data' do
     let(:wrong_email) { 'ruby@test.com' }
 
-    before do
-      forgot_password_page.forgot_password_form.send_forgot_password_instructions(
-        wrong_email
-      )
-    end
+    before { forgot_password_page.forgot_password_form.fill_in(wrong_email) }
 
     it 'show email error' do
       expect(forgot_password_page).to have_content(
