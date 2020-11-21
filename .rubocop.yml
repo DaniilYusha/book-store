@@ -26,3 +26,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
+
+RSpec/LetSetup:
+  Exclude:
+    - spec/features/*.rb
