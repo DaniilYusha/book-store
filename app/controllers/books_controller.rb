@@ -1,9 +1,9 @@
 class BooksController < ApplicationController
   def index
-    @books = SortedBooksQuery.call(
+    @books = SortedBooksQuery.new(
       category_id: book_params[:category_id],
       sort_by: book_params[:sort_by], limit: book_params[:limit]
-    ).decorate
+    ).call.decorate
     @books_count = Book.count
     @current_category = book_params[:category_id]
   end
