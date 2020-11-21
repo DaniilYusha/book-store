@@ -8,6 +8,7 @@ FactoryBot.define do
     depth { rand(1.0..7.0).floor(2) }
     materials { FFaker::Lorem.word }
     published_at { FFaker::Time.date }
-    association :category
+
+    category
   end
 end
