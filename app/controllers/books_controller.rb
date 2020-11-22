@@ -5,7 +5,6 @@ class BooksController < ApplicationController
       sort_by: book_params[:sort_by], limit: book_params[:limit]
     ).call.decorate
     @books_count = Book.count
-    @current_category = book_params[:category_id]
   end
 
   def show
