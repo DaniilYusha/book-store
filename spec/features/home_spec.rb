@@ -1,6 +1,6 @@
 RSpec.describe 'HomePage', type: :feature do
+  let_it_be(:book) { create(:book) }
   let(:home_page) { Pages::Home.new }
-  let!(:book) { create(:book) }
 
   before { home_page.load }
 

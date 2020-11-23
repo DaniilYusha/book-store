@@ -1,8 +1,8 @@
 RSpec.describe SortedBooksQuery do
-  let!(:photo_category) { create(:category, name: 'Photo') }
-  let!(:web_design_category) { create(:category, name: 'Web Design') }
-  let!(:book_from_photo) { create(:book, category: photo_category) }
-  let!(:book_from_web_design) { create(:book, category: web_design_category) }
+  let_it_be(:photo_category) { create(:category, name: 'Photo') }
+  let_it_be(:web_design_category) { create(:category, name: 'Web Design') }
+  let_it_be(:book_from_photo) { create(:book, category: photo_category) }
+  let_it_be(:book_from_web_design) { create(:book, category: web_design_category) }
 
   describe '.call' do
     context 'with category_id parameter' do
