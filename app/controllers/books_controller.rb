@@ -1,10 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @books = SortedBooksQuery.new(
-      category_id: book_params[:category_id],
-      sort_by: book_params[:sort_by], limit: book_params[:limit]
-    ).call.decorate
-    @books_count = Book.count
+    @collection = SortedBooksQuery.new(category_id: book_params[:category_id], sort_by: book_params[:sort_by]).call
+    @presenter = BooksPresenter.new(book_params[:current_books_count])
+    @books = @collection.limit(@presenter.calculate_limit).decorate
   end
 
   def show
@@ -14,6 +12,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:id, :category_id, :sort_by, :limit)
+    params.permit(:id, :category_id, :sort_by, :current_books_count)
   end
 end
