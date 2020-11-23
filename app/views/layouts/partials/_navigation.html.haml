@@ -14,7 +14,7 @@
         %li
           %a{href: '#'}= t 'links.orders'
         %li
-          %a{href: '#'}= t 'links.settings'
+          %a{href: edit_user_registration_path}= t 'links.settings'
         %li.divider{role: "separator"}
         %li
           = link_to t('links.log_out'), destroy_user_session_path, method: :delete, class: 'log_out_link'

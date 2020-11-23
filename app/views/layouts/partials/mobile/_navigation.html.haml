@@ -16,7 +16,7 @@
         %li
           %a.collapse-link{href: '#'}= t 'links.orders'
         %li
-          %a.collapse-link{href: '#'}= t 'links.settings'
+          %a.collapse-link{href: edit_user_registration_path}= t 'links.settings'
     %li
       = link_to t('links.log_out'), destroy_user_session_path, method: :delete
   - else
