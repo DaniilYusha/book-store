@@ -8,11 +8,10 @@ class SortedBooksQuery
     price_desc: ->(relation) { relation.order('price desc') }
   }.freeze
 
-  def initialize(relation: Book.all, sort_by: nil, category_id: nil, limit: nil)
+  def initialize(relation: Book.all, sort_by: nil, category_id: nil)
     @relation = relation
     @sort_by = sort_by&.to_sym || :title_asc
     @category_id = category_id
-    @limit = limit || Book::BOOKS_PER_PAGE
   end
 
   def call
@@ -22,8 +21,8 @@ class SortedBooksQuery
   private
 
   def scope
-    return @relation.includes(:authors).limit(@limit) unless @category_id
+    return @relation.includes(:authors) unless @category_id
 
-    @relation.includes(:authors).where(category_id: @category_id).limit(@limit)
+    @relation.includes(:authors).where(category_id: @category_id)
   end
 end
