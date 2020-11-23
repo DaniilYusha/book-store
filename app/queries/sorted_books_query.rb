@@ -20,9 +20,11 @@ class SortedBooksQuery
 
   private
 
-  def scope
-    return @relation.includes(:authors) unless @category_id
+  attr_reader :relation, :sort_by, :category_id
 
-    @relation.includes(:authors).where(category_id: @category_id)
+  def scope
+    return relation.includes(:authors) unless category_id
+
+    relation.includes(:authors).where(category_id: category_id)
   end
 end
