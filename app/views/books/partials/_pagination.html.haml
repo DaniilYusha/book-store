@@ -1,3 +1,4 @@
-.text-center
-  %input#books_count{ type: 'hidden', value: Book::BOOKS_PER_PAGE, data: { per_page: Book::BOOKS_PER_PAGE, category_id: current_category } }
-  %a.btn.btn-primary.view-more= t('buttons.view_more')
+- unless collection.count == books.count
+  .text-center
+    %input#books_count{ type: 'hidden', value: books.count, data: { category_id: params[:category_id] } }
+    %a.btn.btn-primary.view-more= t('buttons.view_more')

@@ -31,3 +31,7 @@ Metrics/AbcSize:
   Exclude:
     - spec/sections/billing_address_form.rb
     - spec/sections/shipping_address_form.rb
+
+RSpec/LetSetup:
+  Exclude:
+    - spec/features/*.rb

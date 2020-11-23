@@ -5,7 +5,7 @@ module Sections
     element :send_instructions_button, 'input[type="submit"]'
     element :cancel_button, 'button.reset-btn'
 
-    def send_forgot_password_instructions(email)
+    def fill_in(email)
       email_field.set email
       send_instructions_button.click
     end

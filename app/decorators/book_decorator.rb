@@ -7,7 +7,7 @@ class BookDecorator < ApplicationDecorator
   decorates_association :authors
 
   def authors_list
-    object.authors.map { |author| author.decorate.name }.join(', ')
+    object.authors.map { |author| author.decorate.full_name }.join(', ')
   end
 
   def materials_list
