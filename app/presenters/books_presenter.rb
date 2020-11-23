@@ -1,5 +1,5 @@
 class BooksPresenter
-  def initialize(current_books_count)
+  def initialize(current_books_count = nil)
     @current_books_count = current_books_count
   end
 
