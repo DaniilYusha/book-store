@@ -66,7 +66,7 @@ class AddressForm
   end
 
   def create_address
-    @current_user.addresses.create @params
+    @current_user.addresses.create(@params)
   end
 
   def country_presense_in_list

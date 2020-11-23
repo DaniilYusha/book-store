@@ -5,12 +5,12 @@ class AddressesController < ApplicationController
 
   def create
     @form = AddressForm.new(address_form_params)
-    redirect_to edit_user_registration_path, notice: I18n.t('notice.address.saved') if @form.submit(current_user)
+    redirect_to(edit_user_registration_path, notice: I18n.t('notice.address.saved')) if @form.submit(current_user)
   end
 
   def update
     @form = AddressForm.new(address_form_params)
-    redirect_to edit_user_registration_path, notice: I18n.t('notice.address.updated') if @form.submit(current_user)
+    redirect_to(edit_user_registration_path, notice: I18n.t('notice.address.updated')) if @form.submit(current_user)
   end
 
   private
