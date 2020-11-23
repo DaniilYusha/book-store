@@ -2,7 +2,6 @@ require 'config/simplecov'
 require 'config/factory_bot'
 require 'capybara/rspec'
 require 'site_prism'
-require 'test_prof/recipes/rspec/let_it_be'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

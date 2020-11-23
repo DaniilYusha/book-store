@@ -1,6 +1,6 @@
 RSpec.describe 'BooksList', type: :feature do
+  let_it_be(:books) { create_list(:book, 2) }
   let(:catalog_page) { Pages::Catalog.new }
-  let!(:books) { create_list(:book, 2) }
 
   before { catalog_page.load }
 
