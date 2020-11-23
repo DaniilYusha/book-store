@@ -15,21 +15,7 @@ $(document).ready(() => {
       success: function(data){
         let new_books_list = $(data).find('.books-list');
         $(current_books_list).replaceWith(new_books_list);
-        hide_view_more()
       }
     });
   });
-
-  function hide_view_more(){
-    let category_id = +$('#books_count').data('category-id');
-    let books_count = $('#books_count').val();
-    let books_in_category = +$(`[data-category-id=${category_id}]`).children('span').text();
-
-    if(isNaN(category_id) && books_count == books_in_category) {
-      $('.view-more').hide();
-    }
-    else if(Number.isInteger(category_id) && books_count == books_in_category) {
-      $('.view-more').hide();
-    }
-  }
 });
