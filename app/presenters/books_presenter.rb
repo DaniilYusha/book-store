@@ -8,7 +8,7 @@ class BooksPresenter
   end
 
   def calculate_limit
-    current_books_count.nil? ? 12 : current_books_count.to_i + 12
+    current_books_count.nil? ? Book::BOOKS_PER_PAGE : current_books_count.to_i + Book::BOOKS_PER_PAGE
   end
 
   private
