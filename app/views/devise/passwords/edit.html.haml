@@ -1,0 +1,10 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t 'devise.passwords.edit.header'
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'general-form' }) do |f|
+    = f.hidden_field :reset_password_token
+    = f.input :password
+    = f.input :password_confirmation
+    .text-center
+      = f.button :submit, t('buttons.change_password')
+  = render "devise/shared/links"

@@ -1,0 +1,30 @@
+en:
+  simple_form:
+    "yes": Yes
+    "no": No
+    required:
+      html: ''
+    error_notification:
+      default_message: "Please review the problems below:"
+    placeholders:
+      defaults:
+        first_name: First Name
+        last_name: Last Name
+        address: Address
+        city: City
+        zip_code: Zip
+        email: Enter Email
+        country: Select a country
+        phone: Example +355 66 123 4567
+        current_password: Old password
+        password: Password
+        password_confirmation: Confirm Password
+    labels:
+      defaults:
+        first_name: First Name
+        last_name: Last Name
+        zip_code: Zip
+        email: Enter Email
+        current_password: Old password
+        password: Password
+        password_confirmation: Confirm Password

@@ -6,6 +6,8 @@ AllCops:
 
 Layout/LineLength:
   Max: 120
+  Exclude:
+    - config/initializers/simple_form_bootstrap.rb
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -18,7 +20,13 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - config/environments/*.rb
     - db/schema.rb
+    - config/environments/*.rb
+    - config/initializers/simple_form_bootstrap.rb
 
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
+
+RSpec/LetSetup:
+  Exclude:
+    - spec/features/*.rb

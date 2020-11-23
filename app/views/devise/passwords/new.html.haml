@@ -1,0 +1,9 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t 'devise.passwords.new.header'
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form' }) do |f|
+    = f.input :email
+    .text-center
+      = f.button :submit, t('buttons.send_instructions')
+      = f.button :button, t('buttons.cancel'), class: 'reset-btn'
+  = render "devise/shared/links"

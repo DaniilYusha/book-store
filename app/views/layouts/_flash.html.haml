@@ -1,0 +1,5 @@
+- flash.each do |key, value|
+  .alert{class: "flash-#{key}"}
+    = value
+    %span.close-flash
+      %i.fas.fa-times

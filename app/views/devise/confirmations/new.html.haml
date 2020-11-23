@@ -1,0 +1,7 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t 'devise.confirmations.header'
+  = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'general-form' }) do |f|
+    = f.input :email
+    .text-center
+      = f.button :submit, t('buttons.resend_confirmation')

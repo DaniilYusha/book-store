@@ -4,13 +4,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'bootsnap', '~> 1.4'
+gem 'devise', '~> 4.7'
 gem 'draper', '~> 4.0'
 gem 'haml', '~> 5.1'
+gem 'omniauth-facebook', '~> 7.0'
 gem 'pg', '~> 1.2'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3'
 gem 'sass-rails', '~> 6.0'
 gem 'seedbank', '~> 0.5.0'
+gem 'simple_form', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
@@ -38,5 +41,6 @@ group :test do
   gem 'shoulda-matchers', '~> 4.4'
   gem 'simplecov', '~> 0.19.0'
   gem 'site_prism', '~> 3.6'
+  gem 'test-prof', '~> 0.12.2'
   gem 'webdrivers', '~> 4.4'
 end

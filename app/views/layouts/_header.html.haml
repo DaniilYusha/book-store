@@ -15,31 +15,6 @@
         %span.shop-quantity 3
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
-        %button.close{type: "button", 'aria-label': "Close"}
-          %span{'aria-hidden': "true"} &times;
-        %ul.nav.navbar-nav
-          %li
-            %a{href: root_path}= t 'links.home'
-          %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t 'links.shop'
-            %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              - categories.each do |category|
-                %li
-                  %a.collapse-link{href: books_path(category_id: category.id)}= category.name
-          %li
-            %a{href: "#"}= t 'links.my_account'
+        = render partial: 'layouts/partials/mobile/navigation', locals: { categories: categories }
       .hidden-xs
-        %ul.nav.navbar-nav
-          %li
-            %a.home_link{href: root_path}= t 'links.home'
-          %li.dropdown
-            %a.shop_link.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t 'links.shop'
-            %ul.dropdown-menu
-              - categories.each do |category|
-                %li
-                  %a{href: books_path(category_id: category.id)}= category.name
-              %li.divider{role: "separator"}
-              %li
-                %a.log_out_link{href: "#"}= t 'links.log_out'
-          %li
-            %a.my_account_link{href: "#"}= t 'links.my_account'
+        = render partial: 'layouts/partials/navigation', locals: { categories: categories }
