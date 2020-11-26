@@ -10,7 +10,7 @@ class BookDecorator < ApplicationDecorator
   end
 
   def materials_list
-    object.materials.sub(' ', ', ').capitalize
+    object.materials.gsub(' ', ', ').capitalize
   end
 
   def dimensions
