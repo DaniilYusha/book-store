@@ -16,16 +16,20 @@ ActiveAdmin.register Book do
     id_column
     column :category
     column :title
-    column :materials
+    column :materials do |book|
+      book.materials_list
+    end
     column :description do |book|
       book.short_description
     end
     column :authors do |book|
       book.authors.each do |author|
-        link_to author.name, admin_author_path(author)
+        link_to author.full_name, admin_author_path(author)
       end
     end
-    column :price
+    column :price do |book|
+      number_to_currency(book.price)
+    end
     column :published_at
     actions
   end
@@ -36,12 +40,16 @@ ActiveAdmin.register Book do
       row :authors_list
       row :title
       row :description
-      row :price
+      row :price do |book|
+        number_to_currency(book.price)
+      end
       row :published_at
       row :height
       row :width
       row :depth
-      row :materials
+      row :materials do |book|
+        book.materials_list
+      end
     end
   end
 
