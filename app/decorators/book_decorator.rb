@@ -1,7 +1,6 @@
 class BookDecorator < ApplicationDecorator
   NEWEST_BOOKS_COUNT = 3
   SHORT_DESCRIPTION_LENGTH = 250
-  CURRENCY = '€'.freeze
 
   delegate_all
   decorates_association :authors
