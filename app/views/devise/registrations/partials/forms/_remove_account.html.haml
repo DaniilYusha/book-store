@@ -1,4 +1,4 @@
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :delete, html: { id: 'remove-account' }) do |f|
+= simple_form_for(current_user, url: registration_path(:user), method: :delete, html: { id: 'remove-account' }) do |f|
   .general-settings-btn
     = f.button :submit, t('buttons.remove_account'), data: { confirm: t('devise.registrations.new.remove_account_confirmation') }, class: 'disabled remove-account', disabled: 'true'
   .form-group.checkbox.general-settings-checkbox

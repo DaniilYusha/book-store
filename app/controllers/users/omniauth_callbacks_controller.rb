@@ -3,7 +3,7 @@ module Users
     def facebook
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
-      @user.persisted? ? authenticate_user : move_to_registration
+      @user.persisted? ? authenticate_user : registrate_user
     end
 
     def failure
@@ -13,11 +13,11 @@ module Users
     private
 
     def authenticate_user
-      sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: I18n.t(:provider)) if is_navigational_format?
+      sign_in_and_redirect(@user, event: :authentication)
     end
 
-    def move_to_registration
+    def registrate_user
       session['devise.facebook_data'] = request.env['omniauth.auth'].except(:extra)
       redirect_to new_user_registration_path
     end
