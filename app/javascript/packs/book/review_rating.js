@@ -33,6 +33,6 @@ $(document).ready(() => {
       }
     });
 
-    $('#review_form_rating').val(rating_value);
+    $('#review_rating').val(rating_value);
   });
 });
