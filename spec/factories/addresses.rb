@@ -4,7 +4,7 @@ FactoryBot.define do
     last_name  { 'Yusha' }
     address { 'Central Park' }
     city { 'Dnipro' }
-    zip_code { '6996' }
+    zip_code { rand(1000..9999) }
     country { 'Ukraine' }
     phone { '+3808005553535' }
     address_type { AddressForm::BILLING_TYPE }

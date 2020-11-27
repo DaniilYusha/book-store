@@ -1,5 +1,5 @@
 RSpec.describe 'admin/books', type: :feature do
-  let!(:book) { create(:book) }
+  let_it_be(:book) { create(:book) }
   let(:admin) { create(:admin_user) }
   let(:login_page) { Pages::Admin::LogIn.new }
 

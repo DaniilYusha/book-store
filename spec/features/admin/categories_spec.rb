@@ -1,5 +1,5 @@
 RSpec.describe 'admin/categories', type: :feature do
-  let!(:category) { create(:category) }
+  let_it_be(:category) { create(:category) }
   let(:admin) { create(:admin_user) }
   let(:login_page) { Pages::Admin::LogIn.new }
   let(:categories_page) { Pages::Admin::Categories.new }
