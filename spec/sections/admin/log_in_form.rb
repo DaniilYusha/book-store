@@ -9,8 +9,8 @@ module Sections
       element :log_in_button, '#admin_user_submit_action > input'
 
       def fill_in(email, password)
-        email_field.set email
-        password_field.set password
+        email_field.set(email)
+        password_field.set(password)
         log_in_button.click
       end
     end

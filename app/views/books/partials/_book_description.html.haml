@@ -30,11 +30,11 @@
     .general-info-wrap.divider-lg
       %p= t 'book_page.description'
       %p.lead.small.line-height-2
-        %span.short-description= book.short_description
+        %span.less-description= book.short_description
         - if book.description.length > book.short_description.length
           %span.more-description= book.description
-          %a.read-more.in-gold-500{href: "#"}= t 'links.read_more'
-          %a.read-less.in-gold-500{href: "#"}= t 'links.hide'
+          %a.read-more.in-gold-500{href: "#", for: 'more'}= t 'links.read_more'
+          %a.read-less.in-gold-500{href: "#", for: 'less'}= t 'links.hide'
     .general-info-wrap.divider-lg
       .clearfix
         %p.pull-left= t 'book_page.publication_year'

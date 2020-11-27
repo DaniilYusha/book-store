@@ -30,43 +30,35 @@ class AddressForm
   validate :country_presense_in_list, if: -> { country.present? }
   validate :country_code_of_phone, if: -> { phone.present? }
 
-  def initialize(params = {})
-    @params = extract_address_params params
+  def initialize(user, params = {})
+    @user = user
+    @params = params
     super(@params)
   end
 
-  def submit(current_user)
-    @current_user = current_user
-    invalid? ? false : set_address
+  def validate
+    return if valid?
+
+    errors.each do |attribute, message|
+      add_errors_to_billing_address(attribute, message) if address_type == BILLING_TYPE
+      add_errors_to_shipping_address(attribute, message) if address_type == SHIPPING_TYPE
+    end
   end
 
   private
 
-  def set_address
-    case @params[:address_type]
-    when BILLING_TYPE then make_billing_address
-    when SHIPPING_TYPE then make_shipping_address
-    end
+  attr_reader :user
+
+  def add_errors_to_billing_address(attribute, message)
+    return user.billing_address.errors.add(attribute, message) if user.billing_address.present?
+
+    user.build_billing_address.errors.add(attribute, message)
   end
 
-  def extract_address_params(params)
-    if params.class == Address
-      params.attributes.select { |key, _value| AddressesController::ATTRIBUTES.include?(key) }
-    else
-      params
-    end
-  end
+  def add_errors_to_shipping_address(attribute, message)
+    return user.shipping_address.errors.add(attribute, message) if user.shipping_address.present?
 
-  def make_billing_address
-    @current_user.billing_address.blank? ? create_address : @current_user.billing_address.update(@params)
-  end
-
-  def make_shipping_address
-    @current_user.shipping_address.blank? ? create_address : @current_user.shipping_address.update(@params)
-  end
-
-  def create_address
-    @current_user.addresses.create @params
+    user.build_shipping_address.errors.add(attribute, message)
   end
 
   def country_presense_in_list

@@ -1,10 +1,5 @@
-- if !!flash[:notice]
-  .alert.alert-success.flash-notice{role: "alert"}
-    = flash[:notice]
-    %span.close-flash
-      %i.fas.fa-times
-- if !!flash[:alert]
-  .alert.alert-danger.flash-alert{role: "alert"}
-    = flash[:alert]
+- flash.each do |key, value|
+  .alert{class: "flash-#{key}"}
+    = value
     %span.close-flash
       %i.fas.fa-times
