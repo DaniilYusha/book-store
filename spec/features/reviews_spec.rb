@@ -1,11 +1,11 @@
 RSpec.describe 'Reviews', type: :feature do
+  let(:review) { create(:review) }
   let(:user) { create(:user) }
-  let(:book) { create(:book) }
+  let(:book) { create(:book, reviews: [review]) }
   let(:login_page) { Pages::SignIn.new }
   let(:book_page) { Pages::Book.new }
 
   before do
-    create(:review, user: user, book: book)
     login_page.load
     login_page.sign_in_form.authenticate_user(user.email, user.password)
     book_page.load(id: book.id)
