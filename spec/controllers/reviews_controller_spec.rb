@@ -3,16 +3,11 @@ RSpec.describe ReviewsController, type: :controller do
   let(:user) { create(:user) }
 
   describe 'POST /reviews' do
-    let(:review_attributes) { attributes_for(:review) }
-    let(:params) do
-      { review_form: { title: review_attributes[:title], text:
-      review_attributes[:text], rating: review_attributes[:rating], book_id:
-      book.id, user_id: user.id } }
-    end
+    let(:review_attributes) { attributes_for(:review, book: book, user: user) }
 
     before do
       sign_in user
-      get :create, params: params
+      get :create, params: { review: review_attributes }
     end
 
     it { expect(response).to have_http_status :redirect }
