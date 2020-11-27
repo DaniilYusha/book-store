@@ -1,17 +1,12 @@
 class ReviewsQuery
-  attr_reader :relation, :sort_by
-
   SORT_OPTIONS = {
     created_at_desc: ->(relation) { relation.order('created_at desc') }
   }.freeze
 
-  def self.call(relation, sort_by: :created_at_desc)
-    new(relation, sort_by: sort_by).call
-  end
-
-  def initialize(relation, sort_by: :created_at_desc)
+  def initialize(relation: Review.all, sort_by: :created_at_desc, book_id:)
     @relation = relation
     @sort_by = sort_by
+    @book_id = book_id
   end
 
   def call
@@ -20,7 +15,9 @@ class ReviewsQuery
 
   private
 
+  attr_reader :relation, :sort_by, :book_id
+
   def scope
-    relation.reviews.where('status = 1')
+    relation.where(['status = ? and book_id = ?', 1, book_id])
   end
 end
