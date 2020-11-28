@@ -1,6 +1,4 @@
 class Review < ApplicationRecord
-  RATING_RANGE = (1..5).freeze
-
   enum status: { unprocessed: 0, approved: 1, rejected: 2 }
 
   belongs_to :user

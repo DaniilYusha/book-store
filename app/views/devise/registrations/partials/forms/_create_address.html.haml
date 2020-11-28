@@ -1,3 +1,0 @@
-= simple_form_for(form, url: addresses_path, remote: true, html: { id: "#{type.to_s}-form" }) do |f|
-  = render partial: 'devise/registrations/partials/forms/fields', locals: { f: f, type: type, countries: countries }
-  = f.button :submit, t('buttons.save')

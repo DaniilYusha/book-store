@@ -21,8 +21,8 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def set_forms
-    @billing_form = AddressForm.new current_user.billing_address
-    @shipping_form = AddressForm.new current_user.shipping_address
+    @billing_form = AddressForm.new(current_user.billing_address)
+    @shipping_form = AddressForm.new(current_user.shipping_address)
   end
 
   def without_password?

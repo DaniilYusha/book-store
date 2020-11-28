@@ -68,8 +68,8 @@ Rails.application.configure do
     domain: 'mail.google.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: Rails.application.credentials.mailer[:username],
-    password: Rails.application.credentials.mailer[:password]
+    user_name: Rails.application.credentials.dig(:mailer, :gmail, :username),
+    password: Rails.application.credentials.dig(:mailer, :gmail, :password)
   }
 
   config.action_mailer.default_url_options = { host: 'book-store-rails.herokuapp.com' }

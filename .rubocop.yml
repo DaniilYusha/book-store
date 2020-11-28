@@ -28,11 +28,14 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
 
-Metrics/AbcSize:
-  Exclude:
-    - spec/sections/billing_address_form.rb
-    - spec/sections/shipping_address_form.rb
-
 Style/SymbolProc:
   Exclude:
     - app/admin/books.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/**/*.rb'
+
+RSpec/LetSetup:
+  Exclude:
+    - spec/features/*.rb

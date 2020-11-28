@@ -68,6 +68,16 @@ a.read-less {
   align-items: center;
   justify-content: space-between;
 }
+.flash-notice {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.flash-alert {
+  color: red;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
 .alert > .close-flash{
   cursor: pointer;
 }

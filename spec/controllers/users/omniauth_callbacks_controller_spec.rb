@@ -4,9 +4,11 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:facebook]
   end
 
-  it 'has redirect status' do
-    get :facebook
-    expect(response).to have_http_status :redirect
+  context 'with default behavior' do
+    it 'has redirect status' do
+      get :facebook
+      expect(response).to have_http_status :redirect
+    end
   end
 
   context 'when user is new' do

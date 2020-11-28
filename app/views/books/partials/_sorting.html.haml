@@ -7,12 +7,12 @@
       %ul.dropdown-menu
         - t('catalog_page.sorting').map do |key, value|
           %li
-            %a{href: books_path(category_id: current_category, sort_by: key)}= value
+            %a{href: books_path(category_id: params[:category_id], sort_by: key)}= value
   %ul.list-inline.pt-10.mb-25.mr-240
     %li.mr-35
       %a.filter-link{href: books_path}
         = t 'catalog_page.all'
-        %span#all_books.badge.general-badge= books_count
+        %span#all_books.badge.general-badge= presenter.books_count
     - categories.each do |category|
       %li.mr-35
         %a.filter-link{href: books_path(category_id: category.id), data: { category_id: category.id }}
