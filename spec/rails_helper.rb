@@ -5,6 +5,8 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
+require 'test_prof/recipes/rspec/let_it_be'
+
 Dir[Rails.root.join('spec', 'config', '*.rb')].sort.each { |file| require file }
 Dir[Rails.root.join('spec', 'sections', '**', '*.rb')].sort.each { |file| require file }
 Dir[Rails.root.join('spec', 'pages', '**', '*.rb')].sort.each { |file| require file }

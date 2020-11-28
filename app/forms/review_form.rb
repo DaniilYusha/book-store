@@ -5,27 +5,16 @@ class ReviewForm
 
   TITLE_MAX_LENGTH = 80
   TEXT_MAX_LENGTH = 500
-  RAITING_RANGE = (1..5).freeze
+  RATING_RANGE = (1..5).freeze
 
   validates :title, :text, :rating, presence: true
   validates :title, length: { maximum: TITLE_MAX_LENGTH }
   validates :text, length: { maximum: TEXT_MAX_LENGTH }
   validates :rating, numericality: { only_integer: true,
-                                     greater_than_or_equal_to: RAITING_RANGE.first,
-                                     less_than_or_equal_to: RAITING_RANGE.last }
+                                     greater_than_or_equal_to: RATING_RANGE.first,
+                                     less_than_or_equal_to: RATING_RANGE.last }
 
   def initialize(params = {})
-    @params = params
-    super(@params)
-  end
-
-  def submit
-    invalid? ? false : create_review
-  end
-
-  private
-
-  def create_review
-    Review.create(@params)
+    super(params)
   end
 end

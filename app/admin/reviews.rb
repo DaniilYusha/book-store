@@ -1,6 +1,6 @@
 ActiveAdmin.register Review do
   permit_params :title, :text, :rating, :status, :is_verified, :user_id, :book_id
-
+  includes :book, :user
   decorate_with ReviewDecorator
 
   actions :index, :show

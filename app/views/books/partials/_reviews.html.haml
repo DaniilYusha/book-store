@@ -1,4 +1,4 @@
-%h3.in-gold-500.mb-25 #{t 'book_page.reviews'} (#{reviews.count})
+%h3.in-gold-500.mb-25 #{t('book_page.reviews')} (#{reviews.count})
 - reviews.each do |review|
   .general-message-wrap.divider-lg
     .clearfix
@@ -11,7 +11,7 @@
               .general-message-verified.pull-right= t 'book_page.verified_reviewer'
             .general-message-name= review.user.email
         .mb-15
-          - Review::RATING_RANGE.each do |index|
+          - ReviewForm::RATING_RANGE.each do |index|
             - if index <= review.rating
               %i.fa.fa-star.rate-star
             - else

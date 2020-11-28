@@ -1,8 +1,8 @@
-= simple_form_for(form, remote: true, url: reviews_path) do |f|
-  %h3= t 'book_page.write_review'
-  %p.general-info-text.has-error= t 'book_page.score'
+= simple_form_for(:review, url: reviews_path) do |f|
+  %h3= t('book_page.write_review')
+  %p.general-info-text.has-error= t('book_page.score')
   .mb-15#stars
-    - Review::RATING_RANGE.each do |index|
+    - ReviewForm::RATING_RANGE.each do |index|
       %i.fa.fa-star.rate-star.rate-empty{ data: { value: index } }
     = f.hidden_field :rating, value: 0
   .row
@@ -11,6 +11,6 @@
         = f.input :title
         = f.input :text, as: :text
         = f.hidden_field :user_id, value: current_user.id
-        = f.hidden_field :book_id, value: book_id
+        = f.hidden_field :book_id, value: params[:id]
       .text-right
         = f.button :submit, t('buttons.post')

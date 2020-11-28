@@ -1,9 +1,10 @@
-= f.hidden_field :address_type, value: type
-= f.input :first_name
-= f.input :last_name
-= f.input :address
-= f.input :city
-= f.input :zip_code
-= f.input :country, collection: @countries,
+= form.hidden_field :address_type, value: address_type
+= form.input :first_name
+= form.input :last_name
+= form.input :address
+= form.input :city
+= form.input :zip_code
+= form.input :country, collection: countries,
           prompt: t('simple_form.placeholders.defaults.country')
-= f.input :phone
+= form.input :phone
+= form.button :submit, t('buttons.save'), id: "submit-#{address_type}-address"

@@ -1,14 +1,12 @@
 RSpec.describe 'devise/registrations#edit', type: :feature do
   let(:user) { create(:user) }
-  let(:valid_address) { build(:address) }
-  let(:new_password) { 'Rails2020' }
   let(:sign_in_page) { Pages::SignIn.new }
   let(:settings_page) { Pages::Settings.new }
 
   before do
-    visit new_user_session_path
-    sign_in_page.sign_in_form.authenticate_user user.email, user.password
-    visit edit_user_registration_path
+    sign_in_page.load
+    sign_in_page.sign_in_form.authenticate_user(user.email, user.password)
+    settings_page.load
   end
 
   describe 'settings/header' do
@@ -18,37 +16,42 @@ RSpec.describe 'devise/registrations#edit', type: :feature do
   end
 
   describe 'settings/address' do
-    context 'with billing form labels' do
-      it { expect(settings_page.billing_address_form).to have_header }
-      it { expect(settings_page.billing_address_form).to have_first_name_label }
-      it { expect(settings_page.billing_address_form).to have_last_name_label }
-      it { expect(settings_page.billing_address_form).to have_address_label }
-      it { expect(settings_page.billing_address_form).to have_city_label }
-      it { expect(settings_page.billing_address_form).to have_zip_label }
-      it { expect(settings_page.billing_address_form).to have_country_label }
-      it { expect(settings_page.billing_address_form).to have_phone_label }
+    let(:billing_params) { attributes_for(:address) }
+    let(:shipping_params) { attributes_for(:address, address_type: :shipping) }
+
+    context 'with billing address inputs' do
+      it { expect(settings_page.addresses_form).to have_billing_first_name_input }
+      it { expect(settings_page.addresses_form).to have_billing_last_name_input }
+      it { expect(settings_page.addresses_form).to have_billing_address_input }
+      it { expect(settings_page.addresses_form).to have_billing_city_input }
+      it { expect(settings_page.addresses_form).to have_billing_zip_input }
+      it { expect(settings_page.addresses_form).to have_billing_country_select }
+      it { expect(settings_page.addresses_form).to have_billing_phone_input }
     end
 
-    context 'with billing form inputs' do
-      it { expect(settings_page.billing_address_form).to have_first_name_input }
-      it { expect(settings_page.billing_address_form).to have_last_name_input }
-      it { expect(settings_page.billing_address_form).to have_address_input }
-      it { expect(settings_page.billing_address_form).to have_city_input }
-      it { expect(settings_page.billing_address_form).to have_zip_input }
-      it { expect(settings_page.billing_address_form).to have_country_select }
-      it { expect(settings_page.billing_address_form).to have_phone_input }
+    context 'with shipping address inputs' do
+      it { expect(settings_page.addresses_form).to have_shipping_first_name_input }
+      it { expect(settings_page.addresses_form).to have_shipping_last_name_input }
+      it { expect(settings_page.addresses_form).to have_shipping_address_input }
+      it { expect(settings_page.addresses_form).to have_shipping_city_input }
+      it { expect(settings_page.addresses_form).to have_shipping_zip_input }
+      it { expect(settings_page.addresses_form).to have_shipping_country_select }
+      it { expect(settings_page.addresses_form).to have_shipping_phone_input }
     end
 
-    context 'when user fill in an address form' do
-      before { settings_page.billing_address_form.fill_in(valid_address) }
+    context 'when user fill in an addresses form' do
+      before { settings_page.addresses_form.submit(billing_params, shipping_params) }
 
       it { expect(settings_page).to have_content(I18n.t('notice.address.saved')) }
       it { expect(user.billing_address).not_to be_nil }
+      it { expect(user.shipping_address).not_to be_nil }
     end
   end
 
   describe 'settings/privacy' do
-    before { settings_page.settings_list.move_to_privacy }
+    let(:new_password) { 'Rails2020' }
+
+    before { settings_page.settings_list.privacy_link.click }
 
     context 'with change password form' do
       it { expect(settings_page.password_form).to have_header }

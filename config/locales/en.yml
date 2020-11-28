@@ -8,6 +8,7 @@ en:
   phone_number: (555)-555-5555
   provider: Facebook
   no_title_image: '?'
+  or: or
   links:
     home: Home
     shop: Shop
