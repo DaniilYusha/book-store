@@ -56,7 +56,7 @@ ActiveAdmin.register Book do
   form do |f|
     f.inputs 'Details' do
       f.input :category
-      f.input :authors, collection: Author.all.decorate
+      f.input :authors, collection: Author.all.decorate, as: :check_boxes
       f.input :title
       f.input :description
       f.input :price
