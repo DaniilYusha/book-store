@@ -1,7 +1,7 @@
 ActiveAdmin.register Author do
   permit_params :first_name, :last_name
 
-  actions :index, :new, :create, :edit, :destroy
+  actions :index, :new, :create, :edit, :update, :destroy
 
   filter :first_name
   filter :last_name
