@@ -5,6 +5,27 @@ ActiveAdmin.register Book do
 
   decorate_with BookDecorator
 
+  controller do
+    def create
+      @book = Book.new
+      handle_book_params(:new)
+    end
+
+    def update
+      @book = Book.find_by(id: params[:id])
+      handle_book_params(:edit)
+    end
+
+    private
+
+    def handle_book_params(view)
+      @service = SaveBookService.new(permitted_params)
+      @service.call
+
+      @service.errors.empty? ? redirect_to(admin_books_path, notice: I18n.t('notice.book.saved')) : render(view)
+    end
+  end
+
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
   filter :category
   filter :title
@@ -53,19 +74,5 @@ ActiveAdmin.register Book do
     end
   end
 
-  form do |f|
-    f.inputs 'Details' do
-      f.input :category
-      f.input :authors, collection: Author.all.decorate
-      f.input :title
-      f.input :description
-      f.input :price
-      f.input :published_at, as: :datepicker
-      f.input :height
-      f.input :width
-      f.input :depth
-      f.input :materials
-    end
-    actions
-  end
+  form partial: 'form'
 end
