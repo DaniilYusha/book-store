@@ -6,25 +6,22 @@ ActiveAdmin.register Category do
     skip_before_action :set_categories
 
     def create
-      handle_category_params
+      @category = Category.new
+      handle_category_params(:new)
     end
 
     def update
-      handle_category_params
+      @category = Category.find_by(id: params[:id])
+      handle_category_params(:edit)
     end
 
     private
 
-    def handle_category_params
-      service = SaveCategoryService.new(permitted_params)
-      service.call
+    def handle_category_params(view)
+      @service = SaveCategoryService.new(permitted_params)
+      @service.call
 
-      if service.errors.empty?
-        redirect_to admin_categories_path, notice: I18n.t('notice.category.saved')
-      else
-        flash.alert = service.errors.full_messages.to_sentence
-        redirect_back fallback_location: admin_categories_path
-      end
+      @service.errors.empty? ? redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved')) : render(view)
     end
   end
 
@@ -36,4 +33,6 @@ ActiveAdmin.register Category do
     column :name
     actions
   end
+
+  form partial: 'form'
 end
