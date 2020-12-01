@@ -1,0 +1,5 @@
+= semantic_form_for [:admin, @category], builder: ActiveAdmin::FormBuilder do |f|
+  = render partial: 'admin/shared/errors', locals: { object: @service }
+  = f.inputs 'Details' do
+    = f.input :name
+  = f.actions
