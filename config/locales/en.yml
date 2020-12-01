@@ -56,6 +56,15 @@ en:
     address:
       saved: Your address has been successfully saved
       updated: Your address has been successfully updated
+    category:
+      saved: Category was successfully saved
+    author:
+      saved: Author was successfully saved
+    book:
+      saved: Book was successfully saved
+  alert:
+    name:
+      unique: already exists
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
