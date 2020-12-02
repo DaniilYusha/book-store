@@ -4,7 +4,7 @@ class SaveCategoryService
   def initialize(params)
     @id = params[:id]
     @params = params[:category]
-    @form = CategoryForm.new(params[:category])
+    @form = CategoryForm.new(@params)
     @errors = []
   end
 
