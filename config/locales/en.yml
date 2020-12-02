@@ -63,8 +63,7 @@ en:
     book:
       saved: Book was successfully saved
   alert:
-    name:
-      unique: already exists
+    blank: can't be blank
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
