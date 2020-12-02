@@ -18,10 +18,10 @@ ActiveAdmin.register Category do
     private
 
     def handle_category_params(view)
-      @service = SaveCategoryService.new(permitted_params)
+      @service = Admin::SaveEntitiesService.new(entity: :category, params: permitted_params)
       @service.call
 
-      @service.errors.empty? ? redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved')) : render(view)
+      @service.errors.any? ? render(view) : redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved'))
     end
   end
 
