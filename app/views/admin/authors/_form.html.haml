@@ -3,4 +3,6 @@
   = f.inputs 'Details' do
     = f.input :first_name
     = f.input :last_name
-  = f.actions
+  = f.actions do
+    = f.action :submit
+    = f.cancel_link

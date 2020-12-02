@@ -11,4 +11,6 @@
     = f.input :width
     = f.input :depth
     = f.input :materials
-  = f.actions
+  = f.actions do
+    = f.action :submit
+    = f.cancel_link

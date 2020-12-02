@@ -2,4 +2,6 @@
   = render partial: 'admin/shared/errors', locals: { object: @service }
   = f.inputs 'Details' do
     = f.input :name
-  = f.actions
+  = f.actions do
+    = f.action :submit
+    = f.cancel_link
