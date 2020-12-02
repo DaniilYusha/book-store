@@ -2,7 +2,7 @@ module Admin
   class SaveEntitiesService
     attr_reader :errors
 
-    ENTITIES = { author: Author, book: Book, category: Category }
+    ENTITIES = { author: Author, book: Book, category: Category }.freeze
 
     def initialize(entity:, params:)
       @entity_class = ENTITIES[entity]
