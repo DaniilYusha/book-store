@@ -7,7 +7,7 @@ ActiveAdmin.register Book do
 
   controller do
     def create
-      @book = Book.new
+      @book = Book.new(permitted_params[:book])
       handle_book_params(:new)
     end
 
