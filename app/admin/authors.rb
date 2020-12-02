@@ -5,7 +5,7 @@ ActiveAdmin.register Author do
 
   controller do
     def create
-      @author = Author.new
+      @author = Author.new(permitted_params[:author])
       handle_author_params(:new)
     end
 
