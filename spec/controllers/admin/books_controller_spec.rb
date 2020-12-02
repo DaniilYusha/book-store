@@ -1,8 +1,9 @@
 RSpec.describe Admin::BooksController, type: :controller do
   let(:admin) { create(:admin_user) }
-  let(:valid_params) { attributes_for(:book).merge!(category_id: category.id) }
+  let(:valid_params) { attributes_for(:book).merge!(category_id: category.id, author_ids: [author.id]) }
   let(:invalid_params) { attributes_for(:book, title: '') }
   let(:category) { create(:category) }
+  let(:author) { create(:author) }
   let(:book) { create(:book) }
 
   before { sign_in(admin) }
