@@ -6,7 +6,7 @@ ActiveAdmin.register Category do
     skip_before_action :set_categories
 
     def create
-      @category = Category.new
+      @category = Category.new(permitted_params[:category])
       handle_category_params(:new)
     end
 
