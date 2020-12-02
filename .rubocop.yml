@@ -36,6 +36,10 @@ Metrics/AbcSize:
   Exclude:
     - 'spec/**/*.rb'
 
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/controllers/admin/books_controller_spec.rb
+
 RSpec/LetSetup:
   Exclude:
     - spec/features/*.rb
