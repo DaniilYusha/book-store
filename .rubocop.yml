@@ -29,7 +29,7 @@ Metrics/MethodLength:
 
 Metrics/AbcSize:
   Exclude:
-    - 'spec/**/*.rb'
+    - spec/sections/settings/addresses_form.rb
 
 RSpec/LetSetup:
   Exclude:
