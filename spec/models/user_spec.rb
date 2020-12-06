@@ -7,7 +7,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:addresses).dependent(:destroy) }
     it { is_expected.to have_one(:billing_address).class_name('Address').dependent(:destroy) }
     it { is_expected.to have_one(:shipping_address).class_name('Address').dependent(:destroy) }
   end
