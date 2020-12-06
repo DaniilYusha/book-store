@@ -1,0 +1,16 @@
+.general-main-wrap
+  .hidden-xs.hidden-sm
+    .row
+      .col-md-5
+        %h3.general-subtitle.mt-0= t('devise.registrations.edit.billing_address')
+      .col-md-5.col-md-offset-1
+        %h3.general-subtitle.mt-0= t('devise.registrations.edit.shipping_address')
+  .row
+    .col-md-5.mb-40
+      .visible-xs.visible-sm
+        %h3.general-subtitle.mt-0= t('devise.registrations.edit.billing_address')
+      = render partial: 'devise/registrations/partials/forms/address', locals: { address: billing_address, address_type: :billing, countries: countries }
+    .col-md-5.col-md-offset-1.mb-25
+      .visible-xs.visible-sm
+        %h3.general-subtitle.mt-0= t('devise.registrations.edit.shipping_address')
+      = render partial: 'devise/registrations/partials/forms/address', locals: { address: shipping_address, address_type: :shipping, countries: countries }

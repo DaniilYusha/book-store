@@ -148,6 +148,7 @@ en:
         email_header: Email
         password_header: Password
         remove_account_header: Remove Account
+        reconfirmation: 'Currently waiting confirmation for: '
     sessions:
       new:
         header: Log In
