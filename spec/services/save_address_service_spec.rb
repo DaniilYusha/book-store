@@ -1,7 +1,7 @@
 RSpec.describe SaveAddressService do
   let(:user) { create(:user) }
   let(:invalid_billing_params) { attributes_for(:address, zip_code: '', first_name: '!!!') }
-  let(:valid_billing_params) { attribsutes_for(:address) }
+  let(:valid_billing_params) { attributes_for(:address) }
   let(:invalid_shipping_params) { attributes_for(:address, address_type: 'shipping', city: '') }
   let(:valid_shipping_params) { attributes_for(:address, address_type: 'shipping') }
 
