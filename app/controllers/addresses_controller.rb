@@ -10,8 +10,7 @@ class AddressesController < ApplicationController
     if service.success
       redirect_to(edit_user_registration_path, notice: I18n.t('notice.address.saved'))
     else
-      @billing_address = current_user.billing_address || Address.new
-      @shipping_address = current_user.shipping_address || Address.new
+      set_addresses
       render 'devise/registrations/edit'
     end
   end
@@ -22,8 +21,7 @@ class AddressesController < ApplicationController
     if service.success
       redirect_to(edit_user_registration_path, notice: I18n.t('notice.address.saved'))
     else
-      @billing_address = current_user.billing_address || Address.new
-      @shipping_address = current_user.shipping_address || Address.new
+      set_addresses
       render 'devise/registrations/edit'
     end
   end
@@ -32,6 +30,11 @@ class AddressesController < ApplicationController
 
   def address_params
     params.require(:address).permit(ATTRIBUTES.map(&:to_sym)).merge(addressable: current_user)
+  end
+
+  def set_addresses
+    @billing_address = current_user.billing_address || Address.new
+    @shipping_address = current_user.shipping_address || Address.new
   end
 
   def resource_name
