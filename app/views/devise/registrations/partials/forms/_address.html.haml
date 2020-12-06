@@ -1,0 +1,11 @@
+= simple_form_for(address, html: { id: "#{address_type}-address-form" }) do |f|
+  = f.hidden_field :address_type, value: address_type
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :address
+  = f.input :city
+  = f.input :zip_code
+  = f.input :country, collection: countries,
+            prompt: t('simple_form.placeholders.defaults.country')
+  = f.input :phone
+  = f.button :submit, t('buttons.save')
