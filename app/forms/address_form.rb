@@ -27,8 +27,8 @@ class AddressForm
   validates :phone, length: { maximum: PHONE_MAX_LENGTH },
                     format: { with: PHONE_FORMAT_PATTERN,
                               message: I18n.t('validation.phone_format') }
-  validate :country_presense_in_list
-  validate :country_code_of_phone
+  validate :country_presense_in_list, if: -> { country.present? }
+  validate :country_code_of_phone, if: -> { phone.present? }
 
   private
 
@@ -38,7 +38,7 @@ class AddressForm
 
   def country_code_of_phone
     selected_country = ISO3166::Country.find_country_by_name(country)
-    return if phone.include?(selected_country.country_code)
+    return if country.present? && phone.include?(selected_country.country_code)
 
     errors.add(:phone, I18n.t('validation.phone_country_code'))
   end
