@@ -29,7 +29,11 @@ Metrics/MethodLength:
 
 Metrics/AbcSize:
   Exclude:
-    - spec/sections/settings/addresses_form.rb
+    - spec/sections/settings/address_form.rb
+
+RSpec/NestedGroups:
+  Exclude:
+    - spec/services/save_address_service_spec.rb
 
 RSpec/LetSetup:
   Exclude:
