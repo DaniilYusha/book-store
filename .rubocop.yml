@@ -34,7 +34,15 @@ Style/SymbolProc:
 
 Metrics/AbcSize:
   Exclude:
-    - 'spec/**/*.rb'
+    - spec/sections/settings/address_form.rb
+
+RSpec/NestedGroups:
+  Exclude:
+    - spec/services/save_address_service_spec.rb
+
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/controllers/admin/books_controller_spec.rb
 
 RSpec/LetSetup:
   Exclude:

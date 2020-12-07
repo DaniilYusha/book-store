@@ -59,6 +59,14 @@ en:
       updated: Your address has been successfully updated
     review:
       created: Thanks for Review. It will be published as soon as Admin will approve it.
+    category:
+      saved: Category was successfully saved
+    author:
+      saved: Author was successfully saved
+    book:
+      saved: Book was successfully saved
+  alert:
+    blank: can't be blank
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -144,6 +152,7 @@ en:
         email_header: Email
         password_header: Password
         remove_account_header: Remove Account
+        reconfirmation: 'Currently waiting confirmation for: '
     sessions:
       new:
         header: Log In

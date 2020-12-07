@@ -1,43 +1,45 @@
 class SaveAddressService
   attr_reader :success
 
-  def initialize(user, billing_params, shipping_params)
+  def initialize(user:, params:, id: nil)
     @user = user
-    @billing_params = billing_params[:billing]
-    @shipping_params = shipping_params[:shipping]
-    @billing_form = AddressForm.new(@user, @billing_params)
-    @shipping_form = AddressForm.new(@user, @shipping_params)
+    @params = params
+    @id = id
+    @form = AddressForm.new(@params.except(:addressable))
   end
 
   def call
-    billing_form.validate
-    shipping_form.validate
-    addresses_exist? ? update_addresses : create_addresses
+    address = Address.find_by(id: id) || Address.new(addressable: user)
+
+    form_is_valid? ? address.update(params) : add_errors_to_addres(handle_address_status)
   end
 
   private
 
-  attr_reader :user, :billing_params, :shipping_params, :billing_form, :shipping_form
+  attr_reader :id, :user, :params, :form
 
-  def addresses_exist?
-    user.billing_address.present? && user.shipping_address.present?
+  def handle_address_status
+    case params[:address_type]
+    when AddressForm::BILLING_TYPE then check_billing_address_presence
+    when AddressForm::SHIPPING_TYPE then check_shipping_address_presence
+    end
   end
 
-  def update_addresses
-    return unless forms_are_valid?
-
-    user.billing_address.update(billing_params)
-    user.shipping_address.update(shipping_params)
+  def check_billing_address_presence
+    user.billing_address.present? ? user.billing_address : user.build_billing_address(params)
   end
 
-  def create_addresses
-    return unless forms_are_valid?
-
-    user.addresses.create(billing_params)
-    user.addresses.create(shipping_params)
+  def check_shipping_address_presence
+    user.shipping_address.present? ? user.shipping_address : user.build_shipping_address(params)
   end
 
-  def forms_are_valid?
-    @success = billing_form.errors.empty? && shipping_form.errors.empty?
+  def add_errors_to_addres(address)
+    form.errors.each do |attribute, message|
+      address.errors.add(attribute, message)
+    end
+  end
+
+  def form_is_valid?
+    @success = form.valid?
   end
 end
