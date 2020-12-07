@@ -11,8 +11,8 @@
     = f.input :width, required: true
     = f.input :depth, required: true
     = f.input :materials, required: true
-    = f.input :title_image, as: :file, required: true
-    = f.input :images, as: :file, required: true, input_html: { multiple: true }
+    = f.input :title_image, as: :file
+    = f.input :images, as: :file, input_html: { multiple: true }
   = f.actions do
     = f.action :submit
     = f.cancel_link
