@@ -21,11 +21,9 @@ RSpec.describe 'admin/books', type: :feature do
     it { expect(books_page.main_content).to have_id_column }
     it { expect(books_page.main_content).to have_category_column }
     it { expect(books_page.main_content).to have_title_column }
-    it { expect(books_page.main_content).to have_materials_column }
     it { expect(books_page.main_content).to have_description_column }
     it { expect(books_page.main_content).to have_authors_column }
     it { expect(books_page.main_content).to have_price_column }
-    it { expect(books_page.main_content).to have_published_at_column }
   end
 
   describe '#show' do
