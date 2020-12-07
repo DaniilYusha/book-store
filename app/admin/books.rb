@@ -1,8 +1,8 @@
 ActiveAdmin.register Book do
   permit_params :title, :description, :price, :height, :width, :depth,
-                :published_at, :category_id, :title_image, images: [],
-                                                           material_ids: [], author_ids: []
-  includes :category, :authors
+                :published_at, :category_id, :materials, :title_image,
+                author_ids: [], images: []
+  includes :category, :authors, :title_image_attachment
 
   decorate_with BookDecorator
 
@@ -36,6 +36,9 @@ ActiveAdmin.register Book do
   index do
     selectable_column
     id_column
+    column :image do |book|
+      image_tag(book.title_image, class: 'thumbnail-img') if book.title_image.attached?
+    end
     column :category
     column :title
     column :materials do |book|
@@ -58,6 +61,9 @@ ActiveAdmin.register Book do
 
   show do
     attributes_table do
+      row :image do |book|
+        image_tag(book.title_image, class: 'thumbnail-img') if book.title_image.attached?
+      end
       row :category
       row :authors_list
       row :title
