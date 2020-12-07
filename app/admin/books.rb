@@ -37,21 +37,11 @@ ActiveAdmin.register Book do
     id_column
     column :category
     column :title
-    column :materials do |book|
-      book.materials_list
-    end
-    column :description do |book|
-      book.short_description
-    end
-    column :authors do |book|
-      book.authors.each do |author|
-        link_to author.full_name, admin_author_path(author)
-      end
-    end
+    column :authors_list
+    column :short_description
     column :price do |book|
       number_to_currency(book.price)
     end
-    column :published_at
     actions
   end
 
@@ -68,9 +58,7 @@ ActiveAdmin.register Book do
       row :height
       row :width
       row :depth
-      row :materials do |book|
-        book.materials_list
-      end
+      row :materials_list
     end
   end
 
