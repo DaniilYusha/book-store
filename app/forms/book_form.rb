@@ -2,7 +2,8 @@ class BookForm
   include ActiveModel::Model
 
   attr_accessor :title, :description, :price, :published_at, :height,
-                :width, :depth, :materials, :category_id, :author_ids
+                :width, :depth, :materials, :category_id, :author_ids,
+                :title_image, :images
 
   TITLE_MAX_LENGTH = 100
   DESCRIPTION_MAX_LENGTH = 500
