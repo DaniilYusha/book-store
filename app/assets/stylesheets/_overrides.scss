@@ -82,6 +82,10 @@ a.read-less {
   cursor: pointer;
 }
 
+.reconfirmation-email > p {
+  display: inline-flex;
+}
+
 .unknown-book-image {
   font-size: 70px;
   font-weight: bold;

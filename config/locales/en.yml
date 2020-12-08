@@ -59,12 +59,19 @@ en:
       updated: Your address has been successfully updated
     review:
       created: Thanks for Review. It will be published as soon as Admin will approve it.
+    category:
+      saved: Category was successfully saved
+    author:
+      saved: Author was successfully saved
+    book:
+      saved: Book was successfully saved
     book:
       added_to_cart: Book was successfully added to your cart!
       deleted: Book was deleted from your cart!
     coupon:
       apply: Coupon was successfully applied to your order
   alert:
+    blank: can't be blank
     coupon:
       not_exist: Coupon with such code is not exist
       invalid: Coupon is invalid
@@ -168,6 +175,7 @@ en:
         email_header: Email
         password_header: Password
         remove_account_header: Remove Account
+        reconfirmation: 'Currently waiting confirmation for: '
     sessions:
       new:
         header: Log In

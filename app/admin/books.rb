@@ -1,10 +1,31 @@
 ActiveAdmin.register Book do
   permit_params :title, :description, :price, :height, :width, :depth,
-                :published_at, :category_id, :title_image, images: [],
-                                                           material_ids: [], author_ids: []
-  includes :category, :authors
+                :published_at, :category_id, :materials, :title_image,
+                author_ids: [], images: []
+  includes :category, :authors, :title_image_attachment
 
   decorate_with BookDecorator
+
+  controller do
+    def create
+      @book = Book.new(permitted_params[:book])
+      handle_book_params(:new)
+    end
+
+    def update
+      @book = Book.find_by(id: params[:id])
+      handle_book_params(:edit)
+    end
+
+    private
+
+    def handle_book_params(view)
+      @service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
+      @service.call
+
+      @service.errors.any? ? render(view) : redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))
+    end
+  end
 
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
   filter :category
@@ -15,28 +36,24 @@ ActiveAdmin.register Book do
   index do
     selectable_column
     id_column
+    column :image do |book|
+      image_tag(book.title_image, class: 'thumbnail-img') if book.title_image.attached?
+    end
     column :category
     column :title
-    column :materials do |book|
-      book.materials_list
-    end
-    column :description do |book|
-      book.short_description
-    end
-    column :authors do |book|
-      book.authors.each do |author|
-        link_to author.full_name, admin_author_path(author)
-      end
-    end
+    column :authors_list
+    column :short_description
     column :price do |book|
       number_to_currency(book.price)
     end
-    column :published_at
     actions
   end
 
   show do
     attributes_table do
+      row :image do |book|
+        image_tag(book.title_image, class: 'thumbnail-img') if book.title_image.attached?
+      end
       row :category
       row :authors_list
       row :title
@@ -48,27 +65,9 @@ ActiveAdmin.register Book do
       row :height
       row :width
       row :depth
-      row :materials do |book|
-        book.materials_list
-      end
+      row :materials_list
     end
   end
 
-  form do |f|
-    f.inputs 'Details' do
-      f.input :category
-      f.input :authors, collection: Author.all.decorate
-      f.input :title
-      f.input :description
-      f.input :price
-      f.input :published_at, as: :datepicker
-      f.input :height
-      f.input :width
-      f.input :depth
-      f.input :materials
-      f.input :title_image, as: :file
-      f.input :images, as: :file, input_html: { multiple: true }
-    end
-    actions
-  end
+  form partial: 'form'
 end
