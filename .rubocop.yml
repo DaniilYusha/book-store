@@ -27,10 +27,6 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
 
-Metrics/AbcSize:
-  Exclude:
-    - spec/sections/settings/address_form.rb
-
 RSpec/LetSetup:
   Exclude:
     - spec/features/*.rb
