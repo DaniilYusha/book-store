@@ -11,14 +11,16 @@ module Sections
       element :save_address_button, 'input[type="submit"]'
 
       def submit(params)
-        first_name_input.set(params[:first_name])
-        last_name_input.set(params[:last_name])
-        address_input.set(params[:address])
-        city_input.set(params[:city])
-        zip_input.set(params[:zip_code])
+        fill_in_fields(params.except(:country))
         country_select.select(params[:country])
-        phone_input.set(params[:phone])
         save_address_button.click
+      end
+
+      private
+
+      def fill_in_fields(params)
+        fields = [first_name_input, last_name_input, address_input, city_input, zip_input, phone_input]
+        fields.zip(params.values).to_h.each { |field, value| field.set(value) }
       end
     end
   end
