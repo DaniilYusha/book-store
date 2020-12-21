@@ -1,10 +1,16 @@
 class AddressForm
   include ActiveModel::Model
+  include Virtus.model
 
-  attr_accessor :first_name, :last_name, :address, :city, :zip_code, :country, :phone, :address_type
+  attribute :first_name, String
+  attribute :last_name, String
+  attribute :address, String
+  attribute :city, String
+  attribute :zip_code, String
+  attribute :country, String
+  attribute :phone, String
+  attribute :address_type, String
 
-  BILLING_TYPE = 'billing'.freeze
-  SHIPPING_TYPE = 'shipping'.freeze
   NAME_MAX_LENGTH = 50
   NAMES_FORMAT_PATTERN = /\A[a-zA-z\s]+\z/.freeze
   ADDRESS_FORMAT_PATTERN = /\A[a-zA-z0-9,\-\s]+\z/.freeze
