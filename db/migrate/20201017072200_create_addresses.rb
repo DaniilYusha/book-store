@@ -9,7 +9,7 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
       t.string :country, null: false
       t.string :phone, null: false
       t.integer :address_type, null: false
-      t.references :addressable, polymorphic: true
+      t.references :addressable, polymorphic: true, index: true
 
       t.timestamps
     end
