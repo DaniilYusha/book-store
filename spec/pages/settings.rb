@@ -1,6 +1,6 @@
 module Pages
   class Settings < SitePrism::Page
-    set_url '/users/edit'
+    set_url '/settings'
 
     section :settings_list, Sections::Settings::SettingsList, 'ul.nav[role="tablist"]'
     section :billing_address_form, Sections::Settings::AddressForm, '#billing-address-form'
