@@ -56,6 +56,8 @@ en:
     address:
       saved: Your address has been successfully saved
       updated: Your address has been successfully updated
+  alert:
+    privacy: Your form contain errors. Check it in privacy section!
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
