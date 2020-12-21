@@ -1,5 +1,7 @@
 RSpec.describe AuthorDecorator do
-  let(:author) { build(:author, first_name: 'Daniil', last_name: 'Yusha').decorate }
+  let(:first_name) { 'Daniil' }
+  let(:last_name) { 'Yusha' }
+  let(:author) { build(:author, first_name: first_name, last_name: last_name).decorate }
   let(:full_name_result) { 'Daniil Yusha' }
 
   it '#full_name' do
