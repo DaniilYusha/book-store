@@ -1,6 +1,8 @@
 class SettingsPresenter
-  BILLING_TYPE = 'billing'.freeze
-  SHIPPING_TYPE = 'shipping'.freeze
+  ADDRESS_TYPES = {
+    billing: 'billing',
+    shipping: 'shipping'
+  }.freeze
 
   def initialize(user:, params: {}, address_errors: {})
     @current_user = user
@@ -16,12 +18,12 @@ class SettingsPresenter
     current_user.shipping_address || Address.new(params)
   end
 
-  def shipping_errors
-    @shipping_errors ||= address_errors if params[:address_type] == SHIPPING_TYPE
+  def billing_errors
+    @billing_errors ||= check_address_type_errors(:billing)
   end
 
-  def billing_errors
-    @billing_errors ||= address_errors if params[:address_type] == BILLING_TYPE
+  def shipping_errors
+    @shipping_errors ||= check_address_type_errors(:shipping)
   end
 
   def countries
@@ -31,4 +33,8 @@ class SettingsPresenter
   private
 
   attr_reader :current_user, :params, :address_errors
+
+  def check_address_type_errors(address_type)
+    address_errors if params[:address_type] == ADDRESS_TYPES[address_type]
+  end
 end
