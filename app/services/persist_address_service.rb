@@ -23,6 +23,6 @@ class PersistAddressService
   end
 
   def save_address
-    address.nil? ? Address.create(params) : address.update(params)
+    address ? address.update(params) : Address.create(params)
   end
 end
