@@ -11,7 +11,7 @@ class BookForm
   attribute :depth, Float
   attribute :materials, String
   attribute :category_id, Integer
-  attribute :author_ids, Array[Integer]
+  attribute :author_ids, Array[String]
 
   TITLE_MAX_LENGTH = 100
   DESCRIPTION_MAX_LENGTH = 500
