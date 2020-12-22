@@ -1,6 +1,6 @@
 = simple_form_for(resource, url: registration_path(:user), method: :put, html: { id: 'edit-email' } ) do |f|
   = f.input :email
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+  - if resource.pending_reconfirmation?
     .mb-25.reconfirmation-email
       %p= t('devise.registrations.edit.reconfirmation')
       %p.in-gold-500= resource.unconfirmed_email

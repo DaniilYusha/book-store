@@ -32,10 +32,6 @@ class SettingsPresenter
     @resource ||= current_user
   end
 
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
-  end
-
   private
 
   attr_reader :current_user, :params, :address_errors
