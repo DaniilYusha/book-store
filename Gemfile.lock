@@ -380,7 +380,7 @@ DEPENDENCIES
   spring (~> 2.1)
   spring-watcher-listen (~> 2.0.0)
   test-prof (~> 0.12.2)
-  turbolinks (~> 5)
+  turbolinks (~> 5.2)
   virtus (~> 1.0)
   webdrivers (~> 4.4)
   webpacker (~> 4.0)
