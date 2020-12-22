@@ -1,8 +1,9 @@
 = semantic_form_for [:admin, @author], builder: ActiveAdmin::FormBuilder do |f|
-  = render partial: 'admin/shared/errors', locals: { object: @service }
   = f.inputs 'Details' do
-    = f.input :first_name
-    = f.input :last_name
+    = f.input :first_name, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:first_name)) }
+    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :first_name }
+    = f.input :last_name, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:last_name)) }
+    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :last_name }
   = f.actions do
     = f.action :submit
     = f.cancel_link
