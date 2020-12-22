@@ -28,10 +28,6 @@ class SettingsPresenter
     @countries ||= ISO3166::Country.all.sort_by(&:name)
   end
 
-  def resource
-    @resource ||= current_user
-  end
-
   private
 
   attr_reader :current_user, :params, :address_errors
