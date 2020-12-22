@@ -19,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def send_fail_response
     flash.alert = I18n.t('alert.privacy')
-    @presenter = SettingsPresenter.new(resource)
+    @presenter = SettingsPresenter.new(user: resource)
     render 'settings/index'
   end
 

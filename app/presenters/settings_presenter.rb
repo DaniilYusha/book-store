@@ -2,7 +2,7 @@ class SettingsPresenter
   BILLING_TYPE = 'billing'.freeze
   SHIPPING_TYPE = 'shipping'.freeze
 
-  def initialize(user, params = {}, address_errors = {})
+  def initialize(user:, params: {}, address_errors: {})
     @current_user = user
     @params = params
     @address_errors = address_errors
