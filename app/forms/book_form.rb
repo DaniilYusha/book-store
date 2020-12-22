@@ -1,8 +1,17 @@
 class BookForm
   include ActiveModel::Model
+  include Virtus.model
 
-  attr_accessor :title, :description, :price, :published_at, :height,
-                :width, :depth, :materials, :category_id, :author_ids
+  attribute :title, String
+  attribute :description, String
+  attribute :price, Float
+  attribute :published_at, DateTime
+  attribute :height, Float
+  attribute :width, Float
+  attribute :depth, Float
+  attribute :materials, String
+  attribute :category_id, Integer
+  attribute :author_ids, Array[Integer]
 
   TITLE_MAX_LENGTH = 100
   DESCRIPTION_MAX_LENGTH = 500

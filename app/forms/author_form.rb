@@ -1,7 +1,9 @@
 class AuthorForm
   include ActiveModel::Model
+  include Virtus.model
 
-  attr_accessor :first_name, :last_name
+  attribute :first_name, String
+  attribute :last_name, String
 
   NAME_MAX_LENGTH = 50
 
