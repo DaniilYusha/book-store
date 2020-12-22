@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   resources :books, only: %i[index show]
   resources :settings, only: :index
-  resources :addresses, only: %i[create update]
+  resources :addresses, only: :create
   root 'pages#home'
 end
