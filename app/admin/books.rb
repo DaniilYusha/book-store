@@ -19,10 +19,14 @@ ActiveAdmin.register Book do
     private
 
     def handle_book_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
-      @service.call
+      service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
 
-      @service.errors.any? ? render(view) : redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))
+      if service.call
+        redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))
+      else
+        @errors = service.errors
+        render(view)
+      end
     end
   end
 

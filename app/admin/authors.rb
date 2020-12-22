@@ -17,10 +17,14 @@ ActiveAdmin.register Author do
     private
 
     def handle_author_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :author, params: permitted_params)
-      @service.call
+      service = Admin::SaveEntitiesService.new(entity: :author, params: permitted_params)
 
-      @service.errors.any? ? render(view) : redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved'))
+      if service.call
+        redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved'))
+      else
+        @errors = service.errors
+        render(view)
+      end
     end
   end
 
