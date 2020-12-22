@@ -28,10 +28,6 @@ class SettingsPresenter
     @countries ||= ISO3166::Country.all.sort_by(&:name)
   end
 
-  def resource_name
-    :user
-  end
-
   def resource
     @resource ||= current_user
   end
