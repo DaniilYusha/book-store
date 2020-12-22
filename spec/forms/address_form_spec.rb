@@ -1,12 +1,9 @@
 RSpec.describe AddressForm, type: :model do
   context 'with validations' do
-    it { is_expected.to validate_presence_of(:first_name) }
-    it { is_expected.to validate_presence_of(:last_name) }
-    it { is_expected.to validate_presence_of(:address) }
-    it { is_expected.to validate_presence_of(:city) }
-    it { is_expected.to validate_presence_of(:country) }
-    it { is_expected.to validate_presence_of(:phone) }
-    it { is_expected.to validate_presence_of(:zip_code) }
+    %i[first_name last_name address city country phone zip_code].each do |field|
+      it { is_expected.to validate_presence_of(field) }
+    end
+
     it { is_expected.to validate_length_of(:first_name).is_at_most(described_class::NAME_MAX_LENGTH) }
     it { is_expected.to validate_length_of(:last_name).is_at_most(described_class::NAME_MAX_LENGTH) }
     it { is_expected.to validate_length_of(:country).is_at_most(described_class::NAME_MAX_LENGTH) }
