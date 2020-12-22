@@ -33,13 +33,13 @@ class AddressForm
   validates :phone, length: { maximum: PHONE_MAX_LENGTH },
                     format: { with: PHONE_FORMAT_PATTERN,
                               message: I18n.t('validation.phone_format') }
-  validate :country_presense_in_list, if: -> { country.present? }
-  validate :country_code_of_phone, if: -> { phone.present? }
+  validate :country_presense_in_list, unless: -> { country.blank? }
+  validate :country_code_of_phone, unless: -> { phone.blank? }
 
   private
 
   def country_presense_in_list
-    errors.add(:country, :invalid) if ISO3166::Country.find_country_by_name(country).nil?
+    errors.add(:country, :invalid) unless ISO3166::Country.find_country_by_name(country)
   end
 
   def country_code_of_phone
