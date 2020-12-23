@@ -49,7 +49,18 @@ RSpec.describe 'settings#index', type: :feature do
       it { expect(settings_page).to have_content(I18n.t('validation.zip_format')) }
       it { expect(settings_page).to have_content(I18n.t('validation.phone_format')) }
       it { expect(settings_page).to have_content(I18n.t('validation.phone_country_code')) }
-      it { expect(settings_page.billing_address_form.country_select.value).to eq(invalid_address_params[:country]) }
+
+      it {
+        expect(settings_page.billing_address_form.country_select.value)
+          .to have_content(invalid_address_params[:country])
+      }
+
+      %i[first_name last_name address zip_code city phone].each do |field|
+        it {
+          expect(settings_page.billing_address_form.public_send("#{field}_input").value)
+            .to have_content(invalid_address_params[field])
+        }
+      end
     end
 
     context 'with valid billing address params' do
@@ -57,14 +68,17 @@ RSpec.describe 'settings#index', type: :feature do
 
       it { expect(settings_page).to have_content(I18n.t('notice.address.saved')) }
 
+      it {
+        expect(settings_page.billing_address_form.country_select.value)
+          .to have_content(valid_address_params[:country])
+      }
+
       %i[first_name last_name address zip_code city phone].each do |field|
         it {
           expect(settings_page.billing_address_form.public_send("#{field}_input").value)
-            .to eq(valid_address_params[field])
+            .to have_content(valid_address_params[field])
         }
       end
-
-      it { expect(settings_page.billing_address_form.country_select.value).to eq(valid_address_params[:country]) }
     end
 
     context 'with invalid shipping address params' do
@@ -75,7 +89,18 @@ RSpec.describe 'settings#index', type: :feature do
       it { expect(settings_page).to have_content(I18n.t('validation.zip_format')) }
       it { expect(settings_page).to have_content(I18n.t('validation.phone_format')) }
       it { expect(settings_page).to have_content(I18n.t('validation.phone_country_code')) }
-      it { expect(settings_page.shipping_address_form.country_select.value).to eq(invalid_address_params[:country]) }
+
+      it {
+        expect(settings_page.shipping_address_form.country_select.value)
+          .to have_content(invalid_address_params[:country])
+      }
+
+      %i[first_name last_name address zip_code city phone].each do |field|
+        it {
+          expect(settings_page.shipping_address_form.public_send("#{field}_input").value)
+            .to have_content(invalid_address_params[field])
+        }
+      end
     end
 
     context 'with valid shipping address params' do
@@ -83,19 +108,49 @@ RSpec.describe 'settings#index', type: :feature do
 
       it { expect(settings_page).to have_content(I18n.t('notice.address.saved')) }
 
+      it {
+        expect(settings_page.shipping_address_form.country_select.value)
+          .to have_content(valid_address_params[:country])
+      }
+
       %i[first_name last_name address zip_code city phone].each do |field|
         it {
           expect(settings_page.shipping_address_form.public_send("#{field}_input").value)
-            .to eq(valid_address_params[field])
+            .to have_content(valid_address_params[field])
         }
       end
-
-      it { expect(settings_page.shipping_address_form.country_select.value).to eq(valid_address_params[:country]) }
     end
   end
 
   describe 'privacy section' do
     before { settings_page.settings_list.privacy_link.click }
+
+    context 'with change email form' do
+      it { expect(settings_page.email_form).to have_header }
+      it { expect(settings_page.email_form).to have_email_label }
+      it { expect(settings_page.email_form).to have_email_input }
+      it { expect(settings_page.email_form).to have_save_button }
+    end
+
+    context 'when fill in email form with invalid email' do
+      let(:new_invalid_email) { '!!!' }
+
+      before { settings_page.email_form.submit(new_invalid_email) }
+
+      it { expect(settings_page).to have_content(I18n.t('alert.privacy')) }
+      it { expect(settings_page).to have_content(I18n.t('activerecord.errors.models.user.attributes.email.invalid')) }
+      it { expect(settings_page.email_form.email_input.value).to have_content(new_invalid_email) }
+    end
+
+    context 'when fill in email form with valid email' do
+      let(:new_valid_email) { 'daniil@gmail.com' }
+
+      before { settings_page.email_form.submit(new_valid_email) }
+
+      it { expect(settings_page).to have_current_path(settings_path) }
+      it { expect(settings_page).to have_content(I18n.t('devise.registrations.updated')) }
+      it { expect(settings_page.email_form.email_input.value).to have_content(user.email) }
+    end
 
     context 'with change password form' do
       it { expect(settings_page.password_form).to have_header }
@@ -110,7 +165,7 @@ RSpec.describe 'settings#index', type: :feature do
       it { expect(settings_page.password_form).to have_save_button }
     end
 
-    context 'when change password' do
+    context 'with valid password input' do
       let(:new_valid_password) { 'Rails2020' }
 
       before { settings_page.password_form.fill_in(user.password, new_valid_password) }
@@ -118,12 +173,12 @@ RSpec.describe 'settings#index', type: :feature do
       it { expect(settings_page).to have_current_path(settings_path) }
       it { expect(settings_page).to have_content(I18n.t('devise.registrations.updated')) }
 
-      it { expect(settings_page.password_form.old_password_input.value).to be_nil }
-      it { expect(settings_page.password_form.new_password_input.value).to be_nil }
-      it { expect(settings_page.password_form.password_confirm_input.value).to be_nil }
+      it { expect(settings_page.password_form.old_password_input.value).not_to have_content(user.password) }
+      it { expect(settings_page.password_form.new_password_input.value).not_to have_content(new_valid_password) }
+      it { expect(settings_page.password_form.password_confirm_input.value).not_to have_content(new_valid_password) }
     end
 
-    context 'with invalid password inputs' do
+    context 'with invalid password input' do
       let(:new_invalid_password) { '!' }
 
       before { settings_page.password_form.fill_in(user.password, new_invalid_password) }
@@ -136,9 +191,9 @@ RSpec.describe 'settings#index', type: :feature do
         )
       }
 
-      it { expect(settings_page.password_form.old_password_input.value).to be_nil }
-      it { expect(settings_page.password_form.new_password_input.value).to be_nil }
-      it { expect(settings_page.password_form.password_confirm_input.value).to be_nil }
+      it { expect(settings_page.password_form.old_password_input.value).not_to have_content(user.password) }
+      it { expect(settings_page.password_form.new_password_input.value).not_to have_content(new_invalid_password) }
+      it { expect(settings_page.password_form.password_confirm_input.value).not_to have_content(new_invalid_password) }
     end
 
     context 'with remove account form' do
@@ -153,32 +208,6 @@ RSpec.describe 'settings#index', type: :feature do
 
       it { expect(settings_page).to have_current_path(root_path) }
       it { expect(settings_page).to have_content(I18n.t('devise.registrations.destroyed')) }
-    end
-
-    context 'with change email form' do
-      it { expect(settings_page.email_form).to have_header }
-      it { expect(settings_page.email_form).to have_email_label }
-      it { expect(settings_page.email_form).to have_email_input }
-      it { expect(settings_page.email_form).to have_save_button }
-    end
-
-    context 'when fill in email form' do
-      let(:new_valid_email) { 'daniil@gmail.com' }
-
-      before { settings_page.email_form.submit(new_valid_email) }
-
-      it { expect(settings_page).to have_current_path(settings_path) }
-      it { expect(settings_page).to have_content(I18n.t('devise.registrations.updated')) }
-      it { expect(settings_page.email_form.email_input.value).to eq(user.email) }
-    end
-
-    context 'when fill in form with invalid email' do
-      let(:new_invalid_email) { '!!!' }
-
-      before { settings_page.email_form.submit(new_invalid_email) }
-
-      it { expect(settings_page).to have_content(I18n.t('alert.privacy')) }
-      it { expect(settings_page).to have_content(I18n.t('activerecord.errors.models.user.attributes.email.invalid')) }
     end
   end
 end
