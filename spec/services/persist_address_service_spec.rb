@@ -5,14 +5,14 @@ RSpec.describe PersistAddressService do
 
   describe '#call' do
     context 'with valid params' do
-      it 'returns new address' do
-        expect(described_class.new(user: user, params: valid_params).call.class).to eq(Address)
+      it 'returns true' do
+        expect(described_class.new(user: user, params: valid_params).call).to be true
       end
     end
 
     context 'with invalid params' do
       it 'returns false' do
-        expect(described_class.new(user: user, params: invalid_params).call).to eq(false)
+        expect(described_class.new(user: user, params: invalid_params).call).to be false
       end
     end
   end

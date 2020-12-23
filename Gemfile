@@ -17,7 +17,7 @@ gem 'rails', '~> 6.0.3'
 gem 'sass-rails', '~> 6.0'
 gem 'seedbank', '~> 0.5.0'
 gem 'simple_form', '~> 5.0'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2'
 gem 'virtus', '~> 1.0'
 gem 'webpacker', '~> 4.0'
 

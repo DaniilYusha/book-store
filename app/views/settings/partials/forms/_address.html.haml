@@ -1,17 +1,10 @@
-= simple_form_for([:address, address], url: addresses_path, method: :post, html: { id: "#{address_type}-address-form" }) do |f|
-  = f.hidden_field :address_type, value: address_type
-  = f.input :first_name, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:first_name)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :first_name, collection: nil, errors: errors, f: f }
-  = f.input :last_name, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:last_name)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :last_name, collection: nil, errors: errors, f: f }
-  = f.input :address, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:address)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :address, collection: nil, errors: errors, f: f }
-  = f.input :city, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:city)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :city, collection: nil, errors: errors, f: f }
-  = f.input :zip_code, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:zip_code)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :zip_code, collection: nil, errors: errors, f: f }
-  = f.input :country, prompt: t('simple_form.placeholders.defaults.country'), wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:country)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :country, collection: countries, errors: errors, f: f }
-  = f.input :phone, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:phone)) } do
-    = render partial: 'settings/partials/forms/inputs', locals: { field: :phone, collection: nil, errors: errors, f: f }
-  = f.button :submit, t('buttons.save')
+= simple_form_for([:address, address], url: addresses_path, method: :post, html: { id: "#{address_type}-address-form" }) do |form|
+  = form.hidden_field :address_type, value: address_type
+  - [:first_name, :last_name, :address, :city, :zip_code].each do |field|
+    = form.input field, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(field)) } do
+      = render partial: 'settings/partials/forms/inputs', locals: { field: field, collection: nil, errors: errors, form: form }
+  = form.input :country, prompt: t('simple_form.placeholders.defaults.country'), wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:country)) } do
+    = render partial: 'settings/partials/forms/inputs', locals: { field: :country, collection: countries, errors: errors, form: form }
+  = form.input :phone, wrapper_html: { class: ('has-error' if errors&.messages&.has_key?(:phone)) } do
+    = render partial: 'settings/partials/forms/inputs', locals: { field: :phone, collection: nil, errors: errors, form: form }
+  = form.button :submit, t('buttons.save')

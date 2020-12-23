@@ -9,10 +9,9 @@ class PersistAddressService
   end
 
   def call
-    return save_address if form.valid?
+    form.valid? ? save_address : @errors = form.errors
 
-    @errors = form.errors
-    false
+    errors.blank?
   end
 
   private
@@ -24,6 +23,6 @@ class PersistAddressService
   end
 
   def save_address
-    address.nil? ? Address.create(params) : address.update(params)
+    address ? address.update(params) : Address.create(params)
   end
 end
