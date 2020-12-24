@@ -52,7 +52,11 @@ RSpec.describe 'admin/admin_users', type: :feature do
       it { expect(new_admin_page.fields.email_row.text).to have_content(I18n.t('alert.blank')) }
       it { expect(new_admin_page.fields.email_input.value).to have_content(admin_params[:email]) }
       it { expect(new_admin_page.fields.password_input.value).not_to have_content(admin_params[:password]) }
-      it { expect(new_admin_page.fields.password_confirmation_input.value).not_to have_content(admin_params[:password]) }
+
+      it {
+        expect(new_admin_page.fields.password_confirmation_input.value)
+          .not_to have_content(admin_params[:password])
+      }
     end
   end
 
@@ -70,8 +74,16 @@ RSpec.describe 'admin/admin_users', type: :feature do
     it { expect(admin_page.admin_details).to have_updated_at_row }
 
     it { expect(admin_page.admin_details.email_row.text).to have_content(admin.email) }
-    it { expect(admin_page.admin_details.reset_password_token_list_row.text).to have_content(admin.reset_password_token) }
-    it { expect(admin_page.admin_details.reset_password_sent_at_row.text).to have_content(admin.reset_password_sent_at) }
     it { expect(admin_page.admin_details.remember_created_at_row.text).to have_content(admin.remember_created_at) }
+
+    it {
+      expect(admin_page.admin_details.reset_password_token_list_row.text)
+        .to have_content(admin.reset_password_token)
+    }
+
+    it {
+      expect(admin_page.admin_details.reset_password_sent_at_row.text)
+        .to have_content(admin.reset_password_sent_at)
+    }
   end
 end
