@@ -2,24 +2,14 @@
   = f.inputs 'Details' do
     = f.input :category, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:category_id)) }
     = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :category_id }
-    = f.input :authors, collection: Author.all.decorate, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:authors)) }
+    = f.input :authors, as: :check_boxes, collection: Author.all.decorate, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:authors)) }
     = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :authors }
-    = f.input :title, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:title)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :title }
-    = f.input :description, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:description)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :description }
-    = f.input :price, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:price)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :price }
     = f.input :published_at, as: :datepicker, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:published_at)) }
     = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :published_at }
-    = f.input :height, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:height)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :height }
-    = f.input :width, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:width)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :width }
-    = f.input :depth, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:depth)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :depth }
-    = f.input :materials, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(:materials)) }
-    = render partial: 'admin/shared/errors', locals: { errors: @errors, field: :materials }
+
+    - %i[title description price height width depth materials].each do |field|
+      = f.input field, required: true, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(field)) }
+      = render partial: 'admin/shared/errors', locals: { errors: @errors, field: field }
   = f.actions do
     = f.action :submit
     = f.cancel_link
