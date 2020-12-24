@@ -2,7 +2,6 @@ RSpec.describe Admin::AuthorsController, type: :controller do
   let(:admin) { create(:admin_user) }
   let(:valid_params) { attributes_for(:author) }
   let(:invalid_params) { attributes_for(:category, first_name: '') }
-  let(:author) { create(:author) }
 
   before { sign_in(admin) }
 
@@ -28,11 +27,21 @@ RSpec.describe Admin::AuthorsController, type: :controller do
   end
 
   describe 'PUT update' do
+    let(:author) { create(:author) }
+
     context 'with valid params' do
       before { put :update, params: { id: author.id, author: valid_params } }
 
       it 'returns http status redirect' do
         expect(response).to have_http_status :redirect
+      end
+    end
+
+    context 'with invalid params' do
+      before { put :update, params: { id: author.id, author: invalid_params } }
+
+      it 'returns http status redirect' do
+        expect(response).to have_http_status :success
       end
     end
   end
