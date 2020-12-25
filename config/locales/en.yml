@@ -63,7 +63,8 @@ en:
     book:
       saved: Book was successfully saved
     admin:
-      saved: Admin user was successfully created
+      created: Admin user was successfully created
+      updated: Admin user was successfully updated
   alert:
     blank: can't be blank
     privacy: Your form contain errors. Check it in privacy section!
