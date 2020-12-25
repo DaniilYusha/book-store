@@ -13,11 +13,13 @@ RSpec.describe 'admin/categories', type: :feature do
 
     before { authors_page.load }
 
-    it { expect(authors_page.main_content).to have_first_name_column }
-    it { expect(authors_page.main_content).to have_last_name_column }
+    context 'with page elements' do
+      it { expect(authors_page.main_content).to have_first_name_column }
+      it { expect(authors_page.main_content).to have_last_name_column }
 
-    it { expect(authors_page.main_content).to have_content(author.first_name) }
-    it { expect(authors_page.main_content).to have_content(author.last_name) }
+      it { expect(authors_page.main_content).to have_content(author.first_name) }
+      it { expect(authors_page.main_content).to have_content(author.last_name) }
+    end
   end
 
   describe '/new' do
