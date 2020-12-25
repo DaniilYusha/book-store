@@ -29,9 +29,7 @@ RSpec.describe 'admin/categories', type: :feature do
 
     context 'with page elements' do
       it { expect(new_author_page.fields).to have_first_name_input }
-      it { expect(new_author_page.fields).to have_first_name_row }
       it { expect(new_author_page.fields).to have_last_name_input }
-      it { expect(new_author_page.fields).to have_last_name_row }
       it { expect(new_author_page.fields).to have_create_button }
       it { expect(new_author_page.fields).to have_cancel_button }
     end
@@ -65,10 +63,8 @@ RSpec.describe 'admin/categories', type: :feature do
 
     context 'with page elements' do
       it { expect(edit_author_page.fields).to have_first_name_input }
-      it { expect(edit_author_page.fields).to have_first_name_row }
       it { expect(edit_author_page.fields.first_name_input.value).to have_content(author.first_name) }
       it { expect(edit_author_page.fields).to have_last_name_input }
-      it { expect(edit_author_page.fields).to have_last_name_row }
       it { expect(edit_author_page.fields.last_name_input.value).to have_content(author.last_name) }
       it { expect(edit_author_page.fields).to have_create_button }
       it { expect(edit_author_page.fields).to have_cancel_button }
