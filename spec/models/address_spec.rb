@@ -10,7 +10,7 @@ RSpec.describe Address, type: :model do
   end
 
   describe 'with database indexes' do
-    it { is_expected.to have_db_index([:addressable_type, :addressable_id]) }
+    it { is_expected.to have_db_index(%i[addressable_type addressable_id]) }
   end
 
   describe 'associations' do
