@@ -20,23 +20,17 @@ RSpec.describe 'settings#index', type: :feature do
     end
 
     context 'with billing address inputs' do
-      it { expect(settings_page.billing_address_form).to have_first_name_input }
-      it { expect(settings_page.billing_address_form).to have_last_name_input }
-      it { expect(settings_page.billing_address_form).to have_address_input }
-      it { expect(settings_page.billing_address_form).to have_city_input }
-      it { expect(settings_page.billing_address_form).to have_zip_code_input }
-      it { expect(settings_page.billing_address_form).to have_country_select }
-      it { expect(settings_page.billing_address_form).to have_phone_input }
+      %i[first_name_input last_name_input address_input city_input
+         zip_code_input country_select phone_input].each do |field|
+        it { expect(settings_page.billing_address_form).to public_send("have_#{field}") }
+      end
     end
 
     context 'with shipping address inputs' do
-      it { expect(settings_page.shipping_address_form).to have_first_name_input }
-      it { expect(settings_page.shipping_address_form).to have_last_name_input }
-      it { expect(settings_page.shipping_address_form).to have_address_input }
-      it { expect(settings_page.shipping_address_form).to have_city_input }
-      it { expect(settings_page.shipping_address_form).to have_zip_code_input }
-      it { expect(settings_page.shipping_address_form).to have_country_select }
-      it { expect(settings_page.shipping_address_form).to have_phone_input }
+      %i[first_name_input last_name_input address_input city_input
+         zip_code_input country_select phone_input].each do |field|
+        it { expect(settings_page.shipping_address_form).to public_send("have_#{field}") }
+      end
     end
 
     context 'with invalid billing address params' do
