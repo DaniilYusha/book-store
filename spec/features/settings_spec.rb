@@ -34,13 +34,21 @@ RSpec.describe 'settings#index', type: :feature do
     end
 
     context 'with invalid billing address params' do
+      let(:result_messages) do
+        {
+          invalid_name: I18n.t('validation.names_format'),
+          invalid_address: I18n.t('validation.address_format'),
+          invalid_zip_code: I18n.t('validation.zip_format'),
+          invalid_phone: I18n.t('validation.phone_format'),
+          invalid_country_code: I18n.t('validation.phone_country_code')
+        }
+      end
+
       before { settings_page.billing_address_form.submit(invalid_address_params) }
 
-      it { expect(settings_page).to have_content(I18n.t('validation.names_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.address_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.zip_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_country_code')) }
+      result_messages.each_value do |message|
+        it { expect(settings_page).to have_content(message) }
+      end
 
       it {
         expect(settings_page.billing_address_form.country_select.value)
@@ -74,13 +82,21 @@ RSpec.describe 'settings#index', type: :feature do
     end
 
     context 'with invalid shipping address params' do
+      let(:result_messages) do
+        {
+          invalid_name: I18n.t('validation.names_format'),
+          invalid_address: I18n.t('validation.address_format'),
+          invalid_zip_code: I18n.t('validation.zip_format'),
+          invalid_phone: I18n.t('validation.phone_format'),
+          invalid_country_code: I18n.t('validation.phone_country_code')
+        }
+      end
+
       before { settings_page.shipping_address_form.submit(invalid_address_params) }
 
-      it { expect(settings_page).to have_content(I18n.t('validation.names_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.address_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.zip_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_country_code')) }
+      result_messages.each_value do |message|
+        it { expect(settings_page).to have_content(message) }
+      end
 
       it {
         expect(settings_page.shipping_address_form.country_select.value)
