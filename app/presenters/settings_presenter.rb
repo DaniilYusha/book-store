@@ -1,9 +1,4 @@
 class SettingsPresenter
-  ADDRESS_TYPES = {
-    billing: 'billing',
-    shipping: 'shipping'
-  }.freeze
-
   def initialize(user:, params: {}, address_errors: {})
     @current_user = user
     @params = params
@@ -35,6 +30,6 @@ class SettingsPresenter
   attr_reader :current_user, :params, :address_errors
 
   def check_address_type_errors(address_type)
-    address_errors if params[:address_type] == ADDRESS_TYPES[address_type]
+    address_errors if params[:address_type] == address_type.to_s
   end
 end
