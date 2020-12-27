@@ -1,11 +1,9 @@
 RSpec.describe 'settings#index', type: :feature do
   let(:user) { create(:user) }
-  let(:sign_in_page) { Pages::SignIn.new }
   let(:settings_page) { Pages::Settings.new }
 
   before do
-    sign_in_page.load
-    sign_in_page.sign_in_form.authenticate_user(user.email, user.password)
+    login_as(user)
     settings_page.load
   end
 
