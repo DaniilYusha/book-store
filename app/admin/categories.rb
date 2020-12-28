@@ -1,6 +1,7 @@
 ActiveAdmin.register Category do
   permit_params :name
-  actions :index, :new, :create, :edit, :update, :destroy
+
+  actions :all, except: :show
 
   controller do
     skip_before_action :set_categories
