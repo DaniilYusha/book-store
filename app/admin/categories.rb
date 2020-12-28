@@ -5,7 +5,7 @@ ActiveAdmin.register Category do
 
   controller do
     skip_before_action :set_categories
-    
+
     def create
       @category = Category.new(permitted_params[:category])
       persist_category(:new)
@@ -20,13 +20,10 @@ ActiveAdmin.register Category do
 
     def persist_category(view)
       service = Admin::PersistEntitiesService.new(entity: :category, params: permitted_params)
+      return redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved')) if service.call
 
-      if service.call
-        redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved'))
-      else
-        @errors = service.errors
-        render(view)
-      end
+      @errors = service.errors
+      render(view)
     end
   end
 
