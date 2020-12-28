@@ -6,17 +6,17 @@ ActiveAdmin.register Author do
   controller do
     def create
       @author = Author.new(permitted_params[:author])
-      handle_author_params(:new)
+      persist_author(:new)
     end
 
     def update
       @author = Author.find_by(id: permitted_params[:id])
-      handle_author_params(:edit)
+      persist_author(:edit)
     end
 
     private
 
-    def handle_author_params(view)
+    def persist_author(view)
       service = Admin::SaveEntitiesService.new(entity: :author, params: permitted_params)
 
       if service.call
