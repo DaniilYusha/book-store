@@ -28,7 +28,7 @@ module Admin
     attr_reader :entity_class, :id, :params, :form
 
     def persist_entity
-      id ? entity_class.find_by(id: id).update(params): entity_class.create(params)
+      id ? entity_class.find_by(id: id).update(params) : entity_class.create(params)
     end
   end
 end
