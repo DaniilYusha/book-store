@@ -1,7 +1,7 @@
 ActiveAdmin.register Author do
   permit_params :first_name, :last_name
 
-  actions :index, :new, :create, :edit, :update, :destroy
+  actions :all, except: :show
 
   controller do
     def create
