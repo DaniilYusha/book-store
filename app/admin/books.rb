@@ -8,17 +8,17 @@ ActiveAdmin.register Book do
   controller do
     def create
       @book = Book.new(permitted_params[:book])
-      handle_book_params(:new)
+      persist_book(:new)
     end
 
     def update
       @book = Book.find_by(id: permitted_params[:id])
-      handle_book_params(:edit)
+      persist_book(:edit)
     end
 
     private
 
-    def handle_book_params(view)
+    def persist_book(view)
       service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
 
       if service.call
