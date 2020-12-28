@@ -20,13 +20,10 @@ ActiveAdmin.register Book do
 
     def persist_book(view)
       service = Admin::PersistEntitiesService.new(entity: :book, params: permitted_params)
+      return redirect_to(admin_books_path, notice: I18n.t('notice.book.saved')) if service.call
 
-      if service.call
-        redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))
-      else
-        @errors = service.errors
-        render(view)
-      end
+      @errors = service.errors
+      render(view)
     end
   end
 
