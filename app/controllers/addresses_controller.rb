@@ -3,12 +3,10 @@ class AddressesController < ApplicationController
 
   def create
     service = PersistAddressService.new(user: current_user, params: address_params)
-    if service.call
-      redirect_to(settings_path, notice: I18n.t('notice.address.saved'))
-    else
-      @presenter = SettingsPresenter.new(user: current_user, params: address_params, address_errors: service.errors)
-      render 'settings/index'
-    end
+    return redirect_to(settings_path, notice: I18n.t('notice.address.saved')) if service.call
+
+    @presenter = SettingsPresenter.new(user: current_user, params: address_params, address_errors: service.errors)
+    render 'settings/index'
   end
 
   private

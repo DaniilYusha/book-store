@@ -1,11 +1,9 @@
 RSpec.describe 'settings#index', type: :feature do
   let(:user) { create(:user) }
-  let(:sign_in_page) { Pages::SignIn.new }
   let(:settings_page) { Pages::Settings.new }
 
   before do
-    sign_in_page.load
-    sign_in_page.sign_in_form.authenticate_user(user.email, user.password)
+    login_as(user)
     settings_page.load
   end
 
@@ -22,33 +20,37 @@ RSpec.describe 'settings#index', type: :feature do
     end
 
     context 'with billing address inputs' do
-      it { expect(settings_page.billing_address_form).to have_first_name_input }
-      it { expect(settings_page.billing_address_form).to have_last_name_input }
-      it { expect(settings_page.billing_address_form).to have_address_input }
-      it { expect(settings_page.billing_address_form).to have_city_input }
-      it { expect(settings_page.billing_address_form).to have_zip_code_input }
-      it { expect(settings_page.billing_address_form).to have_country_select }
-      it { expect(settings_page.billing_address_form).to have_phone_input }
+      %i[first_name_input last_name_input address_input city_input
+         zip_code_input country_select phone_input].each do |field|
+        it { expect(settings_page.billing_address_form).to public_send("have_#{field}") }
+      end
     end
 
     context 'with shipping address inputs' do
-      it { expect(settings_page.shipping_address_form).to have_first_name_input }
-      it { expect(settings_page.shipping_address_form).to have_last_name_input }
-      it { expect(settings_page.shipping_address_form).to have_address_input }
-      it { expect(settings_page.shipping_address_form).to have_city_input }
-      it { expect(settings_page.shipping_address_form).to have_zip_code_input }
-      it { expect(settings_page.shipping_address_form).to have_country_select }
-      it { expect(settings_page.shipping_address_form).to have_phone_input }
+      %i[first_name_input last_name_input address_input city_input
+         zip_code_input country_select phone_input].each do |field|
+        it { expect(settings_page.shipping_address_form).to public_send("have_#{field}") }
+      end
     end
 
     context 'with invalid billing address params' do
+      let(:result_messages) do
+        {
+          invalid_name: I18n.t('validation.names_format'),
+          invalid_address: I18n.t('validation.address_format'),
+          invalid_zip_code: I18n.t('validation.zip_format'),
+          invalid_phone: I18n.t('validation.phone_format'),
+          invalid_country_code: I18n.t('validation.phone_country_code')
+        }
+      end
+
       before { settings_page.billing_address_form.submit(invalid_address_params) }
 
-      it { expect(settings_page).to have_content(I18n.t('validation.names_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.address_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.zip_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_country_code')) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_name]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_address]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_zip_code]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_phone]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_country_code]) }
 
       it {
         expect(settings_page.billing_address_form.country_select.value)
@@ -82,13 +84,23 @@ RSpec.describe 'settings#index', type: :feature do
     end
 
     context 'with invalid shipping address params' do
+      let(:result_messages) do
+        {
+          invalid_name: I18n.t('validation.names_format'),
+          invalid_address: I18n.t('validation.address_format'),
+          invalid_zip_code: I18n.t('validation.zip_format'),
+          invalid_phone: I18n.t('validation.phone_format'),
+          invalid_country_code: I18n.t('validation.phone_country_code')
+        }
+      end
+
       before { settings_page.shipping_address_form.submit(invalid_address_params) }
 
-      it { expect(settings_page).to have_content(I18n.t('validation.names_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.address_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.zip_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_format')) }
-      it { expect(settings_page).to have_content(I18n.t('validation.phone_country_code')) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_name]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_address]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_zip_code]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_phone]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_country_code]) }
 
       it {
         expect(settings_page.shipping_address_form.country_select.value)
