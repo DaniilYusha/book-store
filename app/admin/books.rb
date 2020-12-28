@@ -19,7 +19,7 @@ ActiveAdmin.register Book do
     private
 
     def persist_book(view)
-      service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
+      service = Admin::PersistEntitiesService.new(entity: :book, params: permitted_params)
 
       if service.call
         redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))

@@ -17,7 +17,7 @@ ActiveAdmin.register Author do
     private
 
     def persist_author(view)
-      service = Admin::SaveEntitiesService.new(entity: :author, params: permitted_params)
+      service = Admin::PersistEntitiesService.new(entity: :author, params: permitted_params)
 
       if service.call
         redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved'))

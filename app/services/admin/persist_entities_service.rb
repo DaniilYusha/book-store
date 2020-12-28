@@ -1,5 +1,5 @@
 module Admin
-  class SaveEntitiesService
+  class PersistEntitiesService
     attr_reader :errors
 
     ENTITIES = {

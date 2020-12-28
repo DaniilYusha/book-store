@@ -17,7 +17,7 @@ ActiveAdmin.register Category do
     private
 
     def persist_category(view)
-      service = Admin::SaveEntitiesService.new(entity: :category, params: permitted_params)
+      service = Admin::PersistEntitiesService.new(entity: :category, params: permitted_params)
 
       if service.call
         redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved'))
