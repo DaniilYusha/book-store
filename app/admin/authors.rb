@@ -28,9 +28,7 @@ ActiveAdmin.register Author do
     end
   end
 
-  filter :first_name
-  filter :last_name
-  filter :books
+  remove_filter :author_books
 
   index do
     selectable_column
