@@ -41,9 +41,7 @@ ActiveAdmin.register Book do
     column :title
     column :authors_list
     column :short_description
-    column :price do |book|
-      number_to_currency(book.price)
-    end
+    column :price
     actions
   end
 
