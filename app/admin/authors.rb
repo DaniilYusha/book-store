@@ -10,7 +10,7 @@ ActiveAdmin.register Author do
     end
 
     def update
-      @author = Author.find_by(id: params[:id])
+      @author = Author.find_by(id: permitted_params[:id])
       handle_author_params(:edit)
     end
 

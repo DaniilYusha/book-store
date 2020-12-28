@@ -11,7 +11,7 @@ ActiveAdmin.register Category do
     end
 
     def update
-      @category = Category.find_by(id: params[:id])
+      @category = Category.find_by(id: permitted_params[:id])
       handle_category_params(:edit)
     end
 

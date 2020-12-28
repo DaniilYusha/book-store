@@ -12,7 +12,7 @@ ActiveAdmin.register Book do
     end
 
     def update
-      @book = Book.find_by(id: params[:id])
+      @book = Book.find_by(id: permitted_params[:id])
       handle_book_params(:edit)
     end
 
