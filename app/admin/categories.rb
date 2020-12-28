@@ -29,8 +29,6 @@ ActiveAdmin.register Category do
     end
   end
 
-  filter :name
-
   index do
     selectable_column
     id_column
