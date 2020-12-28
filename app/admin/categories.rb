@@ -7,17 +7,17 @@ ActiveAdmin.register Category do
 
     def create
       @category = Category.new(permitted_params[:category])
-      handle_category_params(:new)
+      persist_category(:new)
     end
 
     def update
       @category = Category.find_by(id: permitted_params[:id])
-      handle_category_params(:edit)
+      persist_category(:edit)
     end
 
     private
 
-    def handle_category_params(view)
+    def persist_category(view)
       service = Admin::SaveEntitiesService.new(entity: :category, params: permitted_params)
 
       if service.call
