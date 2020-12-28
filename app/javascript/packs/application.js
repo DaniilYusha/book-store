@@ -10,5 +10,6 @@ require("typeface-open-sans")
 
 require("packs/book/read_more")
 require("packs/catalog/pagination")
+require("packs/settings/remove_account_checkbox")
 require("packs/users/reset_password")
 require("packs/flash")

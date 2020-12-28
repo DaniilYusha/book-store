@@ -6,6 +6,11 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:uid).of_type(:string) }
   end
 
+  describe 'associations' do
+    it { is_expected.to have_one(:billing_address).class_name('Address').dependent(:destroy) }
+    it { is_expected.to have_one(:shipping_address).class_name('Address').dependent(:destroy) }
+  end
+
   describe '.from_omniauth' do
     let(:auth) { OmniAuth.config.mock_auth[:facebook] }
 
