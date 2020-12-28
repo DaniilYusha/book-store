@@ -46,9 +46,11 @@ RSpec.describe 'settings#index', type: :feature do
 
       before { settings_page.billing_address_form.submit(invalid_address_params) }
 
-      result_messages.each_value do |message|
-        it { expect(settings_page).to have_content(message) }
-      end
+      it { expect(settings_page).to have_content(result_messages[:invalid_name]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_address]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_zip_code]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_phone]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_country_code]) }
 
       it {
         expect(settings_page.billing_address_form.country_select.value)
@@ -94,9 +96,11 @@ RSpec.describe 'settings#index', type: :feature do
 
       before { settings_page.shipping_address_form.submit(invalid_address_params) }
 
-      result_messages.each_value do |message|
-        it { expect(settings_page).to have_content(message) }
-      end
+      it { expect(settings_page).to have_content(result_messages[:invalid_name]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_address]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_zip_code]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_phone]) }
+      it { expect(settings_page).to have_content(result_messages[:invalid_country_code]) }
 
       it {
         expect(settings_page.shipping_address_form.country_select.value)
