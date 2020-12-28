@@ -30,11 +30,9 @@ ActiveAdmin.register Book do
     end
   end
 
+  preserve_default_filters!
+  remove_filter :author_books
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
-  filter :category
-  filter :title
-  filter :price
-  filter :published_at
 
   index do
     selectable_column
