@@ -17,7 +17,7 @@ module Admin
     end
 
     def call
-      return save_entity if form.valid?
+      return persist_entity if form.valid?
 
       @errors = form.errors
       false
@@ -27,7 +27,7 @@ module Admin
 
     attr_reader :entity_class, :id, :params, :form
 
-    def save_entity
+    def persist_entity
       id.nil? ? entity_class.create(params) : entity_class.find_by(id: id).update(params)
     end
   end
