@@ -4,6 +4,8 @@ ActiveAdmin.register Category do
   actions :all, except: :show
 
   controller do
+    skip_before_action :set_categories
+    
     def create
       @category = Category.new(permitted_params[:category])
       persist_category(:new)
