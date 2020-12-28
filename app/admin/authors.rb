@@ -18,13 +18,10 @@ ActiveAdmin.register Author do
 
     def persist_author(view)
       service = Admin::PersistEntitiesService.new(entity: :author, params: permitted_params)
+      return redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved')) if service.call
 
-      if service.call
-        redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved'))
-      else
-        @errors = service.errors
-        render(view)
-      end
+      @errors = service.errors
+      render(view)
     end
   end
 
