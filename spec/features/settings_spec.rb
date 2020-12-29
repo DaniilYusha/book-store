@@ -3,7 +3,7 @@ RSpec.describe 'settings#index', type: :feature do
   let(:settings_page) { Pages::Settings.new }
 
   before do
-    login_as(user)
+    login_as(user, scope: :user)
     settings_page.load
   end
 
