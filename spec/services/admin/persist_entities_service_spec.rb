@@ -1,10 +1,10 @@
-RSpec.describe Admin::SaveEntitiesService do
+RSpec.describe Admin::PersistEntitiesService do
   describe '#call' do
     context 'when save author with valid params' do
       let(:valid_author_params) { { author: attributes_for(:author) } }
 
       it 'returns new author' do
-        expect(described_class.new(entity: :author, params: valid_author_params).call.class).to eq(Author)
+        expect(described_class.new(entity: :author, params: valid_author_params).call).to be true
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe Admin::SaveEntitiesService do
       let(:valid_book_params) { { book: attributes_for(:book, category_id: category.id, author_ids: [author.id]) } }
 
       it 'returns new book' do
-        expect(described_class.new(entity: :book, params: valid_book_params).call.class).to eq(Book)
+        expect(described_class.new(entity: :book, params: valid_book_params).call).to be true
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Admin::SaveEntitiesService do
       let(:valid_category_params) { { category: attributes_for(:category) } }
 
       it 'returns new category' do
-        expect(described_class.new(entity: :category, params: valid_category_params).call.class).to eq(Category)
+        expect(described_class.new(entity: :category, params: valid_category_params).call).to be true
       end
     end
 

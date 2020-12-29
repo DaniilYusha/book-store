@@ -17,10 +17,9 @@ module Admin
     end
 
     def call
-      return persist_entity if form.valid?
+      form.valid? ? persist_entity : @errors = form.errors
 
-      @errors = form.errors
-      false
+      errors.blank?
     end
 
     private
