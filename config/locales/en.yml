@@ -57,7 +57,7 @@ en:
       saved: Your address has been successfully saved
       updated: Your address has been successfully updated
     review:
-      created: Thanks for Review. It will be published as soon as Admin will approve it.
+      created: Thanks for review. It will be published as soon as admin will approve it.
     category:
       saved: Category was successfully saved
     author:
