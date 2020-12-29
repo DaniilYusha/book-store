@@ -1,11 +1,7 @@
 RSpec.describe 'admin/categories', type: :feature do
   let(:admin) { create(:admin_user) }
-  let(:login_page) { Pages::Admin::LogIn.new }
 
-  before do
-    login_page.load
-    login_page.form.fill_in(admin.email, admin.password)
-  end
+  before { login_as(admin) }
 
   describe '/index' do
     let_it_be(:category) { create(:category) }
