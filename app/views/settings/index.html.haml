@@ -7,6 +7,6 @@
       %a.tab-link{href: "#privacy", 'aria-controls': "privacy", role: "tab", 'data-toggle': "tab"}= t('devise.registrations.edit.privacy')
   .tab-content
     #address.tab-pane.fade.in.active{role: "tabpanel"}
-      = render partial: 'devise/registrations/partials/addresses', locals: { billing_address: @billing_address, shipping_address: @shipping_address, countries: @countries }
+      = render partial: 'settings/partials/addresses', locals: { billing_address: @presenter.billing_address, shipping_address: @presenter.shipping_address, billing_errors: @presenter.billing_errors, shipping_errors: @presenter.shipping_errors, countries: @presenter.countries }
     #privacy.tab-pane.fade{role: "tabpanel"}
-      = render partial: 'devise/registrations/partials/privacy'
+      = render partial: 'settings/partials/privacy'

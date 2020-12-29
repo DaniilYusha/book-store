@@ -8,29 +8,28 @@ ActiveAdmin.register Book do
   controller do
     def create
       @book = Book.new(permitted_params[:book])
-      handle_book_params(:new)
+      persist_book(:new)
     end
 
     def update
-      @book = Book.find_by(id: params[:id])
-      handle_book_params(:edit)
+      @book = Book.find_by(id: permitted_params[:id])
+      persist_book(:edit)
     end
 
     private
 
-    def handle_book_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
-      @service.call
+    def persist_book(view)
+      service = Admin::PersistEntitiesService.new(entity: :book, params: permitted_params)
+      return redirect_to(admin_books_path, notice: I18n.t('notice.book.saved')) if service.call
 
-      @service.errors.any? ? render(view) : redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))
+      @errors = service.errors
+      render(view)
     end
   end
 
+  preserve_default_filters!
+  remove_filter :author_books
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
-  filter :category
-  filter :title
-  filter :price
-  filter :published_at
 
   index do
     selectable_column

@@ -64,8 +64,12 @@ en:
       saved: Author was successfully saved
     book:
       saved: Book was successfully saved
+    admin:
+      created: Admin user was successfully created
+      updated: Admin user was successfully updated
   alert:
     blank: can't be blank
+    privacy: Your form contain errors. Check it in privacy section!
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.

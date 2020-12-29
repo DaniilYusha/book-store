@@ -1,7 +1,8 @@
 class CategoryForm
   include ActiveModel::Model
+  include Virtus.model
 
-  attr_accessor :name
+  attribute :name, String
 
   NAME_MAX_LENGTH = 50
 

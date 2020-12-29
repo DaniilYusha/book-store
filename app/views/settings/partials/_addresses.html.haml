@@ -9,8 +9,8 @@
     .col-md-5.mb-40
       .visible-xs.visible-sm
         %h3.general-subtitle.mt-0= t('devise.registrations.edit.billing_address')
-      = render partial: 'devise/registrations/partials/forms/address', locals: { address: billing_address, address_type: :billing, countries: countries }
+      = render partial: 'settings/partials/forms/address', locals: { address: billing_address, address_type: :billing, errors: billing_errors, countries: countries }
     .col-md-5.col-md-offset-1.mb-25
       .visible-xs.visible-sm
         %h3.general-subtitle.mt-0= t('devise.registrations.edit.shipping_address')
-      = render partial: 'devise/registrations/partials/forms/address', locals: { address: shipping_address, address_type: :shipping, countries: countries }
+      = render partial: 'settings/partials/forms/address', locals: { address: shipping_address, address_type: :shipping, errors: shipping_errors, countries: countries }

@@ -1,31 +1,31 @@
 ActiveAdmin.register Category do
   permit_params :name
-  actions :index, :new, :create, :edit, :update, :destroy
+
+  actions :all, except: :show
 
   controller do
     skip_before_action :set_categories
 
     def create
       @category = Category.new(permitted_params[:category])
-      handle_category_params(:new)
+      persist_category(:new)
     end
 
     def update
-      @category = Category.find_by(id: params[:id])
-      handle_category_params(:edit)
+      @category = Category.find_by(id: permitted_params[:id])
+      persist_category(:edit)
     end
 
     private
 
-    def handle_category_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :category, params: permitted_params)
-      @service.call
+    def persist_category(view)
+      service = Admin::PersistEntitiesService.new(entity: :category, params: permitted_params)
+      return redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved')) if service.call
 
-      @service.errors.any? ? render(view) : redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved'))
+      @errors = service.errors
+      render(view)
     end
   end
-
-  filter :name
 
   index do
     selectable_column

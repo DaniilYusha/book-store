@@ -1,32 +1,31 @@
 ActiveAdmin.register Author do
   permit_params :first_name, :last_name
 
-  actions :index, :new, :create, :edit, :update, :destroy
+  actions :all, except: :show
 
   controller do
     def create
       @author = Author.new(permitted_params[:author])
-      handle_author_params(:new)
+      persist_author(:new)
     end
 
     def update
-      @author = Author.find_by(id: params[:id])
-      handle_author_params(:edit)
+      @author = Author.find_by(id: permitted_params[:id])
+      persist_author(:edit)
     end
 
     private
 
-    def handle_author_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :author, params: permitted_params)
-      @service.call
+    def persist_author(view)
+      service = Admin::PersistEntitiesService.new(entity: :author, params: permitted_params)
+      return redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved')) if service.call
 
-      @service.errors.any? ? render(view) : redirect_to(admin_authors_path, notice: I18n.t('notice.author.saved'))
+      @errors = service.errors
+      render(view)
     end
   end
 
-  filter :first_name
-  filter :last_name
-  filter :books
+  remove_filter :author_books
 
   index do
     selectable_column

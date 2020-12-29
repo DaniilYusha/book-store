@@ -1,4 +1,2 @@
-- if object&.errors&.any?
-  %ul.errors
-    - object.errors.full_messages.each do |message|
-      %li= message
+- if errors.present? && errors.messages.has_key?(field)
+  %p.active-admin-field-error= errors.full_messages_for(field).to_sentence
