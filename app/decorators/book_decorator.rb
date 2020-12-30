@@ -4,7 +4,6 @@ class BookDecorator < ApplicationDecorator
 
   delegate_all
   decorates_association :authors
-  decorates_association :reviews
 
   def authors_list
     object.authors.map { |author| author.decorate.full_name }.join(', ')
