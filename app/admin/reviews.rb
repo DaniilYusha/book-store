@@ -10,7 +10,6 @@ ActiveAdmin.register Review do
   scope :rejected
 
   config.filters = false
-  config.batch_actions = true
 
   index do
     selectable_column
