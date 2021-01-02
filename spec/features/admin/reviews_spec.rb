@@ -13,15 +13,9 @@ RSpec.describe 'admin/reviews', type: :feature do
     context 'with page elements' do
       let_it_be(:review) { create(:review, status: :unprocessed, book: book, user: user) }
 
-      it { expect(reviews_page.main_content).to have_id_column }
-      it { expect(reviews_page.main_content).to have_book_column }
-      it { expect(reviews_page.main_content).to have_title_column }
-      it { expect(reviews_page.main_content).to have_created_at_column }
-      it { expect(reviews_page.main_content).to have_user_column }
-      it { expect(reviews_page.main_content).to have_status_column }
-      it { expect(reviews_page.main_content).to have_unprocessed_link }
-      it { expect(reviews_page.main_content).to have_approved_link }
-      it { expect(reviews_page.main_content).to have_rejected_link }
+      %i[id_column book_column title_column created_at_column user_column status_column unprocessed_link approved_link rejected_link].each do |element|
+        it { expect(reviews_page.main_content).to public_send("have_#{element}") }
+      end
     end
 
     context 'with unprocessed reviews' do
