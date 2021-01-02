@@ -7,7 +7,7 @@ FactoryBot.define do
     is_verified { false }
     created_at { FFaker::Time.date }
 
-    association :book
-    association :user
+    book
+    user
   end
 end
