@@ -61,13 +61,11 @@ RSpec.describe 'admin/reviews', type: :feature do
 
     context 'with page elements' do
       it { expect(review_page.review_details).to have_header }
-      it { expect(review_page.review_details).to have_title_row }
-      it { expect(review_page.review_details).to have_text_row }
-      it { expect(review_page.review_details).to have_rating_row }
-      it { expect(review_page.review_details).to have_status_row }
-      it { expect(review_page.review_details).to have_is_verified_row }
-      it { expect(review_page.review_details).to have_user_row }
-      it { expect(review_page.review_details).to have_book_row }
+
+      %i[title_row text_row rating_row status_row is_verified_row user_row book_row].each do |element|
+        it { expect(review_page.review_details).to public_send("have_#{element}") }
+      end
+
       it { expect(review_page.actions).to have_approve_button }
       it { expect(review_page.actions).to have_reject_button }
 
