@@ -1,8 +1,0 @@
-= semantic_form_for [:admin, @author], builder: ActiveAdmin::FormBuilder do |f|
-  = f.inputs 'Details' do
-    - %i[first_name last_name].each do |field|
-      = f.input field, wrapper_html: { class: ('error' if @errors&.messages&.has_key?(field)) }
-      = render partial: 'admin/shared/errors', locals: { errors: @errors, field: field }
-  = f.actions do
-    = f.action :submit
-    = f.cancel_link
