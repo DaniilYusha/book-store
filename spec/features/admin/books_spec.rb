@@ -75,12 +75,7 @@ RSpec.describe 'admin/books', type: :feature do
       it { expect(new_book_page.text).to have_content(author.full_name) }
       it { expect(new_book_page.text).to have_content(book_params[:title]) }
       it { expect(new_book_page.text).to have_content(book_params[:price]) }
-
-      it {
-        expect(new_book_page.text).to have_content(
-          book_params[:description].truncate(BookDecorator::SHORT_DESCRIPTION_LENGTH)
-        )
-      }
+      it { expect(new_book_page.text).to have_content(book_params[:description]) }
     end
 
     context 'when fill in form with invalid params' do
@@ -134,12 +129,7 @@ RSpec.describe 'admin/books', type: :feature do
       it { expect(edit_book_page.text).to have_content(author.full_name) }
       it { expect(edit_book_page.text).to have_content(book_params[:title]) }
       it { expect(edit_book_page.text).to have_content(book_params[:price]) }
-
-      it {
-        expect(edit_book_page.text).to have_content(
-          book_params[:description].truncate(BookDecorator::SHORT_DESCRIPTION_LENGTH)
-        )
-      }
+      it { expect(edit_book_page.text).to have_content(book_params[:description]) }
     end
 
     context 'when fill in form with invalid params' do
