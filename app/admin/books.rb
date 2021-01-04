@@ -5,28 +5,6 @@ ActiveAdmin.register Book do
 
   decorate_with BookDecorator
 
-  controller do
-    def create
-      @book = Book.new(permitted_params[:book])
-      persist_book(:new)
-    end
-
-    def update
-      @book = Book.find_by(id: permitted_params[:id])
-      persist_book(:edit)
-    end
-
-    private
-
-    def persist_book(view)
-      service = Admin::PersistEntitiesService.new(entity: :book, params: permitted_params)
-      return redirect_to(admin_books_path, notice: I18n.t('notice.book.saved')) if service.call
-
-      @errors = service.errors
-      render(view)
-    end
-  end
-
   preserve_default_filters!
   remove_filter :author_books
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
@@ -61,5 +39,19 @@ ActiveAdmin.register Book do
     end
   end
 
-  form partial: 'form'
+  form do |f|
+    f.inputs do
+      f.input :category, as: :radio
+      f.input :authors, as: :check_boxes, collection: Author.all.decorate
+      f.input :title
+      f.input :description
+      f.input :price
+      f.input :published_at, as: :datepicker
+      f.input :height
+      f.input :width
+      f.input :depth
+      f.input :materials
+    end
+    actions
+  end
 end
