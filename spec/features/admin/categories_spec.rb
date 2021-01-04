@@ -35,16 +35,7 @@ RSpec.describe 'admin/categories', type: :feature do
       before { new_category_page.fields.submit(category_params) }
 
       it { expect(new_category_page.text).to have_content(category_params[:name]) }
-      it { expect(new_category_page.text).to have_content(I18n.t('notice.category.saved')) }
-    end
-
-    context 'when fill in form with invalid params' do
-      let(:category_params) { attributes_for(:category, name: '') }
-
-      before { new_category_page.fields.submit(category_params) }
-
-      it { expect(new_category_page.fields.text).to have_content(I18n.t('alert.blank')) }
-      it { expect(new_category_page.fields.name_input.value).to have_content(category_params[:name]) }
+      it { expect(new_category_page.text).to have_content(I18n.t('notice.category.created')) }
     end
   end
 
@@ -67,16 +58,7 @@ RSpec.describe 'admin/categories', type: :feature do
       before { edit_category_page.fields.submit(category_params) }
 
       it { expect(edit_category_page.text).to have_content(category_params[:name]) }
-      it { expect(edit_category_page.text).to have_content(I18n.t('notice.category.saved')) }
-    end
-
-    context 'when fill in form with invalid params' do
-      let(:category_params) { attributes_for(:category, name: '') }
-
-      before { edit_category_page.fields.submit(category_params) }
-
-      it { expect(edit_category_page.fields.text).to have_content(I18n.t('alert.blank')) }
-      it { expect(edit_category_page.fields.name_input.value).to have_content(category.name) }
+      it { expect(edit_category_page.text).to have_content(I18n.t('notice.category.updated')) }
     end
   end
 end
