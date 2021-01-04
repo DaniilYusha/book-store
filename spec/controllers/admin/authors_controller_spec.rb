@@ -12,12 +12,6 @@ RSpec.describe Admin::AuthorsController, type: :controller do
       it { expect(response).to redirect_to(admin_authors_path) }
       it { expect(response).to have_http_status(:found) }
     end
-
-    context 'with invalid params' do
-      let(:params) { attributes_for(:category, first_name: '') }
-
-      it { expect(response).to have_http_status :success }
-    end
   end
 
   describe 'PUT update' do
@@ -30,12 +24,6 @@ RSpec.describe Admin::AuthorsController, type: :controller do
 
       it { expect(response).to redirect_to(admin_authors_path) }
       it { expect(response).to have_http_status(:redirect) }
-    end
-
-    context 'with invalid params' do
-      let(:params) { attributes_for(:category, first_name: '') }
-
-      it { expect(response).to have_http_status(:success) }
     end
   end
 end

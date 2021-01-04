@@ -70,7 +70,7 @@ RSpec.describe 'admin/books', type: :feature do
 
       before { new_book_page.fields.submit(book_params) }
 
-      it { expect(new_book_page.text).to have_content(I18n.t('notice.book.saved')) }
+      it { expect(new_book_page.text).to have_content(I18n.t('notice.book.created')) }
       it { expect(new_book_page.text).to have_content(category.name) }
       it { expect(new_book_page.text).to have_content(author.full_name) }
       it { expect(new_book_page.text).to have_content(book_params[:title]) }
@@ -84,15 +84,15 @@ RSpec.describe 'admin/books', type: :feature do
     end
 
     context 'when fill in form with invalid params' do
-      let(:book_category) { { category: category.name } }
-      let(:book_params) { attributes_for(:book, price: '').merge(book_category) }
+      let(:book_category) { { category: '' } }
+      let(:book_params) { attributes_for(:book).merge(book_category) }
 
       before { new_book_page.fields.submit(book_params) }
 
-      it { expect(new_book_page.text).to have_content(I18n.t('alert.blank')) }
-      it { expect(new_book_page.fields.category_select.value).to have_content(category.id) }
+      it { expect(new_book_page.text).to have_content(I18n.t('alert.must_exist')) }
       it { expect(new_book_page.fields.title_input.value).to have_content(book_params[:title]) }
       it { expect(new_book_page.fields.description_input.value).to have_content(book_params[:description]) }
+      it { expect(new_book_page.fields.price_input.value).to have_content(book_params[:price]) }
       it { expect(new_book_page.fields.height_input.value).to have_content(book_params[:height]) }
       it { expect(new_book_page.fields.width_input.value).to have_content(book_params[:width]) }
       it { expect(new_book_page.fields.depth_input.value).to have_content(book_params[:depth]) }
@@ -129,7 +129,7 @@ RSpec.describe 'admin/books', type: :feature do
 
       before { edit_book_page.fields.submit(book_params) }
 
-      it { expect(edit_book_page.text).to have_content(I18n.t('notice.book.saved')) }
+      it { expect(edit_book_page.text).to have_content(I18n.t('notice.book.updated')) }
       it { expect(edit_book_page.text).to have_content(category.name) }
       it { expect(edit_book_page.text).to have_content(author.full_name) }
       it { expect(edit_book_page.text).to have_content(book_params[:title]) }
@@ -143,20 +143,20 @@ RSpec.describe 'admin/books', type: :feature do
     end
 
     context 'when fill in form with invalid params' do
-      let(:book_category) { { category: category.name } }
-      let(:book_params) { attributes_for(:book, price: '').merge(book_category) }
+      let(:book_category) { { category: '' } }
+      let(:book_params) { attributes_for(:book).merge(book_category) }
 
       before { edit_book_page.fields.submit(book_params) }
 
-      it { expect(edit_book_page.text).to have_content(I18n.t('alert.blank')) }
+      it { expect(edit_book_page.text).to have_content(I18n.t('alert.must_exist')) }
       it { expect(edit_book_page.fields.category_select.text).to have_content(category.name) }
-      it { expect(edit_book_page.fields.title_input.value).to have_content(book.title) }
-      it { expect(edit_book_page.fields.description_input.value).to have_content(book.description) }
-      it { expect(edit_book_page.fields.price_input.value).to have_content(book.price) }
-      it { expect(edit_book_page.fields.height_input.value).to have_content(book.height) }
-      it { expect(edit_book_page.fields.width_input.value).to have_content(book.width) }
-      it { expect(edit_book_page.fields.depth_input.value).to have_content(book.depth) }
-      it { expect(edit_book_page.fields.materials_input.value).to have_content(book.materials) }
+      it { expect(edit_book_page.fields.title_input.value).to have_content(book_params[:title]) }
+      it { expect(edit_book_page.fields.description_input.value).to have_content(book_params[:description]) }
+      it { expect(edit_book_page.fields.price_input.value).to have_content(book_params[:price]) }
+      it { expect(edit_book_page.fields.height_input.value).to have_content(book_params[:height]) }
+      it { expect(edit_book_page.fields.width_input.value).to have_content(book_params[:width]) }
+      it { expect(edit_book_page.fields.depth_input.value).to have_content(book_params[:depth]) }
+      it { expect(edit_book_page.fields.materials_input.value).to have_content(book_params[:materials]) }
     end
   end
 end
