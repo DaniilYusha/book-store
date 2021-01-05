@@ -1,4 +1,4 @@
-class SaveReviewService
+class PersistReviewService
   attr_reader :errors
 
   def initialize(params)
@@ -8,6 +8,8 @@ class SaveReviewService
 
   def call
     review_form.valid? ? Review.create(params) : @errors = review_form.errors.full_messages.join(', ')
+
+    errors.blank?
   end
 
   private

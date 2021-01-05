@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'activeadmin', '~> 2.8'
-gem 'activeadmin_addons', '~> 1.7'
 gem 'aws-sdk-s3', '~> 1.83'
 gem 'bootsnap', '~> 1.4'
 gem 'country_select', '~> 4.0'
@@ -20,7 +19,8 @@ gem 'rails', '~> 6.0.3'
 gem 'sass-rails', '~> 6.0'
 gem 'seedbank', '~> 0.5.0'
 gem 'simple_form', '~> 5.0'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2'
+gem 'virtus', '~> 1.0'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do

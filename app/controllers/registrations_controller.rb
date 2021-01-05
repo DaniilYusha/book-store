@@ -1,31 +1,27 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
 
-  def edit
-    set_addresses
-  end
-
   def update
-    set_addresses
-    super
+    update_resource(resource, account_update_params) ? send_successful_response : send_fail_response
   end
 
-  protected
+  private
+
+  def send_successful_response
+    set_flash_message_for_update(resource, resource.unconfirmed_email)
+    bypass_sign_in(resource, scope: resource_name) if sign_in_after_change_password?
+    respond_with(resource, location: settings_path)
+  end
+
+  def send_fail_response
+    flash.alert = I18n.t('alert.privacy')
+    @presenter = SettingsPresenter.new(user: resource)
+    render 'settings/index'
+  end
 
   def update_resource(resource, params)
     return super unless params.key?(:email)
 
     resource.update_without_password(params)
-  end
-
-  def after_update_path_for(_resource)
-    edit_user_registration_path
-  end
-
-  private
-
-  def set_addresses
-    @billing_address = current_user.billing_address || Address.new
-    @shipping_address = current_user.shipping_address || Address.new
   end
 end

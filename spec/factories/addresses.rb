@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :address do
-    first_name { 'Daniil' }
-    last_name  { 'Yusha' }
-    address { 'Central Park' }
-    city { 'Dnipro' }
-    zip_code { rand(1000..9999) }
+    first_name { FFaker::Name.first_name }
+    last_name  { FFaker::Name.last_name }
+    address { FFaker::Address.street_name }
+    city { FFaker::Address.city }
+    zip_code { rand(1000..9999).to_s }
     country { 'Ukraine' }
     phone { '+3808005553535' }
-    address_type { AddressForm::BILLING_TYPE }
+    address_type { 'billing' }
 
     trait :for_user do
       association :addressable, factory: :user

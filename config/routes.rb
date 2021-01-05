@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   }
 
   resources :books, only: %i[index show]
-  resources :addresses, only: %i[create update]
-  resources :reviews, only: %i[create]
+  resources :settings, only: :index
+  resources :addresses, only: :create
+  resources :reviews, only: :create
   root 'pages#home'
 end

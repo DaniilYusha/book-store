@@ -1,8 +1,0 @@
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, html: { id: 'edit-email' } ) do |f|
-  = f.input :email
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    .mb-25.reconfirmation-email
-      %p= t('devise.registrations.edit.reconfirmation')
-      %p.in-gold-500= resource.unconfirmed_email
-  .general-text-align
-    = f.button :submit, t('buttons.save')
