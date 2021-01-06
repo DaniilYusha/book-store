@@ -24,7 +24,8 @@
 /public/packs
 /public/packs-test
 /node_modules
-/storage
+/app/assets/images/default.jpg
+
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
