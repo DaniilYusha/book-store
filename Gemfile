@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
+gem 'activeadmin', '~> 2.8'
 gem 'bootsnap', '~> 1.4'
 gem 'country_select', '~> 4.0'
 gem 'devise', '~> 4.7'

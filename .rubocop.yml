@@ -22,10 +22,19 @@ Metrics/BlockLength:
     - db/schema.rb
     - config/environments/*.rb
     - config/initializers/simple_form_bootstrap.rb
+    - app/admin/*.rb
 
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
+
+Style/SymbolProc:
+  Exclude:
+    - app/admin/books.rb
+
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - spec/controllers/admin/books_controller_spec.rb
 
 RSpec/LetSetup:
   Exclude:

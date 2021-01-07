@@ -8,3 +8,7 @@ en:
               invalid: must contain at least 1 uppercase, at least 1 lowercase, at least 1 number
             email:
               invalid: is invalid
+    attributes:
+      book:
+        authors_list: Authors
+        materials_list: Materials
