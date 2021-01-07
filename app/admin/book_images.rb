@@ -5,7 +5,7 @@ ActiveAdmin.register BookImage do
     selectable_column
     id_column
     column :book
-    column :photo do |book_image|
+    column :image do |book_image|
       image_tag(book_image.image_url(:w170))
     end
     actions
@@ -14,7 +14,7 @@ ActiveAdmin.register BookImage do
   show do
     attributes_table do
       row :book
-      row :photo do |book_image|
+      row :image do |book_image|
         image_tag(book_image.image_url(:w170))
       end
     end
