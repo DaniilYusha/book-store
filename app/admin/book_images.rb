@@ -3,24 +3,17 @@ ActiveAdmin.register BookImage do
 
   index do
     selectable_column
-
+    id_column
+    column :book
     column :photo do |book_image|
       image_tag(book_image.image_url(:w170))
     end
-
-    column :book_id do |book_image|
-      Book.find_by(id: BookImage.find_by(id: book_image.id).book_id)
-    end
-
     actions
   end
 
   show do
     attributes_table do
-      row :book_id do |book_image|
-        Book.find_by(id: BookImage.find_by(id: book_image.id).book_id)
-      end
-
+      row :book
       row :photo do |book_image|
         image_tag(book_image.image_url(:w170))
       end
