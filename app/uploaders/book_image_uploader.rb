@@ -2,10 +2,7 @@ class BookImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :aws
-
-  if Rails.env.test?
-    storage :file
-  end
+  storage :file if Rails.env.test?
 
   def default_url
     'default.jpg'
@@ -28,6 +25,6 @@ class BookImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg png]
   end
 end
