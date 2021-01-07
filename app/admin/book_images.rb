@@ -1,5 +1,6 @@
 ActiveAdmin.register BookImage do
   permit_params :image, :book_id
+  includes :book
 
   index do
     selectable_column
