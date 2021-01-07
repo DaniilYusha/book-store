@@ -13,15 +13,15 @@ class BookImageUploader < CarrierWave::Uploader::Base
   end
 
   version :w170 do
-    process resize_to_fit: [170, nil]
+    process(resize_to_fit: [170, nil])
   end
 
   version :w210 do
-    process resize_to_fit: [210, nil]
+    process(resize_to_fit: [210, nil])
   end
 
   version :w550 do
-    process resize_to_fit: [550, nil]
+    process(resize_to_fit: [550, nil])
   end
 
   def extension_whitelist
