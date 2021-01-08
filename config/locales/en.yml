@@ -29,6 +29,8 @@ en:
     no_account: Don’t have an Account?
     no_confirmation_email: Didn't receive confirmation instructions?
     confirm_account: Confirm my account
+    approve: Approve
+    reject: Reject
   buttons:
     get_started: Get Started
     buy_now: Buy Now
