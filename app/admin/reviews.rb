@@ -11,6 +11,15 @@ ActiveAdmin.register Review do
 
   config.filters = false
 
+  controller do
+    private
+
+    def update_review_status(status:, ids:)
+      batch_action_collection.find(ids).each(&status.to_sym)
+      redirect_back(fallback_location: admin_reviews_path)
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -23,13 +32,11 @@ ActiveAdmin.register Review do
   end
 
   batch_action :approve, if: proc { @current_scope.scope_method != :approved } do |ids|
-    batch_action_collection.find(ids).each(&:approved!)
-    redirect_back(fallback_location: admin_reviews_path)
+    update_review_status(status: :approved!, ids: ids)
   end
 
   batch_action :reject, if: proc { @current_scope.scope_method != :rejected } do |ids|
-    batch_action_collection.find(ids).each(&:rejected!)
-    redirect_back(fallback_location: admin_reviews_path)
+    update_review_status(status: :rejected!, ids: ids)
   end
 
   action_item :approve, only: :show do
