@@ -33,11 +33,11 @@ ActiveAdmin.register Review do
   end
 
   action_item :approve, only: :show do
-    link_to 'Approve', approve_admin_review_path(review), method: :put unless review.approved?
+    link_to I18n.t('links.approve'), approve_admin_review_path(review), method: :put unless review.approved?
   end
 
   action_item :reject, only: :show do
-    link_to 'Reject', reject_admin_review_path(review), method: :put unless review.rejected?
+    link_to I18n.t('links.reject'), reject_admin_review_path(review), method: :put unless review.rejected?
   end
 
   member_action :approve, method: :put do
