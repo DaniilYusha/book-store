@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    service = PersistReviewService.new(review_params)
+    service = CreateReviewService.new(review_params)
     service.call ? flash[:notice] = I18n.t('notice.review.created') : flash[:alert] = service.errors
 
     redirect_back fallback_location: books_path

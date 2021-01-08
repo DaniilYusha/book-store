@@ -1,4 +1,4 @@
-class PersistReviewService
+class CreateReviewService
   attr_reader :errors
 
   def initialize(params)
