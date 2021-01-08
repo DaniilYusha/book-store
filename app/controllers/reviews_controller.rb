@@ -3,7 +3,12 @@ class ReviewsController < ApplicationController
 
   def create
     service = CreateReviewService.new(review_params)
-    service.call ? flash[:notice] = I18n.t('notice.review.created') : flash[:alert] = service.errors
+    if service.call
+      flash[:notice] = I18n.t('notice.review.created')
+    else
+      presenter = ReviewPresenter.new(errors: service.errors)
+      flash[:alert] = presenter.errors
+    end
 
     redirect_back fallback_location: books_path
   end
