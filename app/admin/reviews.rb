@@ -18,6 +18,12 @@ ActiveAdmin.register Review do
       batch_action_collection.find(ids).each(&status.to_sym)
       redirect_back(fallback_location: admin_reviews_path)
     end
+
+    def update_review_status_for_member_action(status)
+      review = Review.find(permitted_params[:id])
+      review.update(status: status)
+      redirect_to admin_review_path(review)
+    end
   end
 
   index do
@@ -48,14 +54,10 @@ ActiveAdmin.register Review do
   end
 
   member_action :approve, method: :put do
-    review = Review.find(permitted_params[:id])
-    review.update(status: :approved)
-    redirect_to admin_review_path(review)
+    update_review_status_for_member_action(:approved)
   end
 
   member_action :reject, method: :put do
-    review = Review.find(permitted_params[:id])
-    review.update(status: :rejected)
-    redirect_to admin_review_path(review)
+    update_review_status_for_member_action(:rejected)
   end
 end
