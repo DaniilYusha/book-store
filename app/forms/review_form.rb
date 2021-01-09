@@ -10,12 +10,14 @@ class ReviewForm
 
   TITLE_MAX_LENGTH = 80
   TEXT_MAX_LENGTH = 500
-  RATING_RANGE = (1..5).freeze
+  MIN_RATING = 1
+  MAX_RATING = 5
+  RATING_RANGE = (MIN_RATING..MAX_RATING).freeze
 
   validates :title, :text, :rating, presence: true
   validates :title, length: { maximum: TITLE_MAX_LENGTH }
   validates :text, length: { maximum: TEXT_MAX_LENGTH }
   validates :rating, numericality: { only_integer: true,
-                                     greater_than_or_equal_to: RATING_RANGE.first,
-                                     less_than_or_equal_to: RATING_RANGE.last }
+                                     greater_than_or_equal_to: MIN_RATING,
+                                     less_than_or_equal_to: MAX_RATING }
 end
