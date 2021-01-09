@@ -5,6 +5,7 @@ RSpec.describe ReviewForm, type: :model do
     it { is_expected.to validate_presence_of(:rating) }
     it { is_expected.to validate_length_of(:title).is_at_most(described_class::TITLE_MAX_LENGTH) }
     it { is_expected.to validate_length_of(:text).is_at_most(described_class::TEXT_MAX_LENGTH) }
-    it { is_expected.to validate_numericality_of(:rating).is_less_than_or_equal_to(ReviewForm::RATING_RANGE.last) }
+    it { is_expected.to validate_numericality_of(:rating).is_less_than_or_equal_to(ReviewForm::MAX_RATING) }
+    it { is_expected.to validate_numericality_of(:rating).is_greater_than_or_equal_to(ReviewForm::MIN_RATING) }
   end
 end

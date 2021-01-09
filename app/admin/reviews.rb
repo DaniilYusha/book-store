@@ -11,6 +11,21 @@ ActiveAdmin.register Review do
 
   config.filters = false
 
+  controller do
+    private
+
+    def update_review_status(status:, ids:)
+      batch_action_collection.find(ids).each(&status.to_sym)
+      redirect_back(fallback_location: admin_reviews_path)
+    end
+
+    def update_review_status_for_member_action(status)
+      review = Review.find(permitted_params[:id])
+      review.update(status: status)
+      redirect_to admin_review_path(review)
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -23,32 +38,26 @@ ActiveAdmin.register Review do
   end
 
   batch_action :approve, if: proc { @current_scope.scope_method != :approved } do |ids|
-    batch_action_collection.find(ids).each(&:approved!)
-    redirect_back(fallback_location: admin_reviews_path)
+    update_review_status(status: :approved!, ids: ids)
   end
 
   batch_action :reject, if: proc { @current_scope.scope_method != :rejected } do |ids|
-    batch_action_collection.find(ids).each(&:rejected!)
-    redirect_back(fallback_location: admin_reviews_path)
+    update_review_status(status: :rejected!, ids: ids)
   end
 
   action_item :approve, only: :show do
-    link_to 'Approve', approve_admin_review_path(review), method: :put unless review.approved?
+    link_to I18n.t('links.approve'), approve_admin_review_path(review), method: :put unless review.approved?
   end
 
   action_item :reject, only: :show do
-    link_to 'Reject', reject_admin_review_path(review), method: :put unless review.rejected?
+    link_to I18n.t('links.reject'), reject_admin_review_path(review), method: :put unless review.rejected?
   end
 
   member_action :approve, method: :put do
-    review = Review.find(permitted_params[:id])
-    review.update(status: :approved)
-    redirect_to admin_review_path(review)
+    update_review_status_for_member_action(:approved)
   end
 
   member_action :reject, method: :put do
-    review = Review.find(permitted_params[:id])
-    review.update(status: :rejected)
-    redirect_to admin_review_path(review)
+    update_review_status_for_member_action(:rejected)
   end
 end
