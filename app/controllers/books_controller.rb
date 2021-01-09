@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.includes(:authors).find_by(id: book_params[:id]).decorate
+    @reviews = @book.reviews.includes(:user).approved.decorate
   end
 
   private

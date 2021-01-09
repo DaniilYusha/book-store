@@ -1,0 +1,4 @@
+en:
+  active_admin:
+    approved: 'approved'
+    rejected: 'rejected'

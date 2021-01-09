@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    email { FFaker::Internet.free_email }
+    email { "ex#{FFaker::Internet.free_email}" }
     password { 'RG2020RoR' }
     provider { I18n.t(:provider).downcase }
     uid { 9.times.map { rand(1..9) }.join }
