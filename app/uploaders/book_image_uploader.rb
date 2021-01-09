@@ -1,8 +1,8 @@
 class BookImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :aws
-  storage :file if Rails.env.test?
+  storage :file
+  storage :aws if Rails.env.production?
 
   def default_url
     'default.jpg'
