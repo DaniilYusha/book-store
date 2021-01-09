@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     @newest_books = BookDecorator.decorate_collection(
-      Book.includes(:authors, title_image_attachment: :blob).last(BookDecorator::NEWEST_BOOKS_COUNT)
+      Book.includes(:authors).last(BookDecorator::NEWEST_BOOKS_COUNT)
     )
   end
 end

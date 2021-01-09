@@ -1,43 +1,19 @@
 ActiveAdmin.register Book do
-  permit_params :title, :description, :price, :height, :width, :depth,
-                :published_at, :category_id, :materials, :title_image,
-                author_ids: [], images: []
-  includes :category, :authors, :title_image_attachment
+  permit_params :title, :description, :price, :height, :width, :depth, :title_image,
+                :published_at, :category_id, :materials, author_ids: []
+  includes :category, :authors
 
   decorate_with BookDecorator
 
-  controller do
-    def create
-      @book = Book.new(permitted_params[:book])
-      handle_book_params(:new)
-    end
-
-    def update
-      @book = Book.find_by(id: params[:id])
-      handle_book_params(:edit)
-    end
-
-    private
-
-    def handle_book_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :book, params: permitted_params)
-      @service.call
-
-      @service.errors.any? ? render(view) : redirect_to(admin_books_path, notice: I18n.t('notice.book.saved'))
-    end
-  end
-
+  preserve_default_filters!
+  remove_filter :author_books, :book_images
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
-  filter :category
-  filter :title
-  filter :price
-  filter :published_at
 
   index do
     selectable_column
     id_column
-    column :image do |book|
-      image_tag(book.title_image, class: 'thumbnail-img') if book.title_image.attached?
+    column :title_image do |book|
+      image_tag(book.title_image_url(:w170).to_s)
     end
     column :category
     column :title
@@ -51,8 +27,8 @@ ActiveAdmin.register Book do
 
   show do
     attributes_table do
-      row :image do |book|
-        image_tag(book.title_image, class: 'thumbnail-img') if book.title_image.attached?
+      row :title_image do |book|
+        image_tag(book.title_image_url(:w210).to_s)
       end
       row :category
       row :authors_list
@@ -69,5 +45,20 @@ ActiveAdmin.register Book do
     end
   end
 
-  form partial: 'form'
+  form do |f|
+    f.inputs do
+      f.input :category
+      f.input :authors, as: :check_boxes, collection: Author.all.decorate
+      f.input :title
+      f.input :description
+      f.input :price
+      f.input :published_at, as: :datepicker
+      f.input :height
+      f.input :width
+      f.input :depth
+      f.input :materials
+      f.input :title_image, as: :file
+    end
+    actions
+  end
 end

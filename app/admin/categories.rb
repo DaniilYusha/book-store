@@ -1,31 +1,9 @@
 ActiveAdmin.register Category do
   permit_params :name
-  actions :index, :new, :create, :edit, :update, :destroy
 
-  controller do
-    skip_before_action :set_categories
+  actions :all, except: :show
 
-    def create
-      @category = Category.new(permitted_params[:category])
-      handle_category_params(:new)
-    end
-
-    def update
-      @category = Category.find_by(id: params[:id])
-      handle_category_params(:edit)
-    end
-
-    private
-
-    def handle_category_params(view)
-      @service = Admin::SaveEntitiesService.new(entity: :category, params: permitted_params)
-      @service.call
-
-      @service.errors.any? ? render(view) : redirect_to(admin_categories_path, notice: I18n.t('notice.category.saved'))
-    end
-  end
-
-  filter :name
+  controller { skip_before_action(:set_categories) }
 
   index do
     selectable_column
@@ -33,6 +11,4 @@ ActiveAdmin.register Category do
     column :name
     actions
   end
-
-  form partial: 'form'
 end

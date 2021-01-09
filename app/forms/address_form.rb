@@ -1,10 +1,16 @@
 class AddressForm
   include ActiveModel::Model
+  include Virtus.model
 
-  attr_accessor :first_name, :last_name, :address, :city, :zip_code, :country, :phone, :address_type
+  attribute :first_name, String
+  attribute :last_name, String
+  attribute :address, String
+  attribute :city, String
+  attribute :zip_code, String
+  attribute :country, String
+  attribute :phone, String
+  attribute :address_type, String
 
-  BILLING_TYPE = 'billing'.freeze
-  SHIPPING_TYPE = 'shipping'.freeze
   NAME_MAX_LENGTH = 50
   NAMES_FORMAT_PATTERN = /\A[a-zA-z\s]+\z/.freeze
   ADDRESS_FORMAT_PATTERN = /\A[a-zA-z0-9,\-\s]+\z/.freeze
@@ -27,13 +33,13 @@ class AddressForm
   validates :phone, length: { maximum: PHONE_MAX_LENGTH },
                     format: { with: PHONE_FORMAT_PATTERN,
                               message: I18n.t('validation.phone_format') }
-  validate :country_presense_in_list, if: -> { country.present? }
-  validate :country_code_of_phone, if: -> { phone.present? }
+  validate :country_presense_in_list, unless: -> { country.blank? }
+  validate :country_code_of_phone, unless: -> { phone.blank? }
 
   private
 
   def country_presense_in_list
-    errors.add(:country, :invalid) if ISO3166::Country.find_country_by_name(country).nil?
+    errors.add(:country, :invalid) unless ISO3166::Country.find_country_by_name(country)
   end
 
   def country_code_of_phone

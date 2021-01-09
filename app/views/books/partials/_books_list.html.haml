@@ -3,10 +3,7 @@
     .col-xs-6.col-sm-3.book
       .general-thumb-wrap
         .thumbnail.general-thumbnail
-          - if book.title_image.attached?
-            = image_tag(book.title_image, class: 'img-shadow general-thumbnail-img')
-          - else
-            %span.unknown-book-image.general-thumbnail-img= t(:no_title_image)
+          = image_tag(book.title_image_url(:w210), class: 'img-shadow general-thumbnail-img')
           .thumb-hover
             .general-thumb-link-wrap
               = link_to book_path(book), class: 'thumb-hover-link' do
