@@ -1,21 +1,32 @@
 RSpec.describe CartItemsController, type: :controller do
   let(:book) { create(:book) }
   let(:cart) { create(:cart) }
-  let(:quantity) { 2 }
 
   describe 'POST /cart_items' do
-    let(:params) { { cart_item: { quantity: quantity, book_id: book.id, cart_id: cart.id } } }
+    let(:params) { attributes_for(:cart_item, cart_id: cart.id, book_id: book.id) }
 
-    before { get :create, params: params }
+    before { post :create, params: { cart_item: params } }
 
-    it { expect(response).to have_http_status :redirect }
+    it { expect(response).to have_http_status(:redirect) }
+    it { expect(flash[:notice]).to eq(I18n.t('notice.book.added_to_cart')) }
   end
 
-  describe 'DELETE /cart_items' do
-    let(:cart_item) { create(:cart_item, cart: cart) }
+  describe 'PATCH /cart_item/{id}' do
+    let(:cart_item) { create(:cart_item) }
+    let(:params) { attributes_for(:cart_item) }
 
-    before { get :destroy, params: { id: cart_item.id } }
+    before { patch :update, params: { id: cart_item.id, cart_item: params } }
 
-    it { expect(response).to have_http_status :redirect }
+    it { expect(response).to have_http_status(:redirect) }
+    it { expect(flash[:notice]).to eq(I18n.t('notice.book.count_changed')) }
+  end
+
+  describe 'DELETE /cart_item/{id}' do
+    let(:cart_item) { create(:cart_item) }
+
+    before { delete :destroy, params: { id: cart_item.id } }
+
+    it { expect(response).to have_http_status(:redirect) }
+    it { expect(flash[:notice]).to eq(I18n.t('notice.book.deleted')) }
   end
 end
