@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :settings, only: :index
   resources :addresses, only: :create
   resources :reviews, only: :create
-  resources :carts, only: :show
-  resources :cart_items, only: %i[create destroy]
-  post '/coupon', to: 'coupons#check'
+  resources :carts, only: :index
+  resources :cart_items, only: %i[create update destroy]
+  resource :coupon, only: :update
   root 'pages#home'
 end
