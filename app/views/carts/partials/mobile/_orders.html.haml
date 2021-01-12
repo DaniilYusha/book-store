@@ -1,4 +1,4 @@
-- cart.cart_items.each do |item|
+- cart_items.each do |item|
   .general-cart-item.divider-lg-bottom.mb-30
     %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
       = link_to cart_item_path(item.id), method: :delete, class: 'close general-cart-close', 'aria-label': "Close" do
