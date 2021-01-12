@@ -11,18 +11,13 @@ class ApplicationController < ActionController::Base
 
   def set_cart
     if user_signed_in?
-      @cart = current_user.cart || add_cart_to_user
-    elsif session[:cart_id]
-      @cart = Cart.find_by(id: session[:cart_id])
+      @cart = current_user.cart || current_user.create_cart
+    elsif cookies[:cart_id]
+      @cart = Cart.find_by(id: cookies[:cart_id])
     else
       @cart = Cart.create
-      session[:cart_id] = @cart.id
+      cookies[:cart_id] = @cart.id
     end
     @cart = @cart.decorate
-  end
-
-  def add_cart_to_user
-    session[:cart_id] = nil
-    current_user.cart = Cart.create
   end
 end
