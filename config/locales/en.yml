@@ -77,6 +77,8 @@ en:
       deleted: Book was deleted from your cart!
     coupon:
       apply: Coupon was successfully applied to your order.
+      created: Coupon was successfully created
+      updated: Coupon was successfully updated
     admin:
       created: Admin user was successfully created
       updated: Admin user was successfully updated
