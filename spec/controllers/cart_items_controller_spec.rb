@@ -3,12 +3,22 @@ RSpec.describe CartItemsController, type: :controller do
   let(:cart) { create(:cart) }
 
   describe 'POST /cart_items' do
-    let(:params) { attributes_for(:cart_item, cart_id: cart.id, book_id: book.id) }
-
     before { post :create, params: { cart_item: params } }
 
-    it { expect(response).to have_http_status(:redirect) }
-    it { expect(flash[:notice]).to eq(I18n.t('notice.book.added_to_cart')) }
+    context 'when create new cart item' do
+      let(:params) { attributes_for(:cart_item, cart_id: cart.id, book_id: book.id) }
+
+      it { expect(response).to have_http_status(:redirect) }
+      it { expect(flash[:notice]).to eq(I18n.t('notice.book.added_to_cart')) }
+    end
+
+    context 'when update existing cart item' do
+      let(:params) { attributes_for(:cart_item, cart_id: cart.id, book_id: book.id) }
+      let(:cart_item) { create(:cart_item, cart_id: cart.id, book_id: book.id) }
+
+      it { expect(response).to have_http_status(:redirect) }
+      it { expect(flash[:notice]).to eq(I18n.t('notice.book.added_to_cart')) }
+    end
   end
 
   describe 'PATCH /cart_item/{id}' do
