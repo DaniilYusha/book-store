@@ -8,7 +8,8 @@ RSpec.describe CartItem, type: :model do
     it { is_expected.to belong_to(:book) }
   end
 
-  describe 'validations' do
-    it { is_expected.to validate_numericality_of(:quantity).only_integer }
+  describe 'with database indexes' do
+    it { is_expected.to have_db_index(:cart_id) }
+    it { is_expected.to have_db_index(:book_id) }
   end
 end
