@@ -33,7 +33,7 @@
     .general-info-wrap.divider-lg
       .clearfix
         %p.pull-left= t 'book_page.publication_year'
-        %p.lead.small.pull-right.publication_year= book.published_at.year
+        %p.lead.small.pull-right.publication_year= book.published_at&.year
     .general-info-wrap.divider-lg
       .clearfix
         %p.pull-left= t 'book_page.dimensions'
