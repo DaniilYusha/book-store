@@ -32,9 +32,9 @@ Style/SymbolProc:
   Exclude:
     - app/admin/books.rb
 
-Metrics/AbcSize:
+RSpec/MultipleMemoizedHelpers:
   Exclude:
-    - 'spec/**/*.rb'
+    - spec/controllers/admin/books_controller_spec.rb
 
 RSpec/LetSetup:
   Exclude:

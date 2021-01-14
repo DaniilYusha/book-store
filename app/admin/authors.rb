@@ -1,11 +1,9 @@
 ActiveAdmin.register Author do
   permit_params :first_name, :last_name
 
-  actions :index, :new, :create, :edit, :destroy
+  actions :all, except: :show
 
-  filter :first_name
-  filter :last_name
-  filter :books
+  remove_filter :author_books
 
   index do
     selectable_column

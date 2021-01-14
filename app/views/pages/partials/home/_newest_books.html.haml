@@ -8,18 +8,14 @@
         .row
           .col-sm-5
             .general-img-wrap
-              - if book.title_image.attached?
-                = image_tag(book.title_image, class: 'img-shadow general-thumbnail-img')
-              - else
-                %div.thumbnail.unknown-latest-books-image
-                  %span.unknown-book-image= t(:no_title_image)
+              = image_tag(book.title_image_url(:w210), class: 'img-shadow general-thumbnail-img')
           .col-sm-7
             .mb-60
               %h1= book.title
               %p.lead= book.description
               %p.lead.small= book.authors_list
             .general-align
-              = link_to t('buttons.buy_now'), cart_items_path(cart_item: { quantity: 1, book_id: book.id }), method: :post, class: 'btn btn-primary'
+              = link_to t('buttons.buy_now'), cart_items_path(cart_item: { quantity: UpdateCartItemService::INCREMENT, book_id: book.id }), method: :post, class: 'btn btn-primary'
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
     %span.sr-only= t 'home_page.slider.prev'

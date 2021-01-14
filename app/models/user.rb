@@ -1,15 +1,12 @@
 class User < ApplicationRecord
   PASSWORD_FORMAT = /\A(?!.*\s)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/x.freeze
 
-  has_many :addresses, as: :addressable, dependent: :destroy
+  has_one :billing_address, -> { where(address_type: Address.address_types[:billing]) },
+          class_name: 'Address', as: :addressable, dependent: :destroy
+  has_one :shipping_address, -> { where(address_type: Address.address_types[:shipping]) },
+          class_name: 'Address', as: :addressable, dependent: :destroy
+  has_one :cart, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_one :cart
-  has_one :billing_address, -> { where(address_type: 0) }, class_name: 'Address',
-                                                           as: :addressable,
-                                                           dependent: :destroy
-  has_one :shipping_address, -> { where(address_type: 1) }, class_name: 'Address',
-                                                            as: :addressable,
-                                                            dependent: :destroy
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable,

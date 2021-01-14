@@ -3,7 +3,5 @@ FactoryBot.define do
     code { FFaker::NatoAlphabet.code }
     discount { rand(0.1..100.0).floor(2) }
     is_valid { true }
-
-    association :cart
   end
 end

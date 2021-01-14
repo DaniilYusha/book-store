@@ -1,12 +1,11 @@
-- cart.cart_items.each do |item|
+- cart_items.each do |item|
   .general-cart-item.divider-lg-bottom.mb-30
     %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
       = link_to cart_item_path(item.id), method: :delete, class: 'close general-cart-close', 'aria-label': "Close" do
         %span{'aria-hidden': "true"} &times;
     .general-img-wrap-table
-      - if item.book.title_image.attached?
-        = link_to book_path(item.book) do
-          = image_tag(item.book.title_image, class: 'cart-img-shadow')
+      = link_to book_path(item.book) do
+        = image_tag(item.book.title_image_url(:w170), class: 'cart-img-shadow')
     = link_to item.book.title, book_path(item.book), class: 'title'
     %table.table
       %tr

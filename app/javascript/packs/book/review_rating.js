@@ -18,19 +18,14 @@ $(document).ready(() => {
     });
   });
 
-  $(document).on('click', '#stars > svg', function(){
+  $(document).on('click', '#stars > .rate-star', function(){
     let rating_value = +$(this).data('value');
     let stars = $(this).parent().children('svg');
 
     stars.each(function(index){
       $(this).removeClass('selected-star')
 
-      if(index < rating_value){
-        $(this).addClass('selected-star');
-      }
-      else {
-        $(this).addClass('rate-empty');
-      }
+      index < rating_value ? $(this).addClass('selected-star') : $(this).addClass('rate-empty')
     });
 
     $('#review_rating').val(rating_value);

@@ -1,8 +1,6 @@
 class CartDecorator < ApplicationDecorator
   delegate_all
 
-  decorates_association :cart_items
-
   def items_count
     object.cart_items.map(&:quantity).sum
   end

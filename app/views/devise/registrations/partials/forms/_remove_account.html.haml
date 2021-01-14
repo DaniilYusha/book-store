@@ -1,9 +1,0 @@
-= simple_form_for(current_user, url: registration_path(:user), method: :delete, html: { id: 'remove-account' }) do |f|
-  .general-settings-btn
-    = f.button :submit, t('buttons.remove_account'), data: { confirm: t('devise.registrations.new.remove_account_confirmation') }, class: 'disabled remove-account', disabled: 'true'
-  .form-group.checkbox.general-settings-checkbox
-    %label.checkbox-label
-      %input.checkbox-input{type: "checkbox", hidden: "true"}
-      %span.checkbox-icon
-        %i.fa.fa-check
-      %span.checkbox-text= t 'checkboxes.confirm_remove_account'

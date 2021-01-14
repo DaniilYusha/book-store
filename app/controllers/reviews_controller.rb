@@ -2,10 +2,14 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    service = SaveReviewService.new(review_params)
-    service.call
+    service = CreateReviewService.new(review_params)
+    if service.call
+      flash[:notice] = I18n.t('notice.review.created')
+    else
+      presenter = ReviewPresenter.new(errors: service.errors)
+      flash[:alert] = presenter.errors
+    end
 
-    service.errors.blank? ? flash[:notice] = I18n.t('notice.review.created') : flash[:alert] = service.errors
     redirect_back fallback_location: books_path
   end
 

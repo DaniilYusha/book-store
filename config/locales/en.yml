@@ -7,7 +7,6 @@ en:
   email: support@bookstore.com
   phone_number: (555)-555-5555
   provider: Facebook
-  no_title_image: '?'
   or: or
   links:
     home: Home
@@ -30,6 +29,8 @@ en:
     no_account: Don’t have an Account?
     no_confirmation_email: Didn't receive confirmation instructions?
     confirm_account: Confirm my account
+    approve: Approve
+    reject: Reject
   buttons:
     get_started: Get Started
     buy_now: Buy Now
@@ -54,21 +55,41 @@ en:
     phone_format: should has plus (+) at the beginning
     phone_country_code: should contain country code of chosen country in Country drop down list
   notice:
+    book_image:
+      created: Book image was successfully created
+      updated: Book image was successfully updated
     address:
       saved: Your address has been successfully saved
       updated: Your address has been successfully updated
     review:
-      created: Thanks for Review. It will be published as soon as Admin will approve it.
+      created: Thanks for review. It will be published as soon as admin will approve it.
+    category:
+      created: Category was successfully created
+      updated: Category was successfully updated
+    author:
+      created: Author was successfully created
+      updated: Author was successfully updated
     book:
+      created: Book was successfully created
+      updated: Book was successfully updated
       added_to_cart: Book was successfully added to your cart!
+      count_changed: Book count was changed!
       deleted: Book was deleted from your cart!
     coupon:
-      apply: Coupon was successfully applied to your order
+      apply: Coupon was successfully applied to your order.
+      created: Coupon was successfully created
+      updated: Coupon was successfully updated
+    admin:
+      created: Admin user was successfully created
+      updated: Admin user was successfully updated
   alert:
+    must_exist: must exist
+    blank: can't be blank
     coupon:
-      not_exist: Coupon with such code is not exist
-      invalid: Coupon is invalid
-      used: Coupon is already used
+      not_exist: is not exist
+      invalid: is invalid
+      used: is already used
+    privacy: Your form contain errors. Check it in privacy section!
   home_page:
     greeting: Welcome to our amazing Bookstore!
     introduction: We pore through hundreds of new books each month and select the five best we can find to share with our members.
@@ -111,6 +132,7 @@ en:
     order_summary: Order Summary
     subtotal: 'Subtotal:'
     coupon: 'Coupon:'
+    coupon_is_applied: Coupon already applied to your order
     order_total: 'Order Total:'
     checkout: 'Checkout'
     empty_cart: Your cart is empty yet?
@@ -175,6 +197,7 @@ en:
         email_header: Email
         password_header: Password
         remove_account_header: Remove Account
+        reconfirmation: 'Currently waiting confirmation for: '
     sessions:
       new:
         header: Log In

@@ -7,10 +7,10 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand= t :brand
-      %a.shop-link.pull-right.visible-xs{href: cart_path(cart)}
+      %a.shop-link.pull-right.visible-xs{href: carts_path}
         %span.shop-icon
           %span.shop-quantity= cart.items_count
-    %a.shop-link.pull-right.hidden-xs{href: cart_path(cart)}
+    %a.shop-link.pull-right.hidden-xs{href: carts_path}
       %span.shop-icon
         %span.shop-quantity= cart.items_count
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}

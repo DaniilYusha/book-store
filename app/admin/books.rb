@@ -1,42 +1,35 @@
 ActiveAdmin.register Book do
-  permit_params :title, :description, :price, :height, :width, :depth,
-                :published_at, :category_id, :title_image, images: [],
-                                                           material_ids: [], author_ids: []
+  permit_params :title, :description, :price, :height, :width, :depth, :title_image,
+                :published_at, :category_id, :materials, author_ids: []
   includes :category, :authors
 
   decorate_with BookDecorator
 
+  preserve_default_filters!
+  remove_filter :author_books, :book_images
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
-  filter :category
-  filter :title
-  filter :price
-  filter :published_at
 
   index do
     selectable_column
     id_column
+    column :title_image do |book|
+      image_tag(book.title_image_url(:w170).to_s)
+    end
     column :category
     column :title
-    column :materials do |book|
-      book.materials_list
-    end
-    column :description do |book|
-      book.short_description
-    end
-    column :authors do |book|
-      book.authors.each do |author|
-        link_to author.full_name, admin_author_path(author)
-      end
-    end
+    column :authors_list
+    column :short_description
     column :price do |book|
       number_to_currency(book.price)
     end
-    column :published_at
     actions
   end
 
   show do
     attributes_table do
+      row :title_image do |book|
+        image_tag(book.title_image_url(:w210).to_s)
+      end
       row :category
       row :authors_list
       row :title
@@ -48,16 +41,14 @@ ActiveAdmin.register Book do
       row :height
       row :width
       row :depth
-      row :materials do |book|
-        book.materials_list
-      end
+      row :materials_list
     end
   end
 
   form do |f|
-    f.inputs 'Details' do
+    f.inputs do
       f.input :category
-      f.input :authors, collection: Author.all.decorate
+      f.input :authors, as: :check_boxes, collection: Author.all.decorate
       f.input :title
       f.input :description
       f.input :price
@@ -67,7 +58,6 @@ ActiveAdmin.register Book do
       f.input :depth
       f.input :materials
       f.input :title_image, as: :file
-      f.input :images, as: :file, input_html: { multiple: true }
     end
     actions
   end

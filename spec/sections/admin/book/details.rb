@@ -12,7 +12,7 @@ module Sections
         element :height_row, '.row-height'
         element :width_row, '.row-width'
         element :depth_row, '.row-depth'
-        element :materials_row, '.row-materials'
+        element :materials_row, '.row-materials_list'
       end
     end
   end

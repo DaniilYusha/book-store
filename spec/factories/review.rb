@@ -5,8 +5,9 @@ FactoryBot.define do
     rating { rand(ReviewForm::RATING_RANGE) }
     status { :approved }
     is_verified { false }
+    created_at { FFaker::Time.date }
 
-    association :book
-    association :user
+    book
+    user
   end
 end

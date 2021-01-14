@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   }
 
   resources :books, only: %i[index show]
-  resources :addresses, only: %i[create update]
-  resources :reviews, only: %i[create]
-  resources :carts, only: :show
-  resources :cart_items, only: %i[create destroy]
+  resources :settings, only: :index
+  resources :addresses, only: :create
+  resources :reviews, only: :create
+  resources :carts, only: :index
+  resources :cart_items, only: %i[create update destroy]
+  resource :coupon, only: :update
   resources :checkout, only: :index
-  post '/coupon', to: 'coupons#check'
   get '/checkout_login', to: 'pages#checkout_login'
   root 'pages#home'
 end

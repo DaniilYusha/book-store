@@ -23,8 +23,8 @@ class SortedBooksQuery
   attr_reader :relation, :sort_by, :category_id
 
   def scope
-    return relation.includes(:authors, title_image_attachment: :blob) unless category_id
+    return relation.includes(:authors) unless category_id
 
-    relation.includes(:authors, title_image_attachment: :blob).where(category_id: category_id)
+    relation.includes(:authors).where(category_id: category_id)
   end
 end
