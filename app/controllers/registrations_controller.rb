@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
 
   def create
-    without_password? ? create_user_without_password : super
+    params[:user][:quick_register] ? quick_registrate_user : super
   end
 
   def update
@@ -10,6 +10,24 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def quick_registrate_user
+    params[:user][:password] = params[:user][:password_confirmation] = Devise.friendly_token[0, 8]
+    build_resource(sign_up_params)
+    resource.skip_confirmation!
+    resource.save ? authenticate_user : redirect_back_with_errors
+  end
+
+  def authenticate_user
+    sign_up(resource_name, resource)
+    resource.send_reset_password_instructions
+    redirect_to(checkout_index_path, notice: I18n.t('devise.passwords.send_instructions'))
+  end
+
+  def redirect_back_with_errors
+    presenter = QuickRegistrationPresenter.new(errors: resource.errors)
+    redirect_back fallback_location: carts_path, alert: presenter.errors
+  end
 
   def send_successful_response
     set_flash_message_for_update(resource, resource.unconfirmed_email)
@@ -27,11 +45,5 @@ class RegistrationsController < Devise::RegistrationsController
     return super unless params.key?(:email)
 
     resource.update_without_password(params)
-  end
-
-  def create_user_without_password
-    user = User.create(email: params[resource_name][:email], confirmed_at: Time.now.utc)
-    user.send_reset_password_instructions
-    redirect_back fallback_location: root_path, notice: I18n.t('devise.passwords.send_instructions')
   end
 end
