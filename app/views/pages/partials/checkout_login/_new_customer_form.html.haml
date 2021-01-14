@@ -7,5 +7,6 @@
   .mb-40
     %p.mb-5= t('checkout.quick_register')
     %p.general-info-text.font-12.mb-20= t('checkout.create_password_later')
+    = f.hidden_field :quick_register, value: true
     = f.input :email
   = f.button :submit, t('checkout.continue_to_checkout')
