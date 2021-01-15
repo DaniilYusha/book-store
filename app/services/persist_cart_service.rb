@@ -7,7 +7,7 @@ class PersistCartService
   end
 
   def call
-    @cart = Cart.create unless @cart
+    @cart ||= Cart.create
     item = find_item
     item ? update_item(item) : create_item
   end
