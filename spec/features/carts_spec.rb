@@ -1,10 +1,13 @@
 RSpec.describe 'CartsPage', type: :feature do
-  let(:book) { create(:book) }
-  let(:cart_item) { create(:cart_item, book_id: book.id).decorate }
-  let(:cart) { create(:cart, cart_items: [cart_item]).decorate }
-  let(:user) { create(:user, cart: cart) }
+  let_it_be(:book) { create(:book).decorate }
+  let(:user) { create(:user) }
+  let(:home_page) { Pages::Home.new }
 
-  before { login_as(user, scope: :user) }
+  before do
+    login_as(user, scope: :user)
+    home_page.load
+    home_page.slider.buy_first_book
+  end
 
   describe 'index page' do
     let(:cart_page) { Pages::Cart.new }
@@ -22,15 +25,10 @@ RSpec.describe 'CartsPage', type: :feature do
 
       it { expect(cart_page.orders).to have_content(book.title) }
       it { expect(cart_page.orders).to have_content(book.price) }
-      it { expect(cart_page.orders).to have_content(cart_item.subtotal_price) }
-      it { expect(cart_page.orders.quantity_input.value).to have_content(cart_item.quantity) }
 
       it { expect(cart_page.order_summary).to have_coupon_code_field }
       it { expect(cart_page.order_summary).to have_apply_coupon_button }
       it { expect(cart_page.order_summary).to have_summary_block }
-
-      it { expect(cart_page.order_summary.summary_block).to have_content(cart_item.subtotal_price) }
-      it { expect(cart_page.order_summary.summary_block).to have_content(cart.order_total) }
     end
 
     context 'when click plus icon' do

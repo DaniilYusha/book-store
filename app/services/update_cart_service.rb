@@ -1,4 +1,4 @@
-class UpdateCartItemService
+class UpdateCartService
   INCREMENT = 1
   DECREMENT = -1
 
