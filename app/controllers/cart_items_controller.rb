@@ -1,16 +1,20 @@
 class CartItemsController < ApplicationController
   def create
-    PersistCartItemService.new(params: cart_item_params, cart: @cart).call
+    service = PersistCartService.new(params: cart_item_params, cart: current_cart)
+    service.call
+    cookies[:cart_id] = service.cart.id
     redirect_back_with_flash(I18n.t('notice.book.added_to_cart'))
   end
 
   def update
-    UpdateCartItemService.new(id: params[:id], quantity: cart_item_params[:quantity]).call
+    UpdateCartService.new(id: params[:id], quantity: cart_item_params[:quantity]).call
     redirect_back_with_flash(I18n.t('notice.book.count_changed'))
   end
 
   def destroy
-    CartItem.find_by(id: params[:id]).destroy
+    service = DestroyCartService.new(item_id: params[:id], cart: current_cart)
+    service.call
+    cookies.delete(:cart_id) if service.cart_destroyed?
     redirect_to(carts_path, notice: I18n.t('notice.book.deleted'))
   end
 
