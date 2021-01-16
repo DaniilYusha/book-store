@@ -5,7 +5,7 @@ class User < ApplicationRecord
           class_name: 'Address', as: :addressable, dependent: :destroy
   has_one :shipping_address, -> { where(address_type: Address.address_types[:shipping]) },
           class_name: 'Address', as: :addressable, dependent: :destroy
-  has_one :cart, dependent: :destroy
+  has_many :carts, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :confirmable,
