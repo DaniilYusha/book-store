@@ -5,6 +5,8 @@ RSpec.describe 'admin/book_images', type: :feature do
 
   before { login_as(admin) }
 
+  after { FileUtils.rm_rf(Rails.root.join('spec', 'fixtures', 'uploads')) }
+
   describe '/index' do
     let(:book_images_page) { Pages::Admin::BookImages::Index.new }
 
