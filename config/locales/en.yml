@@ -83,6 +83,7 @@ en:
       created: Admin user was successfully created
       updated: Admin user was successfully updated
   alert:
+    something_wrong: Something went wrong. Try again later!
     must_exist: must exist
     blank: can't be blank
     coupon:
