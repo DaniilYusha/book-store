@@ -1,26 +1,45 @@
 class UpdateOrderItemService
-  INCREMENT = 1
-  DECREMENT = -1
+  attr_reader :errors
 
-  def initialize(id:, quantity:)
+  def initialize(id:, params:)
     @id = id
-    @quantity = quantity.to_i
+    @params = params
+    @errors = []
   end
 
   def call
-    update_item if item
+    item ? update_item : add_error(I18n.t('alert.something_wrong'))
+
+    errors.blank?
   end
 
   private
 
-  attr_reader :id, :quantity
+  attr_reader :id, :params
 
   def item
     @item ||= OrderItem.find_by(id: id)
   end
 
   def update_item
-    item.quantity += quantity
-    item.save if item.quantity.positive?
+    return add_error(I18n.t('alert.something_wrong')) unless valid_quantity?
+
+    item_saved?
+  end
+
+  def item_saved?
+    add_error(I18n.t('alert.something_wrong')) unless item.save
+  end
+
+  def valid_quantity?
+    change_item_quantity.quantity.positive?
+  end
+
+  def change_item_quantity
+    params[:increment] ? item.increment(:quantity) : item.decrement(:quantity)
+  end
+
+  def add_error(error)
+    @errors << error
   end
 end
