@@ -49,8 +49,7 @@ RSpec.describe 'admin/book_images', type: :feature do
     end
 
     context 'when fill in form with invalid params' do
-      let(:book_for_image) { { book: '' } }
-      let(:book_image_params) { attributes_for(:book_image).merge(book_for_image) }
+      let(:book_image_params) { attributes_for(:book_image).merge(book: '') }
 
       before { new_book_image_page.fields.submit(book_image_params) }
 
@@ -59,8 +58,7 @@ RSpec.describe 'admin/book_images', type: :feature do
     end
 
     context 'when fill in form with valid params' do
-      let(:book_for_image) { { book: book.title } }
-      let(:book_image_params) { attributes_for(:book_image).merge(book_for_image) }
+      let(:book_image_params) { attributes_for(:book_image).merge(book: book.title) }
 
       before { new_book_image_page.fields.submit(book_image_params) }
 
@@ -84,8 +82,7 @@ RSpec.describe 'admin/book_images', type: :feature do
     end
 
     context 'when fill in form with invalid params' do
-      let(:book_for_image) { { book: '' } }
-      let(:book_image_params) { attributes_for(:book_image).merge(book_for_image) }
+      let(:book_image_params) { attributes_for(:book_image).merge(book: '') }
 
       before { edit_book_image_page.fields.submit(book_image_params) }
 
@@ -94,8 +91,7 @@ RSpec.describe 'admin/book_images', type: :feature do
     end
 
     context 'when fill in form with valid params' do
-      let(:book_for_image) { { book: book.title } }
-      let(:book_image_params) { attributes_for(:book_image).merge(book_for_image) }
+      let(:book_image_params) { attributes_for(:book_image).merge(book: book.title) }
 
       before { edit_book_image_page.fields.submit(book_image_params) }
 
