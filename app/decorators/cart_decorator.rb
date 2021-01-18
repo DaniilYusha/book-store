@@ -1,6 +1,9 @@
 class CartDecorator < ApplicationDecorator
   delegate_all
 
+  DEFAULT_DISCOUNT = 0.00
+  DIVIDER = 100
+
   def items_count
     object.cart_items.map(&:quantity).sum
   end
@@ -10,7 +13,7 @@ class CartDecorator < ApplicationDecorator
   end
 
   def coupon_discount
-    object.coupon.nil? ? 0.00 : (subtotal_price * object.coupon.discount / 100).floor(2)
+    object.coupon.nil? ? DEFAULT_DISCOUNT : (subtotal_price * object.coupon.discount / DIVIDER).floor(2)
   end
 
   def order_total
