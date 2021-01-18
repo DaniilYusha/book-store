@@ -1,12 +1,12 @@
 RSpec.describe 'admin/book_images', type: :feature do
   let_it_be(:book) { create(:book) }
+  let_it_be(:book_image) { create(:book_image, book: book) }
   let(:admin) { create(:admin_user) }
 
   before { login_as(admin) }
 
   describe '/index' do
-    let_it_be(:book_image) { create(:book_image, book: book) }
-    let(:book_images_page) { Pages::Admin::BookImages.new }
+    let(:book_images_page) { Pages::Admin::BookImages::Index.new }
 
     before { book_images_page.load }
 
@@ -22,8 +22,7 @@ RSpec.describe 'admin/book_images', type: :feature do
   end
 
   describe '/show' do
-    let_it_be(:book_image) { create(:book_image, book: book) }
-    let(:book_image_page) { Pages::Admin::BookImage.new }
+    let(:book_image_page) { Pages::Admin::BookImages::Show.new }
 
     before { book_image_page.load(id: book_image.id) }
 
@@ -38,7 +37,7 @@ RSpec.describe 'admin/book_images', type: :feature do
   end
 
   describe '/new' do
-    let(:new_book_image_page) { Pages::Admin::NewBookImage.new }
+    let(:new_book_image_page) { Pages::Admin::BookImages::New.new }
 
     before { new_book_image_page.load }
 
@@ -71,8 +70,7 @@ RSpec.describe 'admin/book_images', type: :feature do
   end
 
   describe '/edit' do
-    let_it_be(:book_image) { create(:book_image, book: book) }
-    let(:edit_book_image_page) { Pages::Admin::EditBookImage.new }
+    let(:edit_book_image_page) { Pages::Admin::BookImages::Edit.new }
 
     before { edit_book_image_page.load(id: book_image.id) }
 
