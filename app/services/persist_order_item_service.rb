@@ -1,23 +1,25 @@
 class PersistOrderItemService
-  attr_reader :order
+  attr_reader :order, :errors
 
   def initialize(params:, order:)
     @params = params
     @order = order
+    @errors = []
   end
 
   def call
     @order ||= Order.create
-    item = find_item
     item ? update_item(item) : create_item
+
+    errors.blank?
   end
 
   private
 
   attr_reader :params
 
-  def find_item
-    order.order_items.find_by(book_id: params[:book_id])
+  def item
+    @item ||= order.order_items.find_by(book_id: params[:book_id])
   end
 
   def create_item
@@ -25,7 +27,6 @@ class PersistOrderItemService
   end
 
   def update_item(item)
-    item.quantity += params[:quantity].to_i
-    item.save
+    @errors << I18n.t('alert.something_wrong') unless item.update(quantity: item.quantity + params[:quantity].to_i)
   end
 end
