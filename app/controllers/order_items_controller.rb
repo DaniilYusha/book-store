@@ -1,14 +1,17 @@
 class OrderItemsController < ApplicationController
   def create
     service = PersistOrderItemService.new(params: order_item_params, order: current_order)
-    service.call
+    return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
+
     cookies[:order_id] = service.order.id
-    redirect_back_with_flash(I18n.t('notice.book.added_to_order'))
+    redirect_back_with_flash(:notice, I18n.t('notice.book.added_to_order'))
   end
 
   def update
-    UpdateOrderItemService.new(id: params[:id], quantity: order_item_params[:quantity]).call
-    redirect_back_with_flash(I18n.t('notice.book.count_changed'))
+    service = UpdateOrderItemService.new(id: params[:id], params: order_item_params)
+    return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
+
+    redirect_back_with_flash(:notice, I18n.t('notice.book.count_changed'))
   end
 
   def destroy
@@ -20,12 +23,12 @@ class OrderItemsController < ApplicationController
 
   private
 
-  def redirect_back_with_flash(message)
-    flash.notice = message
+  def redirect_back_with_flash(flash_type, message)
+    flash[flash_type] = message
     redirect_back fallback_location: root_path
   end
 
   def order_item_params
-    params.require(:order_item).permit(:quantity, :book_id)
+    params.require(:order_item).permit(:quantity, :increment, :decrement, :book_id)
   end
 end
