@@ -1,9 +1,10 @@
 class BookDecorator < ApplicationDecorator
-  NEWEST_BOOKS_COUNT = 3
-  SHORT_DESCRIPTION_LENGTH = 250
-
+  include ActionView::Helpers::AssetTagHelper
   delegate_all
   decorates_association :authors
+
+  NEWEST_BOOKS_COUNT = 3
+  SHORT_DESCRIPTION_LENGTH = 250
 
   def authors_list
     object.authors.map { |author| author.decorate.full_name }.join(', ')
@@ -19,5 +20,9 @@ class BookDecorator < ApplicationDecorator
 
   def short_description
     object.description.truncate(SHORT_DESCRIPTION_LENGTH)
+  end
+
+  def image(size = :w170)
+    image_tag(object.title_image_url(size).to_s)
   end
 end
