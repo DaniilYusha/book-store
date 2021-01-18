@@ -1,4 +1,4 @@
-class UpdateCartService
+class UpdateOrderItemService
   INCREMENT = 1
   DECREMENT = -1
 
@@ -16,7 +16,7 @@ class UpdateCartService
   attr_reader :id, :quantity
 
   def item
-    @item ||= CartItem.find_by(id: id)
+    @item ||= OrderItem.find_by(id: id)
   end
 
   def update_item

@@ -1,13 +1,13 @@
 class CouponsController < ApplicationController
   def update
-    service = UpdateCouponService.new(coupon_params, current_cart)
+    service = UpdateCouponService.new(coupon_params, current_order)
     if service.call
       flash[:notice] = I18n.t('notice.coupon.apply')
     else
       presenter = CouponPresenter.new(errors: service.errors)
       flash[:alert] = presenter.errors
     end
-    redirect_to(carts_path)
+    redirect_to(orders_path)
   end
 
   private

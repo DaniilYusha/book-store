@@ -15,7 +15,7 @@
               %p.lead= book.description
               %p.lead.small= book.authors_list
             .general-align
-              = link_to t('buttons.buy_now'), cart_items_path(cart_item: { quantity: UpdateCartService::INCREMENT, book_id: book.id }), method: :post, class: 'btn btn-primary'
+              = link_to t('buttons.buy_now'), order_items_path(order_item: { quantity: UpdateOrderItemService::INCREMENT, book_id: book.id }), method: :post, class: 'btn btn-primary'
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
     %span.sr-only= t 'home_page.slider.prev'

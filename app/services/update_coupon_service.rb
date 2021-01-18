@@ -1,9 +1,9 @@
 class UpdateCouponService
   attr_reader :errors
 
-  def initialize(params, cart)
+  def initialize(params, order)
     @coupon_form = CouponForm.new(params)
-    @cart = cart
+    @order = order
   end
 
   def call
@@ -11,7 +11,7 @@ class UpdateCouponService
       @errors = coupon_form.errors
     else
       coupon = Coupon.find_by(code: coupon_form.attributes[:code])
-      coupon.update(cart: cart)
+      coupon.update(order: order)
     end
 
     errors.blank?
@@ -19,5 +19,5 @@ class UpdateCouponService
 
   private
 
-  attr_reader :cart, :coupon_form
+  attr_reader :order, :coupon_form
 end

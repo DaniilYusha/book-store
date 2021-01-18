@@ -13,7 +13,7 @@
     .row
       .col-xs-12.col-md-4
         %p.h1.in-gold-500.mt-10= number_to_currency(book.price)
-      = simple_form_for(:cart_item, url: cart_items_path, method: :post) do |f|
+      = simple_form_for(:order_item, url: order_items_path, method: :post) do |f|
         .col-xs-5.col-md-3
           .input-group.general-position
             %a#minus.input-link{href: "#"}
@@ -23,7 +23,7 @@
             %a#plus.input-link{href: "#"}
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position= t :add_to_cart
+          %button.btn.btn-default.pull-right.general-position= t :add_to_order
     .general-info-wrap.divider-lg
       %p= t 'book_page.description'
       %p.lead.small.line-height-2

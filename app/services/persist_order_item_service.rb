@@ -1,13 +1,13 @@
-class PersistCartService
-  attr_reader :cart
+class PersistOrderItemService
+  attr_reader :order
 
-  def initialize(params:, cart:)
+  def initialize(params:, order:)
     @params = params
-    @cart = cart
+    @order = order
   end
 
   def call
-    @cart ||= Cart.create
+    @order ||= Order.create
     item = find_item
     item ? update_item(item) : create_item
   end
@@ -17,11 +17,11 @@ class PersistCartService
   attr_reader :params
 
   def find_item
-    cart.cart_items.find_by(book_id: params[:book_id])
+    order.order_items.find_by(book_id: params[:book_id])
   end
 
   def create_item
-    cart.cart_items.create(params)
+    order.order_items.create(params)
   end
 
   def update_item(item)

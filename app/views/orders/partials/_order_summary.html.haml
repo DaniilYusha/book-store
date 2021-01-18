@@ -1,0 +1,30 @@
+.general-order-wrap
+  .row
+    .col-sm-4
+      - if order.coupon
+        %p.font-16= t('order.coupon_is_applied')
+      - else
+        = simple_form_for(:coupon, url: coupon_path, method: :patch) do |f|
+          = f.input :code
+          = f.button :submit, t('order.apply_coupon'), class: 'btn-primary'
+    .col-sm-8
+      .res-mr-200.text-center.general-text-right
+        %p.in-gold-500.font-18= t('order.order_summary')
+        %table.general-summary-table.general-summary-table-right.general-text-right
+          %tr
+            %td
+              %p.font-16= t('order.subtotal')
+            %td
+              %p.font-16= number_to_currency(order.subtotal_price)
+          %tr
+            %td
+              %p.font-16= t('order.coupon')
+            %td
+              %p.font-16= number_to_currency(order.coupon_discount)
+          %tr
+            %td
+              %strong.font-18= t('order.order_total')
+            %td
+              %strong.font-18= number_to_currency(order.order_total)
+        %button.btn.btn-default.mb-20.visible-xs-inline-block= t('order.checkout')
+%button.btn.btn-default.mb-20.hidden-xs.center-block= t('order.checkout')
