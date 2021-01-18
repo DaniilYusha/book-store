@@ -12,9 +12,7 @@ ActiveAdmin.register Book do
   index do
     selectable_column
     id_column
-    column :title_image do |book|
-      image_tag(book.title_image_url(:w170).to_s)
-    end
+    column :image
     column :category
     column :title
     column :authors_list
@@ -27,9 +25,7 @@ ActiveAdmin.register Book do
 
   show do
     attributes_table do
-      row :title_image do |book|
-        image_tag(book.title_image_url(:w210).to_s)
-      end
+      row :image
       row :category
       row :authors_list
       row :title
