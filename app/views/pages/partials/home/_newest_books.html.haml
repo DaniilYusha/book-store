@@ -8,7 +8,7 @@
         .row
           .col-sm-5
             .general-img-wrap
-              %img.img-shadow.general-thumbnail-img{src: "https://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              = image_tag(book.title_image_url(:w210), class: 'img-shadow general-thumbnail-img')
           .col-sm-7
             .mb-60
               %h1= book.title

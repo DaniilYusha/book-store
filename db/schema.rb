@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_104_193_512) do
+ActiveRecord::Schema.define(version: 20_210_105_114_731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 20_210_104_193_512) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
+  create_table 'book_images', force: :cascade do |t|
+    t.string 'image'
+    t.bigint 'book_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['book_id'], name: 'index_book_images_on_book_id'
+  end
+
   create_table 'books', force: :cascade do |t|
     t.string 'title'
     t.text 'description', default: ''
@@ -70,6 +78,7 @@ ActiveRecord::Schema.define(version: 20_210_104_193_512) do
     t.bigint 'category_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.string 'title_image'
     t.index ['category_id'], name: 'index_books_on_category_id'
   end
 
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 20_210_104_193_512) do
 
   add_foreign_key 'author_books', 'authors'
   add_foreign_key 'author_books', 'books'
+  add_foreign_key 'book_images', 'books'
   add_foreign_key 'books', 'categories'
   add_foreign_key 'reviews', 'books'
   add_foreign_key 'reviews', 'users'

@@ -55,6 +55,9 @@ en:
     phone_format: should has plus (+) at the beginning
     phone_country_code: should contain country code of chosen country in Country drop down list
   notice:
+    book_image:
+      created: Book image was successfully created
+      updated: Book image was successfully updated
     address:
       saved: Your address has been successfully saved
       updated: Your address has been successfully updated

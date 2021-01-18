@@ -1,17 +1,18 @@
 ActiveAdmin.register Book do
-  permit_params :title, :description, :price, :height, :width, :depth,
+  permit_params :title, :description, :price, :height, :width, :depth, :title_image,
                 :published_at, :category_id, :materials, author_ids: []
   includes :category, :authors
 
   decorate_with BookDecorator
 
   preserve_default_filters!
-  remove_filter :author_books
+  remove_filter :author_books, :book_images
   filter :authors, as: :select, collection: proc { Author.order(:first_name).decorate }
 
   index do
     selectable_column
     id_column
+    column :image
     column :category
     column :title
     column :authors_list
@@ -24,6 +25,7 @@ ActiveAdmin.register Book do
 
   show do
     attributes_table do
+      row :image
       row :category
       row :authors_list
       row :title
@@ -51,6 +53,7 @@ ActiveAdmin.register Book do
       f.input :width
       f.input :depth
       f.input :materials
+      f.input :title_image, as: :file
     end
     actions
   end
