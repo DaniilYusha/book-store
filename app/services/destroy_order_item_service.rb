@@ -1,6 +1,6 @@
 class DestroyOrderItemService
   attr_reader :errors
-  
+
   def initialize(item_id:, order:)
     @id = item_id
     @order = order
@@ -10,6 +10,8 @@ class DestroyOrderItemService
   def call
     delete_order_item
     destroy_order
+
+    errors.empty?
   end
 
   def order_destroyed?

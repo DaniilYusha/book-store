@@ -10,7 +10,7 @@ class UpdateOrderItemService
   def call
     item ? update_item : add_error(I18n.t('alert.something_wrong'))
 
-    errors.blank?
+    errors.empty?
   end
 
   private
