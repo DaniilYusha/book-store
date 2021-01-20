@@ -3,8 +3,6 @@ ActiveAdmin.register Category do
 
   actions :all, except: :show
 
-  controller { skip_before_action(:set_categories) }
-
   index do
     selectable_column
     id_column
