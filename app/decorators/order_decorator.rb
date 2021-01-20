@@ -1,5 +1,6 @@
 class OrderDecorator < ApplicationDecorator
   delegate_all
+  decorates_association :order_items
 
   DEFAULT_DISCOUNT = 0.00
   DIVIDER = 100
