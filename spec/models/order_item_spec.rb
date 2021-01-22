@@ -1,4 +1,4 @@
-RSpec.describe CartItem, type: :model do
+RSpec.describe OrderItem, type: :model do
   describe 'with database columns' do
     it { is_expected.to have_db_column(:quantity).of_type(:integer) }
   end

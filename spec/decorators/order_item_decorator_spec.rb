@@ -1,4 +1,4 @@
-RSpec.describe CartItemDecorator do
+RSpec.describe OrderItemDecorator do
   let(:book) { build(:book, price: 5.00) }
   let(:cart_item) { build(:cart_item, book: book, quantity: 2).decorate }
 

@@ -1,4 +1,4 @@
-RSpec.describe CartsController, type: :controller do
+RSpec.describe OrdersController, type: :controller do
   describe 'GET /carts' do
     let(:cart) { create(:cart) }
 

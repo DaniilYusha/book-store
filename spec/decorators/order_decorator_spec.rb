@@ -1,4 +1,4 @@
-RSpec.describe CartDecorator do
+RSpec.describe OrderDecorator do
   let(:first_book) { build(:book, price: 5.00) }
   let(:second_book) { build(:book, price: 10.00) }
   let(:first_cart_item) { build(:cart_item, book: first_book, quantity: 2) }

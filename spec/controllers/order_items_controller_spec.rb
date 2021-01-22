@@ -1,4 +1,4 @@
-RSpec.describe CartItemsController, type: :controller do
+RSpec.describe OrderItemsController, type: :controller do
   let(:book) { create(:book) }
 
   describe 'POST /cart_items' do
