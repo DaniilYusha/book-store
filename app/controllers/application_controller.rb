@@ -10,6 +10,20 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    Order.find_by(id: cookies[:order_id])
+    order = Order.find_by(id: cookies[:order_id])
+    return order unless user_signed_in?
+
+    set_order_to_user(order, current_user.orders.find_by(status: :processing)) if order
+    current_user.orders.find_by(status: :processing)
+  end
+
+  def set_order_to_user(order, user_order)
+    if user_order
+      MergeOrdersService.new(order: order, user_order: user_order).call
+      Order.destroy(cookies[:order_id])
+    else
+      current_user.orders << order
+    end
+    cookies.delete(:order_id)
   end
 end
