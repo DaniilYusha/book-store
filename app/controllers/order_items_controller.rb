@@ -3,7 +3,7 @@ class OrderItemsController < ApplicationController
     service = PersistOrderItemService.new(params: order_item_params, order: current_order)
     return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
 
-    cookies[:order_id] = service.order.id
+    cookies[:order_id] = service.order.id unless current_order
     redirect_back_with_flash(:notice, I18n.t('notice.book.added_to_order'))
   end
 
