@@ -6,10 +6,10 @@ RSpec.describe Coupon, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to belong_to(:cart).optional }
+    it { is_expected.to belong_to(:order).optional }
   end
 
   describe 'with database indexes' do
-    it { is_expected.to have_db_index(:cart_id) }
+    it { is_expected.to have_db_index(:order_id) }
   end
 end
