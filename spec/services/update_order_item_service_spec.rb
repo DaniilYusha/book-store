@@ -14,7 +14,7 @@ RSpec.describe UpdateOrderItemService do
       it { expect(described_class.new(id: order_item.id, params: params).call).to eq(true) }
     end
 
-    context  'with invalid params' do
+    context 'with invalid params' do
       let(:params) { { increment: true } }
 
       it { expect(described_class.new(id: order_item.id.next, params: params).call).to eq(false) }
