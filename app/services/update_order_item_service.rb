@@ -22,7 +22,7 @@ class UpdateOrderItemService
   end
 
   def update_item
-    return add_error(I18n.t('alert.something_wrong')) unless valid_quantity?
+    return add_error(I18n.t('alert.wrong_quantity')) unless valid_quantity?
 
     item_saved?
   end
