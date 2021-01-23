@@ -1,5 +1,5 @@
 RSpec.describe CouponsController, type: :controller do
-  let(:cart) { create(:cart) }
+  let(:order) { create(:order) }
   let(:coupon) { create(:coupon) }
 
   describe '#update' do
