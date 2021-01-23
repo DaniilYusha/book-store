@@ -8,7 +8,7 @@ module Sections
       element :minus_link, '#minus'
       element :plus_link, '#plus'
       element :sub_total_price, '.sub-total'
-      element :remove_items_link, '.close.general-cart-close'
+      element :remove_items_link, '.close.general-order-close'
     end
   end
 end
