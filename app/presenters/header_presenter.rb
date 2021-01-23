@@ -1,10 +1,12 @@
 class HeaderPresenter
-  def initialize(cart:)
-    @cart = cart
+  DEFAULT_BOOKS_COUNT = 0
+
+  def initialize(order:)
+    @order = order
   end
 
-  def books_in_cart
-    cart ? cart.items_count : 0
+  def books_in_order
+    order ? order.items_count : DEFAULT_BOOKS_COUNT
   end
 
   def categories
@@ -13,5 +15,5 @@ class HeaderPresenter
 
   private
 
-  attr_reader :cart
+  attr_reader :order
 end

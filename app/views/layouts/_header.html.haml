@@ -7,14 +7,14 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand= t(:brand)
-      %a.shop-link.pull-right.visible-xs{href: carts_path}
+      %a.shop-link.pull-right.visible-xs{href: orders_path}
         %span.shop-icon
-          %span.shop-quantity= presenter.books_in_cart
-    %a.shop-link.pull-right.hidden-xs{href: carts_path}
+          %span.shop-quantity= presenter.books_in_order
+    %a.shop-link.pull-right.hidden-xs{href: orders_path}
       %span.shop-icon
-        %span.shop-quantity= presenter.books_in_cart
+        %span.shop-quantity= presenter.books_in_order
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
-        = render partial: 'layouts/partials/mobile/navigation', locals: { categories: categories }
+        = render partial: 'layouts/partials/mobile/navigation', locals: { categories: presenter.categories }
       .hidden-xs
-        = render partial: 'layouts/partials/navigation', locals: { categories: categories }
+        = render partial: 'layouts/partials/navigation', locals: { categories: presenter.categories }

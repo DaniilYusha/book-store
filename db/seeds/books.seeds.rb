@@ -1,7 +1,7 @@
 if Rails.env.development?
   after :authors do
     authors = Author.all
-    80.times do
+    25.times do
       Book.create(
         title: FFaker::Book.title,
         description: FFaker::Book.description,

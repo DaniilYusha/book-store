@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  let MIN_QUANTITY = 1;
+  const MIN_QUANTITY = 1;
 
   $(document).on('click', '#plus', function(event){
     event.preventDefault();

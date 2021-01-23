@@ -1,5 +1,5 @@
 %main.container
-  %h1.general-title-margin= t 'catalog_page.page_name'
-  = render partial: 'books/partials/sorting', locals: { categories: @categories, presenter: @presenter }
-  = render partial: 'books/partials/mobile/sorting', locals: { categories: @categories, presenter: @presenter }
+  %h1.general-title-margin= t('catalog_page.page_name')
+  = render partial: 'books/partials/sorting', locals: { categories: @header_presenter.categories, presenter: @presenter }
+  = render partial: 'books/partials/mobile/sorting', locals: { categories: @header_presenter.categories, presenter: @presenter }
   = render partial: 'books/partials/books_list', locals: { books: @books, collection: @collection }

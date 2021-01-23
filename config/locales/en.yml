@@ -35,7 +35,7 @@ en:
     get_started: Get Started
     buy_now: Buy Now
     view_more: View more
-    add_to_cart: Add to Cart
+    add_to_order: Add to Order
     post: Post
     change_password: Change my password
     send_instructions: Send instructions
@@ -72,9 +72,9 @@ en:
     book:
       created: Book was successfully created
       updated: Book was successfully updated
-      added_to_cart: Book was successfully added to your cart!
+      added_to_order: Book was successfully added to your order!
       count_changed: Book count was changed!
-      deleted: Book was deleted from your cart!
+      deleted: Book was deleted from your order!
     coupon:
       apply: Coupon was successfully applied to your order.
       created: Coupon was successfully created
@@ -83,6 +83,8 @@ en:
       created: Admin user was successfully created
       updated: Admin user was successfully updated
   alert:
+    wrong_quantity: Quantity can't be negative or equal to 0.
+    something_wrong: Something went wrong. Try again later!
     must_exist: must exist
     blank: can't be blank
     coupon:
@@ -122,8 +124,8 @@ en:
     review: Review
     reviews: Reviews
     verified_reviewer: Verified Reviewer
-  cart:
-    page_name: Cart
+  order:
+    page_name: Order
     product: Product
     price: Price
     quantity: Quantity
@@ -135,7 +137,7 @@ en:
     coupon_is_applied: Coupon already applied to your order
     order_total: 'Order Total:'
     checkout: 'Checkout'
-    empty_cart: Your cart is empty yet?
+    empty_order: Your order is empty yet?
     go_to_shop: Go to shop!
   checkout:
     returning_customer: Returning Customer
