@@ -40,7 +40,7 @@ RSpec.describe 'Orders', type: :feature do
     context 'when click minus icon with one book' do
       before { cart_page.orders.minus_link.click }
 
-      it { expect(cart_page).to have_content(I18n.t('alert.something_wrong')) }
+      it { expect(cart_page).to have_content(I18n.t('alert.wrong_quantity')) }
     end
 
     context 'when click remove item link' do

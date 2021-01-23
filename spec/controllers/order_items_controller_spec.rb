@@ -38,7 +38,7 @@ RSpec.describe OrderItemsController, type: :controller do
       let(:params) { { decrement: true } }
 
       it { expect(response).to have_http_status(:redirect) }
-      it { expect(flash[:alert]).to eq(I18n.t('alert.something_wrong')) }
+      it { expect(flash[:alert]).to eq(I18n.t('alert.wrong_quantity')) }
       it { expect(cookies[:order_id].to_i).to eq(order.id) }
     end
 
