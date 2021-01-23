@@ -1,4 +1,4 @@
-RSpec.describe 'CartsPage', type: :feature do
+RSpec.describe 'Orders', type: :feature do
   let_it_be(:book) { create(:book).decorate }
   let(:user) { create(:user) }
   let(:home_page) { Pages::Home.new }
@@ -10,7 +10,7 @@ RSpec.describe 'CartsPage', type: :feature do
   end
 
   describe 'index page' do
-    let(:cart_page) { Pages::Cart.new }
+    let(:cart_page) { Pages::Orders::Index.new }
 
     before { cart_page.load }
 
@@ -37,10 +37,10 @@ RSpec.describe 'CartsPage', type: :feature do
       it { expect(cart_page).to have_content(I18n.t('notice.book.count_changed')) }
     end
 
-    context 'when click minus icon' do
+    context 'when click minus icon with one book' do
       before { cart_page.orders.minus_link.click }
 
-      it { expect(cart_page).to have_content(I18n.t('notice.book.count_changed')) }
+      it { expect(cart_page).to have_content(I18n.t('alert.something_wrong')) }
     end
 
     context 'when click remove item link' do
