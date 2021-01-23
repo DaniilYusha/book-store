@@ -1,7 +1,7 @@
 RSpec.describe OrderDecorator do
   let(:first_item) { build(:order_item) }
   let(:second_item) { build(:order_item) }
-  let(:order) { create(:order, order_items: [first_item, second_item]).decorate }
+  let(:order) { build(:order, order_items: [first_item, second_item]).decorate }
 
   describe '#items_count' do
     let(:result) { first_item.quantity + second_item.quantity }
@@ -21,7 +21,7 @@ RSpec.describe OrderDecorator do
     end
 
     context 'when order with coupon' do
-      let(:coupon) { create(:coupon, order: order) }
+      let(:coupon) { build(:coupon, order: order) }
       let(:result) { (coupon.order.subtotal_price * coupon.discount / OrderDecorator::DIVIDER).floor(2) }
 
       it { expect(coupon.order.coupon_discount).to eq(result) }
