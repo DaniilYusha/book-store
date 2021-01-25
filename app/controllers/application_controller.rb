@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
   before_action :header_presenter, :current_order
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    flash[:alert] = I18n.t('alert.something_wrong')
+    redirect_back fallback_location: root_path
+  end
+
   private
 
   def header_presenter
