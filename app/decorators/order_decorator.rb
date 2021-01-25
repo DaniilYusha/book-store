@@ -14,7 +14,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def coupon_discount
-    object.coupon ? (subtotal_price * object.coupon.discount / DIVIDER).floor(2) : DEFAULT_DISCOUNT
+    object.coupon ? (subtotal_price * object.coupon.discount / DIVIDER) : DEFAULT_DISCOUNT
   end
 
   def order_total
