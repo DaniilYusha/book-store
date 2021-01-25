@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
     order = Order.find_by(id: cookies[:order_id])
     return order unless user_signed_in?
 
-    set_order_to_user(order, current_user.orders.find_by(status: :processing)) if order
-    current_user.orders.find_by(status: :processing)
+    set_order_to_user(order, current_user.orders.find_by(status: :pending)) if order
+    current_user.orders.find_by(status: :pending)
   end
 
   def set_order_to_user(order, user_order)
