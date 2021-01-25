@@ -19,7 +19,7 @@ class OrderItemsController < ApplicationController
     return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
 
     cookies.delete(:order_id) if service.order_destroyed?
-    redirect_to(orders_path, notice: I18n.t('notice.book.deleted'))
+    redirect_to(cart_path, notice: I18n.t('notice.book.deleted'))
   end
 
   private

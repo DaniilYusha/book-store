@@ -3,7 +3,7 @@ class CouponsController < ApplicationController
     service = UpdateCouponService.new(coupon_params, current_order)
     result = service.call ? :notice : :alert
     flash[result] = service.errors.any? ? service.errors.full_messages.to_sentence : I18n.t('notice.coupon.apply')
-    redirect_to(orders_path)
+    redirect_to(cart_path)
   end
 
   private
