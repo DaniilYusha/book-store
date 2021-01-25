@@ -10,7 +10,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def subtotal_price
-    object.order_items.map { |item| item.decorate.subtotal_price }.sum
+    object.order_items.map { |item| item.quantity * item.book.price }.sum
   end
 
   def coupon_discount
