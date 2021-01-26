@@ -16,14 +16,18 @@ class CouponForm
   end
 
   def coupon_is_not_exists
-    errors.add(:code, I18n.t('alert.coupon.not_exist')) unless coupon
+    common(:not_exist, coupon)
   end
 
   def coupon_is_used
-    errors.add(:code, I18n.t('alert.coupon.used')) if coupon.order
+    common(:used, coupon.order.nil?)
   end
 
   def coupon_is_invalid
-    errors.add(:code, I18n.t('alert.coupon.invalid')) unless coupon.is_valid
+    common(:invalid, coupon.is_valid)
+  end
+
+  def common(inter_key, condition)
+    errors.add(:code, I18n.t("alert.coupon.#{inter_key}")) unless condition
   end
 end

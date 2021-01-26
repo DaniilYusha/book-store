@@ -83,7 +83,6 @@ en:
       created: Admin user was successfully created
       updated: Admin user was successfully updated
   alert:
-    wrong_quantity: Quantity can't be negative or equal to 0.
     something_wrong: Something went wrong. Try again later!
     must_exist: must exist
     blank: can't be blank

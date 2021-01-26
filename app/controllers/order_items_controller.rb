@@ -1,25 +1,25 @@
 class OrderItemsController < ApplicationController
   def create
     service = PersistOrderItemService.new(params: order_item_params, order: current_order)
-    return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
+    return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
 
     cookies[:order_id] = service.order.id unless current_order
     redirect_back_with_flash(:notice, I18n.t('notice.book.added_to_order'))
   end
 
   def update
-    service = UpdateOrderItemService.new(id: params[:id], params: order_item_params)
-    return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
+    service = PersistOrderItemService.new(params: order_item_params, order: current_order)
+    return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
 
     redirect_back_with_flash(:notice, I18n.t('notice.book.count_changed'))
   end
 
   def destroy
     service = DestroyOrderItemService.new(item_id: params[:id], order: current_order)
-    return redirect_back_with_flash(:alert, service.errors.to_sentence) unless service.call
+    return redirect_back_with_flash(:alert, I18n.t('alert.something_wrong')) unless service.call
 
     cookies.delete(:order_id) if service.order_destroyed?
-    redirect_to(orders_path, notice: I18n.t('notice.book.deleted'))
+    redirect_to(cart_path, notice: I18n.t('notice.book.deleted'))
   end
 
   private
@@ -30,6 +30,6 @@ class OrderItemsController < ApplicationController
   end
 
   def order_item_params
-    params.require(:order_item).permit(:quantity, :increment, :decrement, :book_id)
+    params.require(:order_item).permit(:quantity, :book_id)
   end
 end
