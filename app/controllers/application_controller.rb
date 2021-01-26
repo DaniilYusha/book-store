@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_action :header_presenter, :merge_orders, :current_order
+  before_action :merge_orders, :current_order, :header_presenter
 
   rescue_from ActiveRecord::RecordNotFound do |_exception|
     flash[:alert] = I18n.t('alert.something_wrong')
