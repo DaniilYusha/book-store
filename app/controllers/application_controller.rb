@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def set_order_to_user(order, user_order)
     if user_order
-      MergeOrdersService.new(order: order, user_order: user_order).call
+      MergeOrdersService.new(guest_order: order, user_order: user_order).call
       Order.destroy(cookies[:order_id])
     else
       current_user.orders << order
