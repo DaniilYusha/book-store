@@ -27,33 +27,24 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe 'PATCH /order_item/{id}' do
     let(:order) { create(:order) }
+    let(:order_item) { create(:order_item, order: order) }
 
     before do
       cookies[:order_id] = order.id
       patch :update, params: { id: order_item.id, order_item: params }
     end
 
-    context 'when receive failed response' do
-      let(:order_item) { create(:order_item, order: order) }
-      let(:params) { { decrement: true } }
+    context 'with invalid quantity' do
+      let(:params) { { quantity: -5, book_id: order_item.book.id } }
+      let(:error_message) { "Quantity must be greater than #{OrderItemForm::INVALID_QUANTITY}" }
 
       it { expect(response).to have_http_status(:redirect) }
-      it { expect(flash[:alert]).to eq(I18n.t('alert.wrong_quantity')) }
+      it { expect(flash[:alert]).to eq(error_message) }
       it { expect(cookies[:order_id].to_i).to eq(order.id) }
     end
 
-    context 'when increment item quantity' do
-      let(:order_item) { create(:order_item, order: order) }
-      let(:params) { { increment: true } }
-
-      it { expect(response).to have_http_status(:redirect) }
-      it { expect(flash[:notice]).to eq(I18n.t('notice.book.count_changed')) }
-      it { expect(cookies[:order_id].to_i).to eq(order.id) }
-    end
-
-    context 'when decrement item quantity' do
-      let(:order_item) { create(:order_item, quantity: 2, order: order) }
-      let(:params) { { decrement: true } }
+    context 'with valid quantity' do
+      let(:params) { attributes_for(:order_item, book_id: order_item.book.id) }
 
       it { expect(response).to have_http_status(:redirect) }
       it { expect(flash[:notice]).to eq(I18n.t('notice.book.count_changed')) }
