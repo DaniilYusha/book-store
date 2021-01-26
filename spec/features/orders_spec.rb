@@ -10,7 +10,7 @@ RSpec.describe 'Orders', type: :feature do
   end
 
   describe 'index page' do
-    let(:cart_page) { Pages::Orders::Index.new }
+    let(:cart_page) { Pages::Cart::Show.new }
 
     before { cart_page.load }
 
@@ -38,9 +38,11 @@ RSpec.describe 'Orders', type: :feature do
     end
 
     context 'when click minus icon with one book' do
+      let(:error_message) { "Quantity must be greater than #{OrderItemForm::INVALID_QUANTITY}" }
+
       before { cart_page.orders.minus_link.click }
 
-      it { expect(cart_page).to have_content(I18n.t('alert.wrong_quantity')) }
+      it { expect(cart_page).to have_content(error_message) }
     end
 
     context 'when click remove item link' do
