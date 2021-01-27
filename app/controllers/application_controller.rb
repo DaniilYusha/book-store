@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_action :header_presenter, :current_order
+  before_action :merge_orders, :current_order, :header_presenter
+
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
+    flash[:alert] = I18n.t('alert.something_wrong')
+    redirect_back fallback_location: root_path
+  end
 
   private
 
@@ -9,21 +14,14 @@ class ApplicationController < ActionController::Base
     @header_presenter = HeaderPresenter.new(order: current_order&.decorate)
   end
 
-  def current_order
-    order = Order.find_by(id: cookies[:order_id])
-    return order unless user_signed_in?
+  def merge_orders
+    return unless user_signed_in?
 
-    set_order_to_user(order, current_user.orders.find_by(status: :processing)) if order
-    current_user.orders.find_by(status: :processing)
+    MergeOrdersService.new(guest_order_id: cookies[:order_id], user: current_user).call
+    cookies.delete(:order_id)
   end
 
-  def set_order_to_user(order, user_order)
-    if user_order
-      MergeOrdersService.new(order: order, user_order: user_order).call
-      Order.destroy(cookies[:order_id])
-    else
-      current_user.orders << order
-    end
-    cookies.delete(:order_id)
+  def current_order
+    user_signed_in? ? current_user.orders.find_by(status: :pending) : Order.find_by(id: cookies[:order_id])
   end
 end

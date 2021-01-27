@@ -22,7 +22,7 @@ RSpec.describe OrderDecorator do
 
     context 'when order with coupon' do
       let(:coupon) { build(:coupon, order: order) }
-      let(:result) { (coupon.order.subtotal_price * coupon.discount / OrderDecorator::DIVIDER).floor(2) }
+      let(:result) { (coupon.order.subtotal_price * coupon.discount / OrderDecorator::DIVIDER) }
 
       it { expect(coupon.order.coupon_discount).to eq(result) }
     end

@@ -26,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def redirect_back_with_errors
     presenter = QuickRegistrationPresenter.new(errors: resource.errors)
-    redirect_back fallback_location: orders_path, alert: presenter.errors
+    redirect_back fallback_location: cart_path, alert: presenter.errors
   end
 
   def send_successful_response
