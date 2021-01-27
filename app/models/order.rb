@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
 
   aasm column: :status, enum: true do
-    state :processing, initial: true
+    state :pending, initial: true
     state :address
     state :delivery
     state :payment
@@ -17,7 +17,7 @@ class Order < ApplicationRecord
     state :complete
 
     event :to_address do
-      transitions from: :processing, to: :address
+      transitions from: :pending, to: :address
     end
 
     event :delivery do
