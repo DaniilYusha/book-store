@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resource :cart, only: :show
   resources :order_items, only: %i[create update destroy]
   resource :coupon, only: :update
-  resources :checkout, only: :index
+  resources :checkout, param: :step, only: %i[show update]
   get '/checkout_login', to: 'pages#checkout_login'
   root 'pages#home'
 end
