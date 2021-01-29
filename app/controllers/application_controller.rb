@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    user_signed_in? ? current_user.orders.find_by(status: :pending) : Order.find_by(id: cookies[:order_id])
+    return Order.find_by(id: cookies[:order_id]) unless user_signed_in?
+
+    current_user.orders.find_by(status: :pending) || current_user.orders.find_by(status: params[:step])
   end
 end
