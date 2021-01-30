@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   include AASM
 
-  enum status: { pending: 0, address: 1, delivery: 2, payment: 3, confirmation: 4, complete: 5 }
+  enum status: { pending: 0, address: 1, delivery: 2, payment: 3, confirm: 4, complete: 5 }
 
   has_many :order_items, dependent: :destroy
   has_one :coupon, dependent: :nullify
@@ -13,7 +13,7 @@ class Order < ApplicationRecord
     state :address
     state :delivery
     state :payment
-    state :confirmation
+    state :confirm
     state :complete
 
     event :to_address do
@@ -29,11 +29,11 @@ class Order < ApplicationRecord
     end
 
     event :confirmation do
-      transitions from: :payment, to: :confirmation
+      transitions from: :payment, to: :confirm
     end
 
     event :complete do
-      transitions from: :confirmation, to: :complete
+      transitions from: :confirm, to: :complete
     end
   end
 end
