@@ -1,17 +1,9 @@
-class AddressCheckoutPresenter
+class AddressCheckoutPresenter < AddressBasePresenter
   def initialize(user:, params: {}, billing_form: nil, shipping_form: nil)
-    @user = user
-    @params = params[:address]
+    super(user: user, params: params)
+
     @billing_form = billing_form
     @shipping_form = shipping_form
-  end
-
-  def billing_address
-    user.billing_address || Address.new()
-  end
-
-  def shipping_address
-    user.shipping_address || Address.new()
   end
 
   def billing_errors
@@ -22,11 +14,7 @@ class AddressCheckoutPresenter
     @shipping_errors ||= shipping_form&.errors
   end
 
-  def countries
-    @countries ||= ISO3166::Country.all.sort_by(&:name)
-  end
-
   private
 
-  attr_reader :user, :params, :billing_form, :shipping_form
+  attr_reader :billing_form, :shipping_form
 end
