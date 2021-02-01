@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :merge_orders, :current_order, :header_presenter
 
-  rescue_from ActiveRecord::RecordNotFound do |_exception|
+  rescue_from ActiveRecord::RecordNotFound, ActiveRecord::ActiveRecordError do |_exception|
     flash[:alert] = I18n.t('alert.something_wrong')
     redirect_back fallback_location: root_path
   end
