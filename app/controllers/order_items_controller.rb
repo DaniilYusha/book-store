@@ -1,10 +1,10 @@
 class OrderItemsController < ApplicationController
   def create
-    persist_order_items(I18n.t('notice.book.added_to_order'), true)
+    persist_order_items(message: I18n.t('notice.book.added_to_order'), set_cookie: true)
   end
 
   def update
-    persist_order_items(I18n.t('notice.book.count_changed'))
+    persist_order_items(message: I18n.t('notice.book.count_changed'))
   end
 
   def destroy
@@ -16,7 +16,7 @@ class OrderItemsController < ApplicationController
 
   private
 
-  def persist_order_items(message, set_cookie = false)
+  def persist_order_items(message:, set_cookie: false)
     service = PersistOrderItemService.new(params: order_item_params, order: current_order)
     return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
 
