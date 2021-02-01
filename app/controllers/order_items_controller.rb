@@ -10,7 +10,6 @@ class OrderItemsController < ApplicationController
   def destroy
     service = DestroyOrderItemService.new(item_id: params[:id], order: current_order)
     service.call
-
     cookies.delete(:order_id) if service.order_destroyed?
     redirect_to(cart_path, notice: I18n.t('notice.book.deleted'))
   end
