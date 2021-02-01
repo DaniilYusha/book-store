@@ -26,7 +26,7 @@ class MergeOrdersService
     guest_order.order_items.each do |guest_item|
       user_order_has_guest_item?(guest_item) ? update_user_item_quantity!(guest_item) : update_guest_item!(guest_item)
     end
-    
+
     Order.destroy(guest_order_id)
   end
 
