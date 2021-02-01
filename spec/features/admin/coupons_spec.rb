@@ -1,5 +1,6 @@
 RSpec.describe 'admin/coupons', type: :feature do
   let(:admin) { create(:admin_user) }
+
   let_it_be(:coupon) { create(:coupon) }
 
   before { login_as(admin) }
