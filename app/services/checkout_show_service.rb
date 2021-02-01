@@ -1,7 +1,7 @@
 class CheckoutShowService
   PRESENTERS = {
     address: AddressCheckoutPresenter,
-    # delivery: DeliveryPresenter,
+    delivery: DeliveryPresenter,
     # payment: PaymentPresenter,
     # confirmation: ConfirmationPresenter
   }
