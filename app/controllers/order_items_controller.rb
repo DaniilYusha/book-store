@@ -25,11 +25,6 @@ class OrderItemsController < ApplicationController
     return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
   end
 
-  def redirect_back_with_flash(flash_type, message)
-    flash[flash_type] = message
-    redirect_back fallback_location: root_path
-  end
-
   def order_item_params
     params.require(:order_item).permit(:quantity, :book_id)
   end

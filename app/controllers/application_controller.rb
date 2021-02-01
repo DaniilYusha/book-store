@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
   def current_order
     user_signed_in? ? current_user.orders.find_by(status: :pending) : Order.find_by(id: cookies[:order_id])
   end
+
+  def redirect_back_with_flash(flash_type, message)
+    flash[flash_type] = message
+    redirect_back fallback_location: root_path
+  end
 end
