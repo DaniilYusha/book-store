@@ -135,6 +135,7 @@ en:
     order_summary: Order Summary
     subtotal: 'Subtotal:'
     coupon: 'Coupon:'
+    shipping: 'Shipping:'
     coupon_is_applied: Coupon already applied to your order
     order_total: 'Order Total:'
     item_total: 'Item Total:'
