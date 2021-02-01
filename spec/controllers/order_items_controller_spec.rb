@@ -9,7 +9,7 @@ RSpec.describe OrderItemsController, type: :controller do
 
       it { expect(response).to have_http_status(:redirect) }
       it { expect(flash[:notice]).to eq(I18n.t('notice.book.added_to_order')) }
-      it { expect(cookies[:order_id].nil?).to be false }
+      it { expect(cookies[:order_id]).not_to be_nil }
     end
 
     context 'when update existing order item' do
@@ -54,7 +54,6 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe 'DELETE /order_item/{id}' do
     let(:order) { create(:order) }
-    let(:order_item) { create(:order_item, order_id: order.id) }
 
     before do
       cookies[:order_id] = order.id
@@ -62,6 +61,7 @@ RSpec.describe OrderItemsController, type: :controller do
     end
 
     context 'when successfully destroy order item' do
+      let(:order_item) { create(:order_item, order_id: order.id) }
       let(:id) { order_item.id }
 
       it { expect(response).to have_http_status(:redirect) }
@@ -70,7 +70,8 @@ RSpec.describe OrderItemsController, type: :controller do
     end
 
     context 'when receive failed response' do
-      let(:id) { order_item.id.next }
+      let(:order_items) { create_list(:order_item, 2, order_id: order.id) }
+      let(:id) { order.id }
 
       it { expect(response).to have_http_status(:redirect) }
       it { expect(flash[:alert]).to eq(I18n.t('alert.something_wrong')) }
