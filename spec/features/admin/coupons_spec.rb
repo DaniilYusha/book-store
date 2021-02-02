@@ -1,10 +1,11 @@
 RSpec.describe 'admin/coupons', type: :feature do
   let(:admin) { create(:admin_user) }
 
+  let_it_be(:coupon) { create(:coupon) }
+
   before { login_as(admin) }
 
   describe '/index' do
-    let_it_be(:coupon) { create(:coupon) }
     let(:coupons_page) { Pages::Admin::Coupons.new }
 
     before { coupons_page.load }
@@ -44,7 +45,6 @@ RSpec.describe 'admin/coupons', type: :feature do
   end
 
   describe '/edit' do
-    let_it_be(:coupon) { create(:coupon) }
     let(:edit_coupon_page) { Pages::Admin::EditCoupon.new }
 
     before { edit_coupon_page.load(id: coupon.id) }

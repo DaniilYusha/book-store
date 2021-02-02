@@ -3,12 +3,11 @@ class PersistOrderItemService
 
   def initialize(params:, order:)
     @params = params
-    @order = order
+    @order = order || Order.new
     @errors = []
   end
 
   def call
-    @order ||= Order.create
     item ? update_item(item) : create_item
 
     errors.empty?
@@ -23,7 +22,10 @@ class PersistOrderItemService
   end
 
   def create_item
-    quantity_valid?(params) ? order.order_items.create(params) : @errors = order_item_form.errors
+    return @errors = order_item_form.errors unless quantity_valid?(params)
+
+    order.order_items.build(params)
+    order.save
   end
 
   def update_item(item)

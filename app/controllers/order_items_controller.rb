@@ -1,32 +1,27 @@
 class OrderItemsController < ApplicationController
   def create
-    service = PersistOrderItemService.new(params: order_item_params, order: current_order)
-    return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
-
-    cookies[:order_id] = service.order.id unless current_order
-    redirect_back_with_flash(:notice, I18n.t('notice.book.added_to_order'))
+    persist_order_items(message: I18n.t('notice.book.added_to_order'), set_cookie: true)
   end
 
   def update
-    service = PersistOrderItemService.new(params: order_item_params, order: current_order)
-    return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
-
-    redirect_back_with_flash(:notice, I18n.t('notice.book.count_changed'))
+    persist_order_items(message: I18n.t('notice.book.count_changed'))
   end
 
   def destroy
     service = DestroyOrderItemService.new(item_id: params[:id], order: current_order)
-    return redirect_back_with_flash(:alert, I18n.t('alert.something_wrong')) unless service.call
-
+    service.call
     cookies.delete(:order_id) if service.order_destroyed?
     redirect_to(cart_path, notice: I18n.t('notice.book.deleted'))
   end
 
   private
 
-  def redirect_back_with_flash(flash_type, message)
-    flash[flash_type] = message
-    redirect_back fallback_location: root_path
+  def persist_order_items(message:, set_cookie: false)
+    service = PersistOrderItemService.new(params: order_item_params, order: current_order)
+    return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
+
+    cookies[:order_id] = service.order.id if set_cookie && current_order.nil?
+    redirect_back_with_flash(:notice, message)
   end
 
   def order_item_params
