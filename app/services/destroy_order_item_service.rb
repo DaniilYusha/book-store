@@ -1,14 +1,15 @@
 class DestroyOrderItemService
+  ITEMS_COUNT_TO_DESTROY_ORDER = 1
+
   def initialize(item_id:, order:)
     @id = item_id
     @order = order
   end
 
   def call
-    order_item.delete
-    order.destroy if order.order_items.empty?
+    return order.destroy if order.order_items.count == ITEMS_COUNT_TO_DESTROY_ORDER
 
-    order_item.destroyed?
+    order_item.destroy
   end
 
   def order_destroyed?

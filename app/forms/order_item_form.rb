@@ -6,5 +6,5 @@ class OrderItemForm
 
   attribute :quantity, Integer
 
-  validates :quantity, numericality: { only_integer: true, greater_than: INVALID_QUANTITY }
+  validates :quantity, numericality: { greater_than: INVALID_QUANTITY }
 end

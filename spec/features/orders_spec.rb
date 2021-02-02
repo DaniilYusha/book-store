@@ -6,7 +6,7 @@ RSpec.describe 'Orders', type: :feature do
   before do
     login_as(user, scope: :user)
     home_page.load
-    home_page.slider.buy_first_book
+    home_page.slider.buy_now_buttons.map(&:click)
   end
 
   describe 'index page' do
