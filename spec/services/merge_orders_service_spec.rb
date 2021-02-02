@@ -55,8 +55,7 @@ RSpec.describe MergeOrdersService do
       end
 
       it 'change order item quantity' do
-        order = Order.find_by(id: user_order.id)
-        expect { execute_service }.to change { order.order_items.first.quantity }
+        expect { execute_service }.to change { user_order.reload.order_items.first.quantity }
           .by(guest_order.order_items.first.quantity)
       end
     end
@@ -84,8 +83,7 @@ RSpec.describe MergeOrdersService do
       end
 
       it 'changes user order items count' do
-        order = Order.find_by(id: user_order.id)
-        expect { execute_service }.to change { order.order_items.count }.by(guest_order.order_items.count)
+        expect { execute_service }.to change { user_order.reload.order_items.count }.by(guest_order.order_items.count)
       end
     end
   end
