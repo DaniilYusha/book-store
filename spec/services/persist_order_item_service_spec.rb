@@ -38,7 +38,7 @@ RSpec.describe PersistOrderItemService do
 
     context 'with not positive quantity' do
       subject(:execute_service) { described_class.new(params: params, order: nil).call }
-      
+
       let(:params) { attributes_for(:order_item, quantity: 0, book_id: book.id) }
 
       it 'returns false' do
