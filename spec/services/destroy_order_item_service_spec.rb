@@ -29,7 +29,7 @@ RSpec.describe DestroyOrderItemService do
       end
 
       it 'change order_items count' do
-        expect { execute_service }.to change { OrderItem.count }.by(1)
+        expect { execute_service }.to change(OrderItem, :count).by(1)
       end
     end
 
