@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   has_one :coupon, dependent: :nullify
 
   belongs_to :user, optional: true
+  belongs_to :delivery, optional: true
 
   aasm column: :status, enum: true do
     state :pending, initial: true
