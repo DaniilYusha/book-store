@@ -21,7 +21,7 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :address
     end
 
-    event :delivery do
+    event :fill_delivery do
       transitions from: :address, to: :delivery
     end
 
