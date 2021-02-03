@@ -1,0 +1,22 @@
+- deliveries.each do |delivery|
+  .general-cart-item.divider-lg-bottom.mb-30
+    %table.table
+      %tr
+        %td.col-half
+          %span.in-grey-600 Method
+        %td.col-half
+          .form-group.radio.mt-0.mb-0
+            %label.radio-label
+              %input.radio-input{type: "radio", hidden: "true"}
+              %span.radio-icon
+              %span.radio-text= delivery.method
+      %tr
+        %td
+          %span.in-grey-600 Days
+        %td
+          %span.font-16.fw-300= "#{delivery.from_days} to #{delivery.to_days} days"
+      %tr
+        %td
+          %span.in-grey-600 Price
+        %td
+          %span.font-16.in-gold-500= number_to_currency(delivery.price)
