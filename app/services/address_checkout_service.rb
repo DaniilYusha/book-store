@@ -1,7 +1,8 @@
 class AddressCheckoutService
-  def initialize(params:, user:)
+  def initialize(params:, user:, order:)
     @params = params
     @user = user
+    @order = order
     @billing_form = AddressForm.new(params[:address][:billing_form])
     @shipping_form = AddressForm.new(params[:address][:shipping_form])
   end
