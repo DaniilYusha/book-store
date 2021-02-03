@@ -143,6 +143,12 @@ en:
     empty_order: Your order is empty yet?
     go_to_shop: Go to shop!
   checkout:
+    delivery:
+      shipping_method: Shipping Method
+      method: Method
+      days: Days
+      price: Price
+      delivery_time: "%{from} to %{to} days"
     address:
       fields_required: all fields are required
     returning_customer: Returning Customer
