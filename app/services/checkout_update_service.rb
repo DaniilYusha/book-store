@@ -2,7 +2,8 @@ class CheckoutUpdateService
   attr_reader :presenter
 
   SERVICES = {
-    address: AddressCheckoutService
+    address: AddressCheckoutService,
+    delivery: DeliveryCheckoutService
   }
 
   STEPS = {
@@ -19,7 +20,7 @@ class CheckoutUpdateService
   end
 
   def call
-    service = SERVICES[params[:step].to_sym].new(params: params, user: user)
+    service = SERVICES[params[:step].to_sym].new(params: params, user: user, order: order)
     return true if service.call
 
     @presenter = service.presenter
