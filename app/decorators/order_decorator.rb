@@ -2,7 +2,7 @@ class OrderDecorator < ApplicationDecorator
   delegate_all
   decorates_association :order_items
 
-  DEFAULT_DISCOUNT = 0.00
+  DEFAULT_PRICE = 0.00
   PERCENTAGE_DIVIDER = 100
 
   def items_count
@@ -14,10 +14,14 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def coupon_discount
-    object.coupon ? (subtotal_price * object.coupon.discount / PERCENTAGE_DIVIDER) : DEFAULT_DISCOUNT
+    object.coupon ? (subtotal_price * object.coupon.discount / PERCENTAGE_DIVIDER) : DEFAULT_PRICE
+  end
+
+  def delivery_price
+    object.delivery ? object.delivery.price : DEFAULT_PRICE
   end
 
   def order_total
-    subtotal_price - coupon_discount
+    subtotal_price - coupon_discount + delivery_price
   end
 end
