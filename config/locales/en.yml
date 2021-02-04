@@ -143,6 +143,9 @@ en:
     empty_order: Your order is empty yet?
     go_to_shop: Go to shop!
   checkout:
+    payment:
+      credit_card: Credit Card
+      cvv_hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front.
     delivery:
       shipping_method: Shipping Method
       method: Method
