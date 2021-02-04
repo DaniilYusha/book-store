@@ -3,15 +3,16 @@ class CheckoutUpdateService
 
   SERVICES = {
     address: AddressCheckoutService,
-    delivery: DeliveryCheckoutService
-  }
+    delivery: DeliveryCheckoutService,
+    payment: PaymentCheckoutService
+  }.freeze
 
   STEPS = {
     address: ->(order) { order.delivery! },
     delivery: ->(order) { order.payment! },
     payment: ->(order) { order.confirm! },
     confirm: ->(order) { order.complete! }
-  }
+  }.freeze
 
   def initialize(params:, user:, order:)
     @params = params
