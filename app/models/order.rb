@@ -5,6 +5,7 @@ class Order < ApplicationRecord
 
   has_many :order_items, dependent: :destroy
   has_one :coupon, dependent: :nullify
+  has_one :credit_card, dependent: :destroy
 
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
