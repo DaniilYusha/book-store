@@ -2,9 +2,9 @@ class CheckoutShowService
   PRESENTERS = {
     address: AddressCheckoutPresenter,
     delivery: DeliveryPresenter,
-    # payment: PaymentPresenter,
+    payment: PaymentPresenter
     # confirmation: ConfirmationPresenter
-  }
+  }.freeze
 
   def initialize(params:, user:, order:)
     @params = params
