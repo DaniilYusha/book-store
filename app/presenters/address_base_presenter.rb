@@ -5,11 +5,11 @@ class AddressBasePresenter
   end
 
   def billing_address
-    user.billing_address || Address.new()
+    user.billing_address || Address.new
   end
 
   def shipping_address
-    user.shipping_address || Address.new()
+    user.shipping_address || Address.new
   end
 
   def countries
