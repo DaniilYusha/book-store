@@ -93,3 +93,18 @@ a.read-less {
 .quantity-input {
   pointer-events: none;
 }
+
+.cvv-hint {
+  display: none;
+}
+div.relative > svg:hover + .cvv-hint {
+  display: block;
+  position: absolute;
+  width: 300px;
+  background-color: #c59c71;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 5px;
+}
