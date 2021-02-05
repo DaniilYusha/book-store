@@ -4,7 +4,8 @@ class CheckoutUpdateService
   SERVICES = {
     address: AddressCheckoutService,
     delivery: DeliveryCheckoutService,
-    payment: PaymentCheckoutService
+    payment: PaymentCheckoutService,
+    confirm: ConfirmCheckoutService
   }.freeze
 
   STEPS = {
@@ -29,7 +30,7 @@ class CheckoutUpdateService
   end
 
   def next_step
-    STEPS[params[:step].to_sym].call(order)
+    STEPS[params[:step].to_sym].call(order) if params[:step] == order.status
     order.status
   end
 
