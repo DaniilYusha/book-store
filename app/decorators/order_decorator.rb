@@ -1,6 +1,7 @@
 class OrderDecorator < ApplicationDecorator
   delegate_all
   decorates_association :order_items
+  decorates_association :credit_card
 
   DEFAULT_PRICE = 0.00
   PERCENTAGE_DIVIDER = 100
