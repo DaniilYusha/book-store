@@ -16,6 +16,6 @@
         %i.fa.fa-question-circle.general-form-help
         %span.cvv-hint= t('checkout.payment.cvv_hint')
 .general-text-align
-  = render partial: 'checkout/partials/order_summary', locals: { order: order }
+  = render partial: 'checkout/partials/order_summary', locals: { order: order, move_right: false }
 .text-center
   %button.btn.btn-default.mb-80{ type: :submit, form: 'credit-card-form' }= t('buttons.save_and_continue')
