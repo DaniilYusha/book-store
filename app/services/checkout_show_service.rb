@@ -3,7 +3,8 @@ class CheckoutShowService
     address: AddressCheckoutPresenter,
     delivery: DeliveryPresenter,
     payment: PaymentPresenter,
-    confirm: ConfirmPresenter
+    confirm: ConfirmPresenter,
+    complete: CompletePresenter
   }.freeze
 
   def initialize(params:, user:, order:)
@@ -15,7 +16,7 @@ class CheckoutShowService
   def call
     return if params[:step].to_sym == :login
 
-    order.address! if order.pending?
+    order.address! if order&.pending?
     PRESENTERS[params[:step].to_sym].new(user: user)
   end
 
