@@ -25,4 +25,8 @@ class OrderDecorator < ApplicationDecorator
   def order_total
     subtotal_price - coupon_discount + delivery_price
   end
+
+  def creation_date
+    object.created_at.strftime('%B %d, %Y')
+  end
 end
