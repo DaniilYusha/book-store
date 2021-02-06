@@ -8,10 +8,10 @@ class AddressCheckoutService
   end
 
   def call
-    validate_forms
-    params[:use_billing_address] ? save_with_hidden_shipping : persist_addresses
+    return save_with_hidden_shipping if params[:use_billing_address]
 
-    forms_valid?
+    validate_forms
+    persist_addresses
   end
 
   def presenter
