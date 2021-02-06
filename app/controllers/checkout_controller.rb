@@ -3,7 +3,7 @@ class CheckoutController < ApplicationController
     service = CheckoutShowService.new(params: params, user: current_user, order: current_order)
 
     @presenter = service.call
-    @order = current_order.decorate
+    @order = current_order&.decorate
   end
 
   def update
