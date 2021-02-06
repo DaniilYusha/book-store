@@ -4,7 +4,7 @@ class CompletePresenter
   end
 
   def completed_order
-    user.orders.complete.last.decorate
+    @completed_order ||= user.orders.complete.last.decorate
   end
 
   private
