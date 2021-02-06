@@ -9,6 +9,7 @@ en:
   provider: Facebook
   or: or
   links:
+    back_to_store: Back to Store
     home: Home
     shop: Shop
     my_account: My account
@@ -144,8 +145,11 @@ en:
     empty_order: Your order is empty yet?
     go_to_shop: Go to shop!
   checkout:
+    complete:
+      confirmation_sent: "An order confirmation has been has been sent to %{email}"
+      order_number: "Order %{number}"
     confirm:
-      thank_for_order: Thank you for order!
+      thank_for_order: Thank You for your Order!
       book: Book
       price: Price
       quantity: Quantity
