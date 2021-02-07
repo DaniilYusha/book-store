@@ -14,6 +14,5 @@ Rails.application.routes.draw do
   resources :order_items, only: %i[create update destroy]
   resource :coupon, only: :update
   resources :checkout, param: :step, only: %i[show update]
-  get '/checkout_login', to: 'pages#checkout_login'
   root 'pages#home'
 end
