@@ -17,7 +17,7 @@ RSpec.describe OrderDecorator do
 
   describe '#coupon_discount' do
     context 'when order without coupon' do
-      it { expect(order.coupon_discount).to eq(OrderDecorator::DEFAULT_DISCOUNT) }
+      it { expect(order.coupon_discount).to eq(OrderDecorator::DEFAULT_PRICE) }
     end
 
     context 'when order with coupon' do
