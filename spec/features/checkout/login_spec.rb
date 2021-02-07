@@ -1,7 +1,13 @@
-RSpec.describe 'LogIn', type: :feature do
+RSpec.describe 'checkout/login', type: :feature do
+  let_it_be(:book) { create(:book).decorate }
+  let(:home_page) { Pages::Home.new }
   let(:checkout_login_page) { Pages::Checkout::Login.new }
 
-  before { checkout_login_page.load }
+  before do
+    home_page.load
+    home_page.slider.buy_now_buttons.map(&:click)
+    checkout_login_page.load
+  end
 
   describe 'checkout login page' do
     context 'with page elements' do
@@ -20,7 +26,7 @@ RSpec.describe 'LogIn', type: :feature do
     end
 
     context 'when fill in new customer form with valid email' do
-      let(:email) { 'checkout_login@gmail.com' }
+      let(:email) { attributes_for(:user)[:email] }
 
       before { checkout_login_page.new_customer.fill_in_form(email) }
 
