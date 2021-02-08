@@ -19,6 +19,7 @@ en:
         current_password: Old password
         password: Password
         password_confirmation: Confirm Password
+        code: Enter Your Coupon Code
     labels:
       defaults:
         first_name: First Name
@@ -28,3 +29,4 @@ en:
         current_password: Old password
         password: Password
         password_confirmation: Confirm Password
+        code: Enter Your Coupon Code

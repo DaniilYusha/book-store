@@ -1,0 +1,10 @@
+%main.container.general-main-wrap
+  - if @order
+    %h1.general-title-margin= t('order.page_name')
+    .visible-xs
+      = render partial: 'carts/partials/mobile/orders', locals: { order_items: @order.order_items }
+    .hidden-xs
+      = render partial: 'carts/partials/orders', locals: { order_items: @order.order_items }
+    = render partial: 'carts/partials/order_summary', locals: { order: @order }
+  - else
+    = render 'carts/partials/empty_order'

@@ -88,6 +88,34 @@ ActiveRecord::Schema.define(version: 20_210_105_114_731) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
+  create_table 'coupons', force: :cascade do |t|
+    t.string 'code', null: false
+    t.decimal 'discount', precision: 8, scale: 2, null: false
+    t.boolean 'is_valid', default: true
+    t.bigint 'order_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['order_id'], name: 'index_coupons_on_order_id'
+  end
+
+  create_table 'order_items', force: :cascade do |t|
+    t.integer 'quantity', null: false
+    t.bigint 'order_id'
+    t.bigint 'book_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['book_id'], name: 'index_order_items_on_book_id'
+    t.index ['order_id'], name: 'index_order_items_on_order_id'
+  end
+
+  create_table 'orders', force: :cascade do |t|
+    t.integer 'status', default: 0, null: false
+    t.bigint 'user_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['user_id'], name: 'index_orders_on_user_id'
+  end
+
   create_table 'reviews', force: :cascade do |t|
     t.string 'title', null: false
     t.text 'text', null: false
@@ -125,6 +153,10 @@ ActiveRecord::Schema.define(version: 20_210_105_114_731) do
   add_foreign_key 'author_books', 'books'
   add_foreign_key 'book_images', 'books'
   add_foreign_key 'books', 'categories'
+  add_foreign_key 'coupons', 'orders'
+  add_foreign_key 'order_items', 'books'
+  add_foreign_key 'order_items', 'orders'
+  add_foreign_key 'orders', 'users'
   add_foreign_key 'reviews', 'books'
   add_foreign_key 'reviews', 'users'
 end

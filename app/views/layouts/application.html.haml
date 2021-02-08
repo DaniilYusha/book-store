@@ -3,13 +3,13 @@
   %head
     %meta{charset: "UTF-8"}
     %meta{name: "viewport", content: "width=device-width"}
-    %title #{I18n.t :brand}
+    %title= t(:brand)
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = render partial: 'layouts/header', locals: { categories: @categories }
+    = render partial: 'layouts/header', locals: { presenter: @header_presenter }
     = render 'layouts/flash'
     = yield
     = render 'layouts/footer'

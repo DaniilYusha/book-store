@@ -8,6 +8,7 @@ require("bootstrap-sass")
 require ("@fortawesome/fontawesome-free/js/all.min")
 require("typeface-open-sans")
 
+require("packs/book/cart")
 require("packs/book/read_more")
 require("packs/book/review_rating")
 require("packs/catalog/pagination")
