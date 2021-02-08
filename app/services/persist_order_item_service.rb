@@ -24,8 +24,7 @@ class PersistOrderItemService
   def create_item
     return @errors = order_item_form.errors unless quantity_valid?(params)
 
-    order.order_items.build(params)
-    order.save
+    order.order_items.build(params).save
   end
 
   def update_item(item)

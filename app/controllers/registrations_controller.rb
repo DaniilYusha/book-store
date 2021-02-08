@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def quick_registrate_user
-    params[:user][:password] = params[:user][:password_confirmation] = Devise.friendly_token[0, 8]
+    params[:user][:password] = params[:user][:password_confirmation] = Devise.friendly_token
     build_resource(sign_up_params)
     resource.skip_confirmation!
     resource.save ? authenticate_user : redirect_back_with_errors
@@ -25,8 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def redirect_back_with_errors
-    presenter = QuickRegistrationPresenter.new(errors: resource.errors)
-    redirect_back fallback_location: cart_path, alert: presenter.errors
+    redirect_back fallback_location: cart_path, alert: resource.errors.full_messages_for(:email).to_sentence
   end
 
   def send_successful_response

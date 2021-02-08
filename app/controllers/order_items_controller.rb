@@ -20,7 +20,7 @@ class OrderItemsController < ApplicationController
     service = PersistOrderItemService.new(params: order_item_params, order: current_order)
     return redirect_back_with_flash(:alert, service.errors.full_messages.to_sentence) unless service.call
 
-    cookies[:order_id] = service.order.id if set_cookie && current_order.nil?
+    cookies[:order_id] = service.order.id if set_cookie && !current_order
     redirect_back_with_flash(:notice, message)
   end
 
