@@ -1,0 +1,12 @@
+.text-center
+  %h3.general-subtitle= t('checkout.returning_customer')
+  %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
+    %i.fab.fa-facebook-square
+  %p.general-login-text= t(:or)
+= simple_form_for(:user, url: session_path(:user), html: { class: 'general-form' }) do |f|
+  .mb-40
+    %p.mb-15= t('checkout.log_in_with_password')
+    = f.input :email
+    = f.input :password
+    = link_to t('links.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
+  = f.button :submit, t('checkout.log_in_with_password')

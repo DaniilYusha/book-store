@@ -26,5 +26,7 @@
               %strong.font-18= t('order.order_total')
             %td
               %strong.font-18= number_to_currency(order.order_total)
-        %button.btn.btn-default.mb-20.visible-xs-inline-block= t('order.checkout')
-%button.btn.btn-default.mb-20.hidden-xs.center-block= t('order.checkout')
+        .text-center
+          = link_to t('cart.checkout'), checkout_login_path, class: 'btn btn-default mb-20 visible-xs'
+.text-center
+  = link_to t('cart.checkout'), checkout_login_path, class: 'btn btn-default mb-20 hidden-xs'
