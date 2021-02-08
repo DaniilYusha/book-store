@@ -20,14 +20,16 @@ RSpec.describe CouponsController, type: :controller do
     context 'with invalid params' do
       let(:fake_code) { rand(0..5) }
       let(:params) { { coupon: { code: fake_code } } }
-      let(:error) { "Code #{I18n.t('alert.coupon.not_exist')}" }
+      let(:form) { CouponForm.new(params[:coupon]) }
+
+      before { form.validate }
 
       it 'has redirect http status' do
         expect(response).to have_http_status(:redirect)
       end
 
       it 'has alert flash' do
-        expect(flash[:alert]).to eq(error)
+        expect(flash[:alert]).to eq(form.errors.full_messages_for(:code).to_sentence)
       end
     end
   end
