@@ -22,7 +22,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    user_signed_in? ? current_user.orders.find_by(status: :pending) : Order.find_by(id: cookies[:order_id])
+    return current_user.orders.find_by(status: Order.statuses[:pending]) if user_signed_in?
+
+    Order.find_by(id: cookies[:order_id])
   end
 
   def redirect_back_with_flash(flash_type, message)

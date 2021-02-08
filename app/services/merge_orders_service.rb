@@ -19,7 +19,7 @@ class MergeOrdersService
   end
 
   def user_order
-    @user_order ||= user.orders.find_by(status: :pending)
+    @user_order ||= user.orders.find_by(status: Order.statuses[:pending])
   end
 
   def merge_orders
