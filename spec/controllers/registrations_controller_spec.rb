@@ -14,19 +14,23 @@ RSpec.describe RegistrationsController, type: :controller do
 
     context 'when quick registrate user with blank email' do
       let(:params) { { email: '', quick_register: true } }
-      let(:error_message) { 'Email can\'t be blank' }
+      let(:user) { User.new(email: params[:email]) }
+
+      before { user.validate }
 
       it { expect(response).to have_http_status(:redirect) }
-      it { expect(flash[:alert]).to eq(error_message) }
+      it { expect(flash[:alert]).to eq(user.errors.full_messages_for(:email).to_sentence) }
     end
 
     context 'when quick registrate user with existing email' do
       let(:user) { create(:user) }
       let(:params) { { email: user.email, quick_register: true } }
-      let(:error_message) { 'Email has already been taken' }
+      let(:new_user) { User.new(email: user.email) }
+
+      before { new_user.validate }
 
       it { expect(response).to have_http_status(:redirect) }
-      it { expect(flash[:alert]).to eq(error_message) }
+      it { expect(flash[:alert]).to eq(new_user.errors.full_messages_for(:email).to_sentence) }
     end
   end
 end
