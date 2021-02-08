@@ -3,12 +3,15 @@ RSpec.describe Order, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user).optional }
+    it { is_expected.to belong_to(:delivery).optional }
     it { is_expected.to have_many(:order_items).dependent(:destroy) }
     it { is_expected.to have_one(:coupon).dependent(:nullify) }
+    it { is_expected.to have_one(:credit_card).dependent(:destroy) }
   end
 
   describe 'with database indexes' do
     it { is_expected.to have_db_index(:user_id) }
+    it { is_expected.to have_db_index(:delivery_id) }
   end
 
   describe 'enum for status' do
