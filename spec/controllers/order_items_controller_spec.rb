@@ -1,4 +1,5 @@
 RSpec.describe OrderItemsController, type: :controller do
+  let(:order) { create(:order) }
   let(:book) { create(:book) }
 
   describe 'POST /order_items' do
@@ -13,7 +14,6 @@ RSpec.describe OrderItemsController, type: :controller do
     end
 
     context 'when update existing order item' do
-      let(:order) { create(:order) }
       let(:params) { attributes_for(:order_item, order_id: order.id, book_id: book.id) }
       let(:order_item) { create(:order_item, order_id: order.id, book_id: book.id) }
 
@@ -26,7 +26,6 @@ RSpec.describe OrderItemsController, type: :controller do
   end
 
   describe 'PATCH /order_item/{id}' do
-    let(:order) { create(:order) }
     let(:order_item) { create(:order_item, order: order) }
 
     before do
@@ -53,8 +52,6 @@ RSpec.describe OrderItemsController, type: :controller do
   end
 
   describe 'DELETE /order_item/{id}' do
-    let(:order) { create(:order) }
-
     before do
       cookies[:order_id] = order.id
       delete :destroy, params: { id: id }
