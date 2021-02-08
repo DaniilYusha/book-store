@@ -51,14 +51,16 @@ RSpec.describe OrderItemsController, type: :controller do
 
     context 'with invalid quantity' do
       let(:params) { { quantity: -5, book_id: order_item.book.id } }
-      let(:error_message) { "Quantity must be greater than #{OrderItemForm::INVALID_QUANTITY}" }
+      let(:form) { OrderItemForm.new(params) }
+
+      before { form.validate }
 
       it 'has redirect http status' do
         expect(response).to have_http_status(:redirect)
       end
 
       it 'has alert flash' do
-        expect(flash[:alert]).to eq(error_message)
+        expect(flash[:alert]).to eq(form.errors.full_messages_for(:quantity).to_sentence)
       end
 
       it 'has order_id in cookies' do
