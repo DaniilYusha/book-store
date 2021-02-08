@@ -35,11 +35,14 @@ RSpec.describe 'LogIn', type: :feature do
 
     context 'when fill in new customer form with existing email' do
       let(:user) { create(:user) }
-      let(:error) { 'Email has already been taken' }
+      let(:new_user) { User.new(email: user.email) }
 
-      before { checkout_login_page.new_customer.fill_in_form(user.email) }
+      before do
+        new_user.validate
+        checkout_login_page.new_customer.fill_in_form(user.email)
+      end
 
-      it { expect(checkout_login_page).to have_content(error) }
+      it { expect(checkout_login_page).to have_content(new_user.errors.full_messages_for(:email).to_sentence) }
     end
 
     context 'when fill in returning customer form' do
