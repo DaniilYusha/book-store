@@ -5,6 +5,6 @@ class CreditCardDecorator < ApplicationDecorator
   NUMBERS_COUNT_TO_SHOW = 4
 
   def masked_number
-    HIDDEN_CARD_NUMBERS + object.number.chars.last(NUMBERS_COUNT_TO_SHOW).join
+    HIDDEN_CARD_NUMBERS + object.number.last(NUMBERS_COUNT_TO_SHOW)
   end
 end
