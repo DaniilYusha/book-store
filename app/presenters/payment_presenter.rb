@@ -1,4 +1,6 @@
 class PaymentPresenter
+  ERROR_CLASS = 'has-error'.freeze
+
   attr_reader :errors
 
   def initialize(user: nil, errors: {})
@@ -7,7 +9,7 @@ class PaymentPresenter
   end
 
   def add_error_class_for_field(field)
-    'has-error' if field_has_errors?(field)
+    ERROR_CLASS if field_has_errors?(field)
   end
 
   def field_has_errors?(field)
