@@ -3,9 +3,9 @@ RSpec.describe CheckoutUpdateService do
   let(:order) { create(:order, order_items: [order_item]) }
 
   describe '#call' do
-    context 'when step is address and params are valid' do
-      subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
+    subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
 
+    context 'when step is address and params are valid' do
       let(:params) { { step: step, address: address_params } }
       let(:step) { :address }
       let(:address_params) do
@@ -22,8 +22,6 @@ RSpec.describe CheckoutUpdateService do
     end
 
     context 'when step is address and params are invalid' do
-      subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
-
       let(:params) { { step: step, address: address_params } }
       let(:step) { :address }
       let(:address_params) do
@@ -41,8 +39,6 @@ RSpec.describe CheckoutUpdateService do
     end
 
     context 'when step is delivery' do
-      subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
-
       let(:params) { { step: step, delivery_id: delivery.id } }
       let(:step) { :delivery }
       let(:delivery) { create(:delivery) }
@@ -57,8 +53,6 @@ RSpec.describe CheckoutUpdateService do
     end
 
     context 'when step is payment and params are valid' do
-      subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
-
       let(:params) { { step: step, credit_card: card_params } }
       let(:step) { :payment }
       let(:card_params) { attributes_for(:credit_card) }
@@ -73,8 +67,6 @@ RSpec.describe CheckoutUpdateService do
     end
 
     context 'when step is confirm' do
-      subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
-
       let(:params) { { step: step } }
       let(:step) { :confirm }
 
