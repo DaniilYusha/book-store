@@ -9,7 +9,7 @@ RSpec.describe DeliveryCheckoutService do
     let(:params) { { delivery_id: delivery.id } }
 
     it 'sets delivery id to order' do
-      expect { execute_service }.to change { order.reload.delivery_id }
+      expect { execute_service }.to change(order.reload, :delivery_id)
     end
 
     it 'delivery_id in order is equals to delivery id' do

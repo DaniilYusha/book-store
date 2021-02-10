@@ -48,7 +48,7 @@ RSpec.describe CheckoutUpdateService do
       end
 
       it 'sets delivery_id for order' do
-        expect { execute_service }.to change { order.reload.delivery_id }
+        expect { execute_service }.to change(order.reload, :delivery_id)
       end
     end
 
@@ -75,7 +75,7 @@ RSpec.describe CheckoutUpdateService do
       end
 
       it 'creates credit card for order' do
-        expect { execute_service }.to change { order.reload.number }
+        expect { execute_service }.to change(order.reload, :number)
       end
     end
   end
