@@ -1,10 +1,10 @@
 RSpec.describe AddressCheckoutService do
-  subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
-
   let(:order_item) { create(:order_item) }
   let(:order) { create(:order, order_items: [order_item]) }
 
   describe '#call' do
+    subject(:execute_service) { described_class.new(params: params, user: order.user, order: order).call }
+
     context 'when valid params without use_billing_address' do
       let(:params) { { step: step, address: address_params } }
       let(:step) { :address }
