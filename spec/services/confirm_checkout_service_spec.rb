@@ -13,7 +13,7 @@ RSpec.describe ConfirmCheckoutService do
       end
 
       it 'returns ActionMailer::MailDeliveryJob object' do
-        expect(execute_service.class).to eq(ActionMailer::MailDeliveryJob)
+        expect(execute_service).to be_kind_of(ActionMailer::MailDeliveryJob)
       end
     end
   end
