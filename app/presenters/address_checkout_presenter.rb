@@ -6,6 +6,14 @@ class AddressCheckoutPresenter < AddressBasePresenter
     @shipping_form = shipping_form
   end
 
+  def billing_address
+    user.billing_address || Address.new(billing_form&.attributes)
+  end
+
+  def shipping_address
+    user.shipping_address || Address.new(shipping_form&.attributes)
+  end
+
   def billing_errors
     @billing_errors ||= billing_form&.errors
   end
