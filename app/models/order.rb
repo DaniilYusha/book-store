@@ -1,7 +1,8 @@
 class Order < ApplicationRecord
   include AASM
 
-  enum status: { pending: 0, address: 1, delivery: 2, payment: 3, confirm: 4, complete: 5 }
+  enum status: { pending: 0, address: 1, delivery: 2, payment: 3, confirm: 4,
+                 complete: 5, in_delivery: 6, delivered: 7, canceled: 8 }
 
   has_many :order_items, dependent: :destroy
   has_one :coupon, dependent: :nullify
@@ -10,6 +11,8 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
 
+  scope :in_progress, -> { Order.complete }
+
   aasm column: :status, enum: true do
     state :pending, initial: true
     state :address
@@ -17,6 +20,9 @@ class Order < ApplicationRecord
     state :payment
     state :confirm
     state :complete
+    state :in_delivery
+    state :delivered
+    state :canceled
 
     event :to_address do
       transitions from: :pending, to: :address
