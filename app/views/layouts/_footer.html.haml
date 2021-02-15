@@ -9,7 +9,7 @@
             %a.nav-link.shop_link{href: books_path}= t 'links.shop'
           - if user_signed_in?
             %li
-              %a.nav-link.orders_link{href: "#"}= t 'links.orders'
+              %a.nav-link.orders_link{href: orders_path}= t 'links.orders'
             %li
               %a.nav-link.settings_link{href: settings_path}= t 'links.settings'
       .col-sm-3
