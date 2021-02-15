@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :order_items, only: %i[create update destroy]
   resource :coupon, only: :update
   resources :checkout, param: :step, only: %i[show update]
+  resources :orders, only: :index
   root 'pages#home'
 end
