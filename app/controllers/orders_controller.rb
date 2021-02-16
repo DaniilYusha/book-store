@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @orders = SortedOrdersQuery.new(relation: current_user.orders, sort_by: orders_params[:sort_by]).call.decorate
     @presenter = OrdersPresenter.new
