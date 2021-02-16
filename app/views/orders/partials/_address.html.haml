@@ -1,0 +1,12 @@
+.col-sm-3
+  %h3.general-subtitle.mt-0= t("devise.registrations.edit.#{address.address_type}_address")
+  %p.general-address
+    = "#{address.first_name} #{address.last_name}"
+    %br
+    = address.address
+    %br
+    = "#{address.city} #{address.zip_code}"
+    %br
+    = address.country
+    %br
+    = t('checkout.confirm.phone', phone: address.phone)
