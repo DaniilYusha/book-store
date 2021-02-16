@@ -18,7 +18,8 @@ RSpec.describe Order, type: :model do
     it do
       expect(order).to define_enum_for(:status).with_values(
         pending: 0, address: 1, delivery: 2, payment: 3, confirm: 4,
-        complete: 5, in_delivery: 6, delivered: 7, canceled: 8)
+        complete: 5, in_delivery: 6, delivered: 7, canceled: 8
+      )
     end
   end
 end
