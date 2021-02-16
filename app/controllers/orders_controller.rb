@@ -4,6 +4,10 @@ class OrdersController < ApplicationController
     @presenter = OrdersPresenter.new
   end
 
+  def show
+    @order = Order.includes(order_items: [:book]).find(params[:id]).decorate
+  end
+
   private
 
   def orders_params
