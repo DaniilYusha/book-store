@@ -11,8 +11,6 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
 
-  scope :in_progress, -> { Order.complete }
-
   aasm column: :status, enum: true do
     state :pending, initial: true
     state :address
