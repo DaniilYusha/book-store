@@ -1,0 +1,5 @@
+%h3.general-subtitle.mt-0= t('checkout.confirm.shipments')
+%p.general-address
+  = order.delivery.method
+  %br
+  = number_to_currency(order.delivery.price)

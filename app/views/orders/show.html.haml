@@ -1,0 +1,15 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('checkout.complete.order_number', number: @order.number)
+  .row.mb-20
+    = render partial: 'orders/partials/address', locals: { address: current_user.shipping_address }
+    = render partial: 'orders/partials/address', locals: { address: current_user.billing_address }
+    .col-sm-3
+      = render partial: 'orders/partials/shipments', locals: { order: @order }
+    .col-sm-3
+      = render partial: 'orders/partials/payment', locals: { order: @order }
+  .visible-xs
+    = render partial: 'orders/partials/mobile/items', locals: { order: @order }
+  .hidden-xs.divider-lg.pt-20
+    = render partial: 'orders/partials/items', locals: { order: @order }
+  .text-center.general-text-right
+    = render partial: 'orders/partials/summary', locals: { order: @order }

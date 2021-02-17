@@ -14,7 +14,7 @@
       %a{type: "button", 'data-toggle': "collapse", href: "#menu_account", 'aria-expanded': "false", 'aria-controls': "menu"}= t 'links.my_account'
       %ul#menu_account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
         %li
-          %a.collapse-link{href: '#'}= t 'links.orders'
+          %a.collapse-link{href: orders_path}= t 'links.orders'
         %li
           %a.collapse-link{href: settings_path}= t 'links.settings'
     %li
