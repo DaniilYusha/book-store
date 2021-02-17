@@ -1,0 +1,3 @@
+= form.input_field field, class: 'form-control', type: type
+- if presenter.field_has_errors?(field)
+  %span.help-block= presenter.errors.full_messages_for(field).to_sentence

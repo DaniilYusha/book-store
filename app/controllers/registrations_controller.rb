@@ -21,7 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
   def authenticate_user
     sign_up(resource_name, resource)
     resource.send_reset_password_instructions
-    redirect_to(checkout_index_path, notice: I18n.t('devise.passwords.send_instructions'))
+    redirect_to(checkout_path(step: :address), notice: I18n.t('devise.passwords.send_instructions'))
   end
 
   def redirect_back_with_errors

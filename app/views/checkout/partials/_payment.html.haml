@@ -1,0 +1,21 @@
+= render 'checkout/partials/steps'
+%h3.general-subtitle= t('checkout.payment.credit_card')
+= simple_form_for(order.credit_card || :credit_card, url: checkout_path, method: :put, html: { id: 'credit-card-form', class: 'max-600 mb-80' }) do |form|
+  = form.input :number, wrapper_html: { class: "#{presenter.add_error_class_for_field(:number)}" } do
+    = render partial: 'checkout/partials/payment/inputs', locals: { field: :number, presenter: presenter, form: form, type: nil }
+  .row
+    .col-sm-6
+      = form.input :name, wrapper_html: { class: "#{presenter.add_error_class_for_field(:name)}" } do
+        = render partial: 'checkout/partials/payment/inputs', locals: { field: :name, presenter: presenter, form: form, type: nil }
+    .col-sm-3
+      = form.input :date, wrapper_html: { class: "#{presenter.add_error_class_for_field(:date)}" } do
+        = render partial: 'checkout/partials/payment/inputs', locals: { field: :date, presenter: presenter, form: form, type: nil }
+    .col-sm-3
+      = form.input :cvv, wrapper_html: { class: "relative #{presenter.add_error_class_for_field(:cvv)}" } do
+        = render partial: 'checkout/partials/payment/inputs', locals: { field: :cvv, presenter: presenter, form: form, type: :password }
+        %i.fa.fa-question-circle.general-form-help
+        %span.cvv-hint= t('checkout.payment.cvv_hint')
+.general-text-align
+  = render partial: 'checkout/partials/order_summary', locals: { order: order, move_right: false }
+.text-center
+  %button.btn.btn-default.mb-80{ type: :submit, form: 'credit-card-form' }= t('buttons.save_and_continue')

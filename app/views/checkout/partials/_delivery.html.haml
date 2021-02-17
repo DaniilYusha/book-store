@@ -1,0 +1,11 @@
+= render 'checkout/partials/steps'
+%h3.general-subtitle= t('checkout.delivery.shipping_method')
+= simple_form_for(checkout_path, method: :put) do |form|
+  .visible-xs
+    = render partial: 'checkout/partials/delivery/mobile/deliveries_description', locals: { presenter: presenter, order: order, form: form }
+  .hidden-xs.mb-res-50
+    = render partial: 'checkout/partials/delivery/deliveries_description', locals: { presenter: presenter, order: order, form: form }
+  .general-text-align
+    = render partial: 'checkout/partials/order_summary', locals: { order: order, move_right: false }
+  .text-center
+    = form.button :submit, t('buttons.save_and_continue'), class: 'center-block'

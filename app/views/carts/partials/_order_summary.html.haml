@@ -27,6 +27,12 @@
             %td
               %strong.font-18= number_to_currency(order.order_total)
         .text-center
-          = link_to t('cart.checkout'), checkout_login_path, class: 'btn btn-default mb-20 visible-xs'
+          - if user_signed_in?
+            = link_to t('cart.checkout'), checkout_path(step: :address), class: 'btn btn-default mb-20 visible-xs'
+          - else
+            = link_to t('cart.checkout'), checkout_path(step: :login), class: 'btn btn-default mb-20 visible-xs'
 .text-center
-  = link_to t('cart.checkout'), checkout_login_path, class: 'btn btn-default mb-20 hidden-xs'
+  - if user_signed_in?
+    = link_to t('cart.checkout'), checkout_path(step: :address), class: 'btn btn-default mb-20 hidden-xs'
+  - else
+    = link_to t('cart.checkout'), checkout_path(step: :login), class: 'btn btn-default mb-20 hidden-xs'

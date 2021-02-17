@@ -1,0 +1,6 @@
+%h3.general-subtitle= t('checkout.confirm.payment')
+%p.general-address
+  = order.credit_card.masked_number
+  = link_to t('checkout.confirm.edit'), checkout_path(step: :payment), class: 'general-edit'
+  %br
+  = order.credit_card.date
