@@ -4,7 +4,7 @@ ActiveAdmin.register Order do
 
   actions :index, :show
 
-  scope :in_progress, default: true
+  scope :complete, default: true
   scope :in_delivery
   scope :delivered
   scope :canceled
