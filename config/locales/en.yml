@@ -32,6 +32,9 @@ en:
     confirm_account: Confirm my account
     approve: Approve
     reject: Reject
+    in_delivery: In Delivery
+    delivered: Delivered
+    canceled: Canceled
   buttons:
     place_order: Place Order
     get_started: Get Started
@@ -102,6 +105,18 @@ en:
     slider:
       prev: Previous
       next: Next
+  orders_page:
+    my_orders: My Orders
+    sort_by: Sort by
+    number: Number
+    created_at: Created at
+    status: Status
+    total: Total
+    sorting:
+      complete: Waiting for processing
+      in_delivery: In Delivery
+      delivered: Delivered
+      canceled: Canceled
   catalog_page:
     page_name: Сatalog
     sort_by: Sort by

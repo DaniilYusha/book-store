@@ -1,0 +1,5 @@
+%h3.general-subtitle.mt-0= t('checkout.confirm.payment')
+%p.general-address
+  = order.credit_card.masked_number
+  %br
+  = order.credit_card.date

@@ -1,0 +1,23 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        %span.in-grey-600= t('orders_page.number')
+      %th
+        %span.in-grey-600= t('orders_page.created_at')
+      %th
+        %span.in-grey-600= t('orders_page.status')
+      %th
+        %span.in-grey-600= t('orders_page.total')
+  %tbody
+    - orders.each do |order|
+      %tr
+        %td
+          %span.general-order-number
+            = link_to order.number, order_path(order)
+        %td
+          %span.in-grey-900.font-16.fw-300= order.creation_date
+        %td
+          %span.font-16.fw-300{ class: presenter.add_class_for_status(order) }= order.status
+        %td
+          %strong.font-16= number_to_currency(order.order_total)
