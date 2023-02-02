@@ -9,6 +9,7 @@ en:
   provider: Facebook
   or: or
   links:
+    back_to_store: Back to Store
     home: Home
     shop: Shop
     my_account: My account
@@ -32,6 +33,7 @@ en:
     approve: Approve
     reject: Reject
   buttons:
+    place_order: Place Order
     get_started: Get Started
     buy_now: Buy Now
     view_more: View more
@@ -45,7 +47,9 @@ en:
     resend_confirmation: Resend confirmation instructions
     save: Save
     remove_account: Please Remove My Account
+    save_and_continue: Save and Continue
   checkboxes:
+    use_billing: Use Billing Adress
     remember_me: Remember me
     confirm_remove_account: I understand that all data will be lost
   validation:
@@ -133,12 +137,38 @@ en:
     order_summary: Order Summary
     subtotal: 'Subtotal:'
     coupon: 'Coupon:'
+    shipping: 'Shipping:'
     coupon_is_applied: Coupon already applied to your order
     order_total: 'Order Total:'
+    item_total: 'Item Total:'
     checkout: 'Checkout'
     empty_order: Your order is empty yet?
     go_to_shop: Go to shop!
   checkout:
+    complete:
+      confirmation_sent: "An order confirmation has been has been sent to %{email}"
+      order_number: "Order %{number}"
+    confirm:
+      thank_for_order: Thank You for your Order!
+      book: Book
+      price: Price
+      quantity: Quantity
+      total: Total
+      payment: Payment Information
+      shipments: Shipments
+      phone: "Phone %{phone}"
+      edit: edit
+    payment:
+      credit_card: Credit Card
+      cvv_hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front.
+    delivery:
+      shipping_method: Shipping Method
+      method: Method
+      days: Days
+      price: Price
+      delivery_time: "%{from} to %{to} days"
+    address:
+      fields_required: all fields are required
     returning_customer: Returning Customer
     new_customer: New Customer
     log_in_with_password: Log In with Password

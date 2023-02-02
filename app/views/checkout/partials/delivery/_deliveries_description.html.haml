@@ -1,0 +1,22 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th.col-method
+        %span.in-grey-600.ml-40= t('checkout.delivery.method')
+      %th
+        %span.in-grey-600= t('checkout.delivery.days')
+      %th
+        %span.in-grey-600= t('checkout.delivery.price')
+  %tbody
+    - presenter.deliveries.each_with_index do |delivery, index|
+      %tr
+        %td
+          .form-group.radio.mt-0.mb-0
+            %label.radio-label
+              = form.radio_button :delivery_id, delivery.id, name: :delivery_id, class: 'radio-input', hidden: true, checked: presenter.check_delivery(order: order, delivery: delivery, delivery_index: index)
+              %span.radio-icon
+              %span.radio-text= delivery.method
+        %td
+          %span= t('checkout.delivery.delivery_time', from: delivery.from_days, to: delivery.to_days)
+        %td
+          %span.font-16.in-gold-500= number_to_currency(delivery.price)
